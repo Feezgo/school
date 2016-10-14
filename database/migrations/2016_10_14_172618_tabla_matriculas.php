@@ -16,7 +16,10 @@ class TablaMatriculas extends Migration
         Schema::create('matriculas', function(Blueprint $table)
         {
             $table->increments('id');
-
+            $table->tinyInteger('folio')->nullable();
+            $table->date('fecha_matricula')->nullable();
+            $table->
+            
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,3 +35,12 @@ class TablaMatriculas extends Migration
         Schema::drop('matriculas');
     }
 }
+
+
+
+N. Folio
+Fecha de Matricula
+Foto del estudiante
+Año Lectivo
+Jornada
+Sede
