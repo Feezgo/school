@@ -33,6 +33,7 @@ class TablaEstudiantes extends Migration
             $table->tinyInteger('nivel_sisben')->nullable();
             $table->integer('puntaje_sisben')->nullable();
             $table->enum('tipo', ['nuevo', 'antiguo']);
+            $table->text('pin');
 
             $table->timestamps();
             $table->softDeletes();
@@ -48,7 +49,7 @@ class TablaEstudiantes extends Migration
             
             $table->timestamps();
 
-            $table->foreign('id_estudiante')->references('id')->on('estudiantes')->onDelete('cascade');;
+            $table->foreign('id_estudiante')->references('id')->on('estudiantes')->onDelete('cascade');
         });
     }
 
