@@ -475,7 +475,8 @@
                             </div>
                       </div>
                     </div>
-<?php for($i=1; $i<=11; $i++) { ?>
+
+                    <?php for($i=1; $i<=11; $i++) { ?>
                     <div class="row">
                       <div class="col-xs-6 col-md-2 form-group">
                         <input type="text" class="form-control" id="email" placeholder="">
@@ -498,10 +499,27 @@
                             </div>
                       </div>
                     </div>
-<?php } ?>
+                    <?php } ?>
 
                 </div>
-            </div>                         
+            </div>  
+
+
+            <div class="row">
+                <div class="col-md-12"><hr></div>
+                <div class="col-xs-12">
+                    <div class="alert alert-Success" role="alert">
+                      <strong>Success!</strong> MEnsaje que falta.
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success btn-block">Registrar información</button>
+                </div>
+                <div class="col-md-12"><hr></div>
+                <div class="col-md-12"><hr></div>
+            </div>
+
+
 
         </div>
     </div>

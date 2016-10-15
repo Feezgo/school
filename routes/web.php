@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/formulario', 'HomeController@formulario');
+Route::get('/registro_pin', 'HomeController@pin');
