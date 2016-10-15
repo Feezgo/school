@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('formulario');
     }
+
+    public function pin()
+    {
+        return view('form_pin');
+    }
 }
