@@ -437,7 +437,71 @@
                     </div>
 
                 </div>
-            </div>             
+            </div>  
+
+
+
+
+
+<!-- Datos de la papá -->
+            <div class="panel panel-default">
+                <div class="panel-heading">Procedencia académica</div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+                      <div class="col-xs-6 col-md-2 form-group">
+                        <label for"">Año</label>
+                        <input type="text" class="form-control" id="email" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                        <label for"">Grado</label>
+                        <input type="text" class="form-control" value="PRE" id="email" placeholder="" disabled>
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <label for"">Institucion</label>
+                        <input type="text" class="form-control" id="email" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                        <label for"">Tipo</label>
+                            <div class="btn-group-justified" data-toggle="buttons">
+                              <label class="btn btn-primary btn-xs">
+                                <input type="radio" name="options" id="option2" autocomplete="off"> Publico
+                              </label>
+                              <label class="btn btn-primary btn-xs">
+                                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                                Privado
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+<?php for($i=1; $i<=11; $i++) { ?>
+                    <div class="row">
+                      <div class="col-xs-6 col-md-2 form-group">
+                        <input type="text" class="form-control" id="email" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                        <input type="text" class="form-control" value="<?php echo $i?>" id="email" placeholder="" disabled>
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <input type="text" class="form-control" id="email" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                            <div class="btn-group-justified" data-toggle="buttons">
+                              <label class="btn btn-primary btn-xs">
+                                <input type="radio" name="options" id="option2" autocomplete="off"> Publico
+                              </label>
+                              <label class="btn btn-primary btn-xs">
+                                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                                Privado
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+<?php } ?>
+
+                </div>
+            </div>                         
 
         </div>
     </div>
