@@ -19,12 +19,11 @@ class TablaPin extends Migration
             $table->increments('id');
             $table->string('nombre_acudiente');
             $table->string('nombre_alumno', 35);
-            $table->string('ocupacion', 60);
-            $table->string('numero_identidad', 60);
-            $table->string('correo_acudiente', 35);
-            $table->string('grado', 35);
-            $table->string('parentesco_otro');
-            $table->tinyInteger('tipo')->nullable();
+            $table->string('num_identidad_alumno', 60);
+            $table->string('email_acudiente', 60);
+            $table->string('grado_aspira', 35);
+            $table->string('tipo_estudiante', 35);
+            $table->string('pin', 100);
 
             $table->timestamps();
             $table->softDeletes();
