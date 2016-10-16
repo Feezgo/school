@@ -84,6 +84,12 @@
     </div>
 
     <!-- Scripts -->
+    <script src="/js/jquery-1.12.3.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/alumno.js"></script>
+    
+    
+
 </body>
 </html>
+
