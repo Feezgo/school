@@ -51,10 +51,10 @@ class AlumnoController extends Controller
     public function guardar($input)
     {
         $model_A = new Pin;
-        return $this->crear_actividad($model_A, $input);
+        return $this->crear_pin($model_A, $input);
     }
 
-    public function crear_actividad($model, $input)
+    public function crear_pin($model, $input)
     {
         $model['nombre_acudiente'] = $input['nom_acudiente'];
         $model['nombre_alumno'] = $input['nom_alumno'];
@@ -75,7 +75,15 @@ class AlumnoController extends Controller
      for($i=0;$i < $longitud;$i++) $key .= $pattern{mt_rand(0,$max)};
      return $key;
     }
+
+
+    public function listadoPin()
+    {
+        $model = new Pin;
+        $datos = [
+            'datos_pin' => $model->all(),
+        ];
+        return view('listadoPin',$datos);
+    }
  
-
-
 }

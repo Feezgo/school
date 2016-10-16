@@ -11,6 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="/css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -53,8 +55,19 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ url('/formularioPin') }}">Generar Pin</a></li>
+                            
                             <li><a href="{{ url('/formulario') }}">Formulario</a></li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Pin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/formularioPin') }}">Generar pin</a></li>
+                                    <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
+                                </ul>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -85,6 +98,16 @@
 
     <!-- Scripts -->
     <script src="/js/jquery-1.12.3.js"></script>
+    <script src="/js/dataTabe/jquery-1.12.3.js"></script>
+    <script src="/js/dataTabe/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTabe/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTabe/buttons.flash.min.js"></script>
+    <script src="/js/dataTabe/jszip.min.js"></script>
+    <script src="/js/dataTabe/pdfmake.min.js"></script>
+    <script src="/js/dataTabe/vfs_fonts.js"></script>
+    <script src="/js/dataTabe/buttons.html5.min.js"></script>
+    <script src="/js/dataTabe/buttons.print.min.js"></script>
+
     <script src="/js/app.js"></script>
     <script src="/js/alumno.js"></script>
     

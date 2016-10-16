@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index');
 //AlumnoController
 Route::get('/formulario', 'AlumnoController@formularioInscripcion');
 Route::get('/formularioPin', 'AlumnoController@formularioPin');
+Route::get('/listadoPin', 'AlumnoController@listadoPin');
 Route::post('/alumno/registroPin', 'AlumnoController@registroFormPin');
 
 

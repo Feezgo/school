@@ -59,5 +59,12 @@ var validador_errores = function(data)
 		}
 	}
 
+	$('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+
 
 });
