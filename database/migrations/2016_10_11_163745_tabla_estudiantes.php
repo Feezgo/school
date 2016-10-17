@@ -28,7 +28,6 @@ class TablaEstudiantes extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->string('dpto_nacimiento')->nullable();
             $table->string('mpio_nacimiento')->nullable();
-
             $table->string('direccion')->nullable();
             $table->string('dpto_recidencia')->nullable();
             $table->string('mpio_recidencia')->nullable();
