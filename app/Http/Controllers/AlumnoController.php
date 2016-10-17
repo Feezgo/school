@@ -8,6 +8,7 @@ use School\Http\Requests;
 use School\App\Modelos\Pin;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Familiar;
+use School\App\Modelos\HistoriaAcademica;
 
 
 class AlumnoController extends Controller
@@ -191,8 +192,25 @@ class AlumnoController extends Controller
      public function registro_academico(Request $request)
     {
 
-        var_dump($request);
-        return response()->json($request);
+
+        
+        $ano = $request->input('ano');
+        $caracter = $request->input('caracter');
+        $institucion = $request->input('institucion');
+        $i=0;
+
+        foreach($request->get('grado') as $key => $value)
+        {
+            $modelHistoriaAcademica = new HistoriaAcademica;
+            $modelHistoriaAcademica['id_estudiante'] = "1";
+            $modelHistoriaAcademica['ano'] = $ano[$i];
+            $modelHistoriaAcademica['institucion'] = $institucion[$i];
+            $modelHistoriaAcademica['grado'] = $value;
+            $modelHistoriaAcademica['caracter'] = $caracter[$i];
+            $modelHistoriaAcademica->save();
+            $i++;
+        }
+        return $modelHistoriaAcademica;
 
         
 

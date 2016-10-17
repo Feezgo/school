@@ -137,18 +137,13 @@ var validador_errores_menu2 = function(data)
 					URL+'/registro_academico',
 					$(this).serialize(),
 					function(data){
-						  console.log(data);
-							/*if(data.status == 'error')
-							{
-								validador_errores_menu2(data.errors);
-							} 
-							else 
-							{
-								$('#form_menu2')[0].reset();
-								 var menj='Ha registrado el segundo formulario <strong>Datos del acudiente</strong>, por favor siga con el siguiente formulario.';
+							
+						
+								$('#form_menu3')[0].reset();
+								 var menj='Ha registrado el tercer formulario <strong>Datos académico</strong>, por favor siga con el siguiente formulario.';
 								 $('#mensaje').html(menj);
 								$('#incripcion_creada').modal('show');
-							}*/
+							
 					},
 					'json'
 				);

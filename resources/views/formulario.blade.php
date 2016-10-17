@@ -484,77 +484,68 @@
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
                         <label for"">Grado</label>
-                        <input type="text" class="form-control" value="Pre-kinder" name="grado[]" placeholder="" disabled>
+                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                         <label for"">Institucion</label>
                         <input type="text" class="form-control" name="institucion[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Tipo</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option2" autocomplete="off"> Publico
-                              </label>
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option3" autocomplete="off"> 
-                                Privado
-                              </label>
-                            </div>
+                          <label for"">Tipo</label>
+                          <div class="form-group">
+                              <select class="form-control" id="sel1" name="caracter[]">
+                                <option value="P">Publico</option>
+                                <option value="D">Privado</option>
+                              </select>
+                          </div>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Año</label>
+                        
                         <input type="text" class="form-control" name="ano[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Grado</label>
-                        <input type="text" class="form-control" value="Kinder" name="grado[]" placeholder="" disabled>
+                        
+
+                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Institucion</label>
+                        
                         <input type="text" class="form-control" name="institucion[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Tipo</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option2" autocomplete="off"> Publico
-                              </label>
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option3" autocomplete="off"> 
-                                Privado
-                              </label>
-                            </div>
+                         <div class="form-group">
+                            <select class="form-control" id="sel1" name="caracter[]">
+                              <option value="P">Publico</option>
+                              <option value="D">Privado</option>
+                            </select>
+                          </div>
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Año</label>
+                        
                         <input type="text" class="form-control" name="ano[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Grado</label>
-                        <input type="text" class="form-control" value="Transición" name="grado[]" placeholder="" disabled>
+                        
+
+                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Institucion</label>
+                        
                         <input type="text" class="form-control" name="institucion[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Tipo</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option2" autocomplete="off"> Publico
-                              </label>
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option3" autocomplete="off"> 
-                                Privado
-                              </label>
-                            </div>
+                         <div class="form-group">
+                            <select class="form-control" id="sel1" name="caracter[]">
+                              <option value="P">Publico</option>
+                              <option value="D">Privado</option>
+                            </select>
+                          </div>
                       </div>
                     </div>
 
@@ -564,21 +555,18 @@
                         <input type="text" class="form-control" name="ano[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                        <input type="text" class="form-control" value="<?php echo $i?>" name="grado[]" placeholder="" disabled>
+                        <input type="text" class="form-control" value="<?php echo $i ?>" name="grado[]" placeholder="" readonly="readonly">
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                         <input type="text" class="form-control" name="institucion[]" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option2" autocomplete="off"> Publico
-                              </label>
-                              <label class="btn btn-warning btn-xs">
-                                <input type="radio" name="tipo[]" id="option3" autocomplete="off"> 
-                                Privado
-                              </label>
-                            </div>
+                         <div class="form-group">
+                            <select class="form-control"  name="caracter[]">
+                              <option value="P">Publico</option>
+                              <option value="D">Privado</option>
+                            </select>
+                          </div>
                       </div>
                     </div>
                     <?php } ?>
@@ -599,6 +587,44 @@
                 <div class="col-md-12"><hr></div>
                 <div class="col-md-12"><hr></div>
             </div>
+          </form>
+          </div>
+
+
+
+
+          <div id="menu4" class="tab-pane fade">
+          <form id="form_menu4">
+              <!-- Datos del estudiante -->
+            <div class="panel panel-default">
+                <div class="panel-heading">Documentos generales</div>
+                <div class="panel-body">
+                    <div class="row">
+                      <div class="col-xs-6 col-md-2 form-group">
+                        
+                        <input type="text" class="form-control" name="ano[]" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                        
+
+                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        
+                        <input type="text" class="form-control" name="institucion[]" placeholder="">
+                      </div>
+                      <div class="col-xs-6 col-md-2 form-group">
+                         <div class="form-group">
+                            <select class="form-control" id="sel1" name="caracter[]">
+                              <option value="P">Publico</option>
+                              <option value="D">Privado</option>
+                            </select>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
           </form>
           </div>
 
