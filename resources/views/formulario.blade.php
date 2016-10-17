@@ -659,3 +659,7 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+  @parent
+  <script src="{{ elixir('js/alumno.js') }}"></script>
+@stop
