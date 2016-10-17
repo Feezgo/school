@@ -11,6 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="/css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -53,6 +55,19 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
+                            
+                            <li><a href="{{ url('/formulario') }}">Formulario</a></li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Pin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/formularioPin') }}">Generar pin</a></li>
+                                    <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
+                                </ul>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -63,7 +78,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Cerrar
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -80,8 +95,26 @@
 
         @yield('content')
     </div>
+     
+
 
     <!-- Scripts -->
+    <script src="/js/jquery-1.12.3.js"></script>
+    <script src="/js/dataTable/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTable/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTable/buttons.flash.min.js"></script>
+    <script src="/js/dataTable/jszip.min.js"></script>
+    <script src="/js/dataTable/pdfmake.min.js"></script>
+    <script src="/js/dataTable/vfs_fonts.js"></script>
+    <script src="/js/dataTable/buttons.html5.min.js"></script>
+    <script src="/js/dataTable/buttons.print.min.js"></script>
+
     <script src="/js/app.js"></script>
+    <script src="/js/alumno.js"></script>
+    <script src="/js/formularioInscripcion.js"></script>
+
+    
+
 </body>
 </html>
+
