@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TablaMatriculas extends Migration
+class TablaPin extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class TablaMatriculas extends Migration
      */
     public function up()
     {
-        Schema::create('matriculas', function(Blueprint $table)
+        //
+         Schema::create('pin', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->tinyInteger('folio')->nullable();
-            $table->date('fecha_matricula')->nullable();
-            $table->
-            
+            $table->string('nombre_acudiente');
+            $table->string('nombre_alumno', 35);
+            $table->string('num_identidad_alumno', 60);
+            $table->string('email_acudiente', 60);
+            $table->string('grado_aspira', 35);
+            $table->string('tipo_estudiante', 35);
+            $table->string('pin', 100);
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,15 +37,7 @@ class TablaMatriculas extends Migration
      */
     public function down()
     {
-        Schema::drop('matriculas');
+        //
+        Schema::drop('pin');
     }
 }
-
-
-
-N. Folio
-Fecha de Matricula
-Foto del estudiante
-Año Lectivo
-Jornada
-Sede

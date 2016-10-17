@@ -8,7 +8,7 @@
                 <div class="panel-heading">Bienvenidos</div>
 
                 <div class="panel-body">
-                    Mensaje de bienvenida!
+                  habbberrr
                 </div>
             </div>
         </div>
