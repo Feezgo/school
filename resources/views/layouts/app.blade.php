@@ -95,22 +95,24 @@
 
         @yield('content')
     </div>
+     
+
 
     <!-- Scripts -->
     <script src="/js/jquery-1.12.3.js"></script>
-    <script src="/js/dataTabe/jquery-1.12.3.js"></script>
-    <script src="/js/dataTabe/jquery.dataTables.min.js"></script>
-    <script src="/js/dataTabe/dataTables.buttons.min.js"></script>
-    <script src="/js/dataTabe/buttons.flash.min.js"></script>
-    <script src="/js/dataTabe/jszip.min.js"></script>
-    <script src="/js/dataTabe/pdfmake.min.js"></script>
-    <script src="/js/dataTabe/vfs_fonts.js"></script>
-    <script src="/js/dataTabe/buttons.html5.min.js"></script>
-    <script src="/js/dataTabe/buttons.print.min.js"></script>
+    <script src="/js/dataTable/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTable/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTable/buttons.flash.min.js"></script>
+    <script src="/js/dataTable/jszip.min.js"></script>
+    <script src="/js/dataTable/pdfmake.min.js"></script>
+    <script src="/js/dataTable/vfs_fonts.js"></script>
+    <script src="/js/dataTable/buttons.html5.min.js"></script>
+    <script src="/js/dataTable/buttons.print.min.js"></script>
 
     <script src="/js/app.js"></script>
     <script src="/js/alumno.js"></script>
-    
+    <script src="/js/formularioInscripcion.js"></script>
+
     
 
 </body>

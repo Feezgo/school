@@ -1,29 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="content" id="form_inscripcion" class="row" data-url="alumno">
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
+            <h2>Formulario de inscripción</h2>
 
+            <div class="col-xs-12">
+                    <div class="alert alert-Success" role="alert">
+                      El<strong> Colegio Finlandes Juan Pablo II</strong> le da la bienvenidad y le agradece por vinvular al estudiante al plantel educativo y lo invita a ingresar la información completa en los formularios que aparecen en la parte inferior, recuerde que es muy importante para nosotros esta información. 
+                    </div>
+            </div>
+
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#menu1"> 1. Datos del estudiante</a></li>
+              <li><a data-toggle="tab" href="#menu2"> 2. Datos del acudiente</a></li>
+              <li><a data-toggle="tab" href="#menu3"> 3. Datos del académicos</a></li>
+              <li><a data-toggle="tab" href="#menu4"> 4. Documentos generales</a></li>
+            </ul>
+
+            <div class="tab-content">
+              
+
+            <div id="menu1" class="tab-pane fade in active">
+            <form id="form_menu1">
 <!-- Datos del estudiante -->
             <div class="panel panel-default">
                 <div class="panel-heading">Datos generales del estudiante</div>
                 <div class="panel-body">
 
                   <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                            <label for"">Estudiante</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="tipo_estudiante" id="option2" autocomplete="off"> Antiguo
-                              </label>
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="tipo_estudiante" id="option3" autocomplete="off"> 
-                                Nuevo
-                              </label>
-                            </div>
-                      </div>
+                      
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                      <input type="hidden" name="_alumno" value="0"></input>
+
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Repitente</label>
                         <div class="btn-group-justified" data-toggle="buttons">
@@ -106,7 +118,7 @@
                               </label>
                             </div>
                       </div>
-                      <div class="col-xs-6 col-md-3">
+                      <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Fecha de nacimiento</label>
                         <input type="text" class="form-control" name="fchaNaci_estudiante" placeholder="">
                       </div>
@@ -135,7 +147,7 @@
 
                   <div class="row">
                       
-                      <div class="col-xs-6 col-md-3">
+                      <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Dirección de recidencia</label>
                         <input type="text" class="form-control" name="dirReci_estudiante" placeholder="">
                       </div>
@@ -204,18 +216,18 @@
                               <option>5</option>
                            </select>
                       </div>
-                      <div class="col-xs-6 col-md-3">
+                      <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Eps afiliado</label>
                         <input type="text" class="form-control" name="eps_estudiante" placeholder="">
                       </div>
                   </div>
 
                   <div class="row">
-                      <div class="col-xs-6 col-md-3">
+                      <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Telefono/Celular</label>
                         <input type="text" class="form-control" name="tfono_estudiante" placeholder="">
                       </div>
-                      <div class="col-xs-6 col-md-3">
+                      <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Factor RH</label>
                         <input type="text" class="form-control" name="ftorRh_estudiante" placeholder="">
                       </div>
@@ -234,7 +246,8 @@
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Situacion Academica Año Anterior</label>
-                          <select class="form-control" name="situAcad_estudiante">
+                          <select class="form-control " name="situAcad_estudiante">
+                              <option></option>
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
@@ -247,7 +260,26 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-Success" role="alert">
+                      <strong>Atención!</strong> Registre los datos del estudiantes dando click en el siguiente boton y siga con el formulario 2 datos del acudiente. 
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Registrar datos de estudiante</button>
+                </div>
+                <div class="col-md-12"><hr></div>
+                <div class="col-md-12"><hr></div>
+            </div>
 
+          </form>
+          </div>
+
+
+        
+        
+          <div id="menu2" class="tab-pane fade">
 <!-- Datos de la mamá -->
             <div class="panel panel-default">
                 <div class="panel-heading">Datos Generales de la mamá</div>
@@ -258,10 +290,10 @@
                       <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Acudiente</label>
                             <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-success btn-xs">
                                 <input type="radio" name="acud_mama" id="option2" autocomplete="off"> Si
                               </label>
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-success btn-xs">
                                 <input type="radio" name="acud_mama" id="option3" autocomplete="off"> 
                                 No
                               </label>
@@ -328,10 +360,10 @@
                       <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Acudiente</label>
                             <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-success btn-xs">
                                 <input type="radio" name="acud_papa" id="option2" autocomplete="off"> Si
                               </label>
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-success btn-xs">
                                 <input type="radio" name="acud_papa" id="option3" autocomplete="off"> 
                                 No
                               </label>
@@ -437,13 +469,27 @@
                     </div>
 
                 </div>
-            </div>  
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="alert alert-Success" role="alert">
+                      <strong>Atención!</strong> Registre los datos del acudiente dando click en el siguiente boton y siga con el formulario 3 datos académicos. 
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success btn-block">Registrar datos del acudiente</button>
+                </div>
+                <div class="col-md-12"><hr></div>
+                <div class="col-md-12"><hr></div>
+            </div>
+
+          </div>
 
 
 
-
-
-<!-- Datos de la papá -->
+          <div id="menu3" class="tab-pane fade">
+<!-- Datos de la académicos -->
             <div class="panel panel-default">
                 <div class="panel-heading">Procedencia académica</div>
 
@@ -465,10 +511,10 @@
                       <div class="col-xs-6 col-md-2 form-group">
                         <label for"">Tipo</label>
                             <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-warning btn-xs">
                                 <input type="radio" name="tipo_pre" id="option2" autocomplete="off"> Publico
                               </label>
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-warning btn-xs">
                                 <input type="radio" name="tipo_pre" id="option3" autocomplete="off"> 
                                 Privado
                               </label>
@@ -489,10 +535,10 @@
                       </div>
                       <div class="col-xs-6 col-md-2 form-group">
                             <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-warning btn-xs">
                                 <input type="radio" name="tipo[]" id="option2" autocomplete="off"> Publico
                               </label>
-                              <label class="btn btn-primary btn-xs">
+                              <label class="btn btn-warning btn-xs">
                                 <input type="radio" name="tipo[]" id="option3" autocomplete="off"> 
                                 Privado
                               </label>
@@ -502,25 +548,51 @@
                     <?php } ?>
 
                 </div>
-            </div>  
+            </div> 
 
 
             <div class="row">
-                <div class="col-md-12"><hr></div>
                 <div class="col-xs-12">
                     <div class="alert alert-Success" role="alert">
-                      <strong>Success!</strong> MEnsaje que falta.
+                      <strong>Atención!</strong> Registre los datos académicos dando click en el siguiente boton y siga con el formulario 4. documentos generales.
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-success btn-block">Registrar información</button>
+                    <button type="button" class="btn btn-warning btn-block">Registrar datos del acudiente</button>
                 </div>
                 <div class="col-md-12"><hr></div>
                 <div class="col-md-12"><hr></div>
             </div>
 
+          </div>
 
 
+            
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade bs-example-modal-lg" id="incripcion_creada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header">
+            <h4 class="modal-title">Registro Exitoso!!</h4>
+          </div>
+           <div class="modal-body">
+              <div id="mensaje"></div>
+           </div>
+           <div class="modal-footer" id="cerrar_actividad">
+              <button type="button"  data-funcion="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+           </div>
         </div>
     </div>
 </div>
