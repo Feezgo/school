@@ -50,6 +50,7 @@ class TablaEstudiantes extends Migration
         {
             $table->increments('id');
             $table->integer('id_estudiante')->unsigned();
+            $table->string('ano');
             $table->string('institucion');
             $table->enum('grado', ['pre', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']);
             $table->enum('caracter', ['P', 'D']);

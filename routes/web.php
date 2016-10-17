@@ -25,5 +25,7 @@ Route::get('/formularioPin', 'AlumnoController@formularioPin');
 Route::get('/listadoPin', 'AlumnoController@listadoPin');
 Route::post('/alumno/registroPin', 'AlumnoController@registroFormPin');
 Route::post('/alumno/registro_estudiante', 'AlumnoController@registroEstudiante');
+Route::post('/alumno/registro_acudiente', 'AlumnoController@registro_acudiente');
+Route::post('/alumno/registro_academico', 'AlumnoController@registro_academico');
 
 
