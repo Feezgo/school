@@ -17,7 +17,10 @@ class TablaFamiliares extends Migration
         Schema::create('familiares', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('pmer_nombre');
+            $table->string('sndo_nombres');
+            $table->string('pmer_apellido');
+            $table->string('sndo_apellido');
             $table->string('identificacion', 35);
             $table->string('ocupacion', 60);
             $table->string('empresa', 60);
