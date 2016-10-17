@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
+use School\App\Modelos\Estudiante;
 
 
 class AlumnoController extends Controller
@@ -20,6 +21,90 @@ class AlumnoController extends Controller
     public function formularioInscripcion()
     {
         return view('formulario');
+    }
+
+
+    public function registroEstudiante(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+               
+                'repitente' => 'required',
+                'tipoIdent_estudiante' => 'required',
+                'numIdent_estudiante' => 'required|integer',
+                'dptExp_estudiante' => 'required',
+                'mpioExp_estudiante' => 'required',
+                'nom1_estudiante' => 'required',
+                'apll1_estudiante' => 'required',
+                'gnro_estudiante' => 'required',
+                'fchaNaci_estudiante' => 'required',
+                'dptNaci_estudiante' => 'required',
+                'mpioNaci_estudiante' => 'required',
+                'dirReci_estudiante' => 'required',
+                'dptReci_estudiante' => 'required',
+                'mpioReci_estudiante' => 'required',
+                'brioReci_estudiante' => 'required',
+                'zna_estudiante' => 'required',
+                'nvel_estudiante' => 'required',
+                'nvelEst_estudiante' => 'required',
+                'eps_estudiante' => 'required',
+                'tfono_estudiante' => 'required',
+                'ftorRh_estudiante' => 'required',
+                'dcidad_estudiante' => 'required',
+                'situAcad_estudiante' => 'required',
+
+
+            ]
+        );
+
+            if ($validator->fails())
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+
+            if($request->input('_alumno') == '0')
+              return $this->guardar_estudiante($request->all());
+            else
+                return view('ejemplo');
+            //$this->modificar($request->all());
+
+    }
+
+
+    public function guardar_estudiante($input)
+    {
+        $model_A = new Estudiante;
+        return $this->crear_estudiante($model_A, $input);
+    }
+
+    public function crear_estudiante($model, $input)
+    {
+        
+        $model['tipo_documento'] = $input['tipoIdent_estudiante'];
+        $model['documento'] = $input['numIdent_estudiante'];
+        $model['dpto_expdicion'] = $input['dptExp_estudiante'];
+        $model['mpio_expdicion'] = $input['mpioExp_estudiante'];
+        $model['pmer_nombre'] = $input['nom1_estudiante'];
+        $model['sndo_nombres'] = $input['nom2_estudiante'];
+        $model['pmer_apellido'] = $input['apll1_estudiante'];
+        $model['sndo_apellido'] = $input['apll2_estudiante'];
+        $model['genero'] = $input['gnro_estudiante'];
+        $model['fecha_nacimiento'] = $input['fchaNaci_estudiante'];
+        $model['dpto_nacimiento'] = $input['dptNaci_estudiante'];
+        $model['mpio_nacimiento'] = $input['mpioNaci_estudiante'];
+        $model['direccion'] = $input['dirReci_estudiante'];
+        $model['dpto_recidencia'] = $input['dptReci_estudiante'];
+        $model['mpio_recidencia'] = $input['mpioReci_estudiante'];
+        $model['brio_recidencia'] = $input['brioReci_estudiante'];
+        $model['zona'] = $input['zna_estudiante'];
+        $model['nivel_sisben'] = $input['nvel_estudiante'];
+        $model['estrato'] = $input['nvelEst_estudiante'];
+        $model['eps'] = $input['eps_estudiante'];
+        $model['telefono'] = $input['tfono_estudiante'];
+        $model['rh'] = $input['ftorRh_estudiante'];
+        $model['discapacidad'] = $input['dcidad_estudiante'];
+        $model['situacion_academica'] = $input['situAcad_estudiante'];
+        $model->save();
+         //'repitente' => 'required'
+        return $model;
     }
 
   
