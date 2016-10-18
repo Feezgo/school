@@ -52,3 +52,8 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+  @parent
+  <script src="{{ elixir('js/listadoPin.js') }}"></script>
+@stop

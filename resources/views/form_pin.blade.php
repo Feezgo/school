@@ -43,17 +43,26 @@
                       <div class="col-md-6 form-group">
                           <label for"">Grado al que aspira</label>
                           <select class="form-control" name="grdo_aspira">
+                              <option>Pre-kinder</option>
+                              <option>kinder</option>
+                              <option>Transición</option>
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
                               <option>4</option>
                               <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
                            </select>
                       </div>
                     </div>
 
                     <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
+                      <div class="col-md-6 form-group">
+                        <label for"">Telefono acudíente</label>
+                        <input type="text" class="form-control" name="numTelef_acudiente" placeholder="" >
+                      </div>
+                      <div class="col-xs-6  form-group">
                             <label for"">Estudiante</label>
                             <div class="btn-group-justified" data-toggle="buttons">
                               <label class="btn btn-primary btn-xs">
@@ -99,3 +108,9 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+  @parent
+  <script src="{{ elixir('js/alumno.js') }}"></script>
+@stop
+

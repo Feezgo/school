@@ -597,31 +597,143 @@
           <form id="form_menu4">
               <!-- Datos del estudiante -->
             <div class="panel panel-default">
-                <div class="panel-heading">Documentos generales</div>
+                <div class="panel-heading">Documentos obligatorios generales para todos los estudiantes</div>
                 <div class="panel-body">
-                    <div class="row">
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
-                        <input type="text" class="form-control" name="ano[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
 
-                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
+                    <div class="row">
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Registro civil / Tarjeta de indentidad</label>
+                          <input type="file" id="exampleInputFile" name="registroCivilT">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file1" href="" download style='display:none'>Archivo</a><br>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default" id="sub_registroCT">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
-                        
-                        <input type="text" class="form-control" name="institucion[]" placeholder="">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Certificado medico resiente o vigente
+                          </label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-2 form-group">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Certificación vigente de la EPS o Sisben </label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Cedula padre de familia / Acudiente
+                          </label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Referencia laboral del acudiente</label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Carnet de vacunas</label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Unicamente para grados de pre-kinder, kinder, transición.</p>
+                          <p class="help-block">Formato permitido pdf.</p>
+                        </div>
+                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                          <button type="button" class="btn btn-default">Subir</button>
+                          <button type="button" class="btn btn-danger">Eliminar</button>
+                        </div>
+                      </div>
+                    </div>               
+
+                </div>
+            </div>
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Documentos obligatorios adicionales para estudiantes nuevos estudiantes</div>
+                <div class="panel-body">
+                  <div class="row">
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Paz y salvo de colegio anterior</label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-md-6 form-group">
+                        <div class="form-group">
+                          <label for="exampleInputFile">Boletin final con la aprobación del año anterior
+                          </label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="row">
+                      <div class="col-xs-6 col-md-6 form-group">
                          <div class="form-group">
-                            <select class="form-control" id="sel1" name="caracter[]">
-                              <option value="P">Publico</option>
-                              <option value="D">Privado</option>
-                            </select>
+                          <label for="exampleInputFile">Certificado del retiro del SIMAT (Emitido por el colegio de origen)
+                          </label>
+                          <input type="file" id="exampleInputFile">
+                          <p class="help-block">Formato permitido pdf.</p>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default">Subir</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                          </div>
                           </div>
                       </div>
                     </div>
+
                 </div>
             </div>
 
@@ -661,5 +773,5 @@
 @endsection
 @section('scripts')
   @parent
-  <script src="{{ elixir('js/alumno.js') }}"></script>
+  <script src="{{ elixir('js/formularioInscripcion.js') }}"></script>
 @stop

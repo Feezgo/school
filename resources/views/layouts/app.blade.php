@@ -11,8 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/dataTable/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="/css/dataTable/buttons.dataTables.min.css" rel="stylesheet">
+    
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -98,16 +97,16 @@
     <!-- Scripts -->
     @section('scripts')
         <script src="/js/jquery-1.12.3.js"></script>
-        <script src="/js/dataTable/jquery.dataTables.min.js"></script>
-        <script src="/js/dataTable/dataTables.buttons.min.js"></script>
-        <script src="/js/dataTable/buttons.flash.min.js"></script>
-        <script src="/js/dataTable/jszip.min.js"></script>
-        <script src="/js/dataTable/pdfmake.min.js"></script>
-        <script src="/js/dataTable/vfs_fonts.js"></script>
-        <script src="/js/dataTable/buttons.html5.min.js"></script>
-        <script src="/js/dataTable/buttons.print.min.js"></script>
+        <script src="/js/jquery.dataTables.min.js"></script>
+        <script src="/js/dataTables.buttons.min.js"></script>
+        <script src="/js/buttons.flash.min.js"></script>
+        <script src="/js/jszip.min.js"></script>
+        <script src="/js/pdfmake.min.js"></script>
+        <script src="/js/vfs_fonts.js"></script>
+        <script src="/js/buttons.html5.min.js"></script>
+        <script src="/js/buttons.print.min.js"></script>
         <script src="/js/app.js"></script>
-        <script src="/js/formularioInscripcion.js"></script>
+
     @show
 </body>
 </html>

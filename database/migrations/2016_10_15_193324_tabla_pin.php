@@ -21,6 +21,7 @@ class TablaPin extends Migration
             $table->string('nombre_alumno', 35);
             $table->string('num_identidad_alumno', 60);
             $table->string('email_acudiente', 60);
+            $table->string('telefono_acudiente', 60);
             $table->string('grado_aspira', 35);
             $table->string('tipo_estudiante', 35);
             $table->string('pin', 100);

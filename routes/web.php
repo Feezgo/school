@@ -29,3 +29,6 @@ Route::post('/alumno/registro_acudiente', 'AlumnoController@registro_acudiente')
 Route::post('/alumno/registro_academico', 'AlumnoController@registro_academico');
 
 
+Route::post('/alumno/registro_file', 'AlumnoController@registro_file');
+
+
