@@ -150,6 +150,58 @@ var validador_errores_menu2 = function(data)
 		e.preventDefault();
 	});
 
+
+
+	$('#sub_registroCT').on('click', function(e)
+	{
+			
+			    var formData = new FormData($("#form_menu4")[0]);
+
+		        $.ajax({
+		            url: URL+'/registro_file',  
+		            type: 'POST',
+		            data: formData,
+		            contentType: false,
+		            processData: false,
+		            dataType: "json",
+		            success: function(data){
+						    if(data.status == 'error')
+							{
+								validador_errores_registroEjecucion(data.errors);
+								$("#espera_eje").html("");
+							}
+							else 
+							{
+								$('#form_menu4')[0].reset();
+								$('#file1').attr('href',data.status);//Conocimiento adquirido attr
+								$('#file1').show();
+								var menj='Ha registrado el archivo';
+								$('#mensaje').html(menj);
+								$('#incripcion_creada').modal('show');
+							}
+		            }
+		        });        
+			return false;
+	});
+
+
+	var validador_errores_registroEjecucion = function(data)
+	{
+		$('#form_menu4 .form-group').removeClass('has-error');
+		var selector = '';
+		for (var error in data){
+		    if (typeof data[error] !== 'function') {
+		        switch(error)
+		        {
+		        	case 'registroCivilT':
+		        		selector = 'input';
+		        	break;
+		        }
+		        $('#form_menu4 '+selector+'[name="'+error+'"]').closest('.form-group').addClass('has-error');
+		    }
+		}
+	}
+
 	
 
 

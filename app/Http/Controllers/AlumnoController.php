@@ -229,6 +229,7 @@ class AlumnoController extends Controller
                 'nom_alumno' => 'required',
                 'numIdnt_alumno' => 'required|integer',
                 'email_acudiente' => 'required|email',
+                'numTelef_acudiente' => 'required',
                 'grdo_aspira' => 'required',
                 'tipo_estudiante' => 'required',
             ]
@@ -257,6 +258,7 @@ class AlumnoController extends Controller
         $model['nombre_alumno'] = $input['nom_alumno'];
         $model['num_identidad_alumno'] = $input['numIdnt_alumno'];
         $model['email_acudiente'] = $input['email_acudiente'];
+        $model['telefono_acudiente'] = $input['numTelef_acudiente'];
         $model['grado_aspira'] = $input['grdo_aspira'];
         $model['tipo_estudiante'] = $input['tipo_estudiante'];
         $model['pin'] = $this->generarCodigo(6);
@@ -282,5 +284,35 @@ class AlumnoController extends Controller
         ];
         return view('listadoPin',$datos);
     }
- 
+    
+
+
+
+    public function registro_file(Request $request)
+    {
+    $validator = Validator::make($request->all(),
+            [
+                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf',
+            ]
+        );
+
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+
+            if ($request->hasFile('registroCivilT')) {
+                $file3=$request->file('registroCivilT');
+                $extension3=$file3->getClientOriginalExtension();
+                $Nom_imagen3 = date('Y-m-d')."-registroCivilT.".$extension3;
+                $file3->move(public_path().'/Domentos/', $Nom_imagen3);
+                $ruta=public_path()."\Domentos/".$Nom_imagen3;
+
+            }else{
+                $Nom_imagen3="";
+            }
+            return response()->json(array('status' => $ruta));
+
+        }
+    }
 }
