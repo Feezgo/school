@@ -16,7 +16,8 @@ class TablaEstudiantes extends Migration
         Schema::create('estudiantes', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->enum('tipo_documento', ['nuip', 'nip', 'cc'])->nullable();
+
+            $table->enum('tipo_documento', ['Cédula de Ciudadanía', 'Cédula de Extranjería.', 'Registro civil de nacimiento','Tarjeta de identidad','NIT'])->nullable();
             $table->string('documento');
             $table->string('dpto_expdicion');
             $table->string('mpio_expdicion');

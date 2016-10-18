@@ -13,6 +13,8 @@
     <!-- Styles -->
     
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
     <!-- Scripts -->
     <script>
@@ -106,7 +108,7 @@
         <script src="/js/buttons.html5.min.js"></script>
         <script src="/js/buttons.print.min.js"></script>
         <script src="/js/app.js"></script>
-
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @show
 </body>
 </html>
