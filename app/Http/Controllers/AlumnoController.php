@@ -9,6 +9,7 @@ use School\App\Modelos\Pin;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Familiar;
 use School\App\Modelos\HistoriaAcademica;
+use School\App\Modelos\departamento;
 
 
 class AlumnoController extends Controller
@@ -22,7 +23,12 @@ class AlumnoController extends Controller
 
     public function formularioInscripcion()
     {
-        return view('formulario');
+        
+        $model = new departamento;
+        $datos = [
+            'departamento' => $model->all(),
+        ];
+        return view('formulario',$datos);
     }
 
 
@@ -305,8 +311,8 @@ class AlumnoController extends Controller
                 $file3=$request->file('registroCivilT');
                 $extension3=$file3->getClientOriginalExtension();
                 $Nom_imagen3 = date('Y-m-d')."-registroCivilT.".$extension3;
-                $file3->move(public_path().'/Domentos/', $Nom_imagen3);
-                $ruta=public_path()."\Domentos/".$Nom_imagen3;
+                $file3->move(public_path().'/Documentos/', $Nom_imagen3);
+                $ruta=public_path()."/Documentos/".$Nom_imagen3;
 
             }else{
                 $Nom_imagen3="";
@@ -314,5 +320,14 @@ class AlumnoController extends Controller
             return response()->json(array('status' => $ruta));
 
         }
+    }
+
+
+    public function getMunicipio(Request $request, $id)
+    {
+        $model = new departamento;
+        $datos = $model::with('municipios')->where('id', '=', $id)->get();;
+        
+        return $datos;
     }
 }

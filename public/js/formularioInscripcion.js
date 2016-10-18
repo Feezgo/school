@@ -202,6 +202,62 @@ var validador_errores_menu2 = function(data)
 		}
 	}
 
+
+	$("#dptExp_estudiante").on('change', function(e){
+       ChangeDept1($("#dptExp_estudiante").val(), $("#dptExp_estudiante").val()); 
+    });
+	function ChangeDept1(id_dept, seleccion){
+        html = '';            
+        html += '<option value="">Seleccionar</option>';
+        $.get(URL+'/getMunicipio/'+id_dept, {}, function(data){ 
+            $.each(data[0].municipios,  function(i, e){
+
+                html += '<option value="'+e.id+'">'+e.municipio+'</option>';
+            });         
+            $("#mpioExp_estudiante").html(html);
+        })
+    }
+
+
+
+    $("#dptNaci_estudiante").on('change', function(e){
+       ChangeDept2($("#dptNaci_estudiante").val(), $("#dptNaci_estudiante").val()); 
+    });
+	function ChangeDept2(id_dept, seleccion){
+        html = '';            
+        html += '<option value="">Seleccionar</option>';
+        $.get(URL+'/getMunicipio/'+id_dept, {}, function(data){ 
+            $.each(data[0].municipios,  function(i, e){
+
+                html += '<option value="'+e.id+'">'+e.municipio+'</option>';
+            });         
+            $("#mpioNaci_estudiante").html(html);
+        })
+    }
+
+
+    $("#dptReci_estudiante").on('change', function(e){
+       ChangeDept3($("#dptReci_estudiante").val(), $("#dptReci_estudiante").val()); 
+    });
+	function ChangeDept3(id_dept, seleccion){
+        html = '';            
+        html += '<option value="">Seleccionar</option>';
+        $.get(URL+'/getMunicipio/'+id_dept, {}, function(data){ 
+            $.each(data[0].municipios,  function(i, e){
+
+                html += '<option value="'+e.id+'">'+e.municipio+'</option>';
+            });         
+            $("#mpioReci_estudiante").html(html);
+        })
+    }
+
+
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true, 
+      dateFormat:'y-mm-dd'
+    });
+
 	
 
 

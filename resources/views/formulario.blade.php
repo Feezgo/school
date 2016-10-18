@@ -53,11 +53,11 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Tipo Identificación</label>
                           <select class="form-control" name="tipoIdent_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option>Cédula de Ciudadanía</option>
+                              <option>Cédula de Extranjería.</option>
+                              <option>Registro civil de nacimiento</option>
+                              <option>Tarjeta de identidad</option>
+                              <option>NIT</option>
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
@@ -66,22 +66,16 @@
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de expedición</label>
-                          <select class="form-control"  name="dptExp_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                          <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
+                              @foreach($departamento as $departamentos)
+                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
+                              @endforeach
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de expedición</label>
-                          <select class="form-control" name="mpioExp_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                          <select class="form-control" name="mpioExp_estudiante" id="mpioExp_estudiante">
+                              <option>Seleccione</option>
                            </select>
                       </div>
                   </div>
@@ -120,26 +114,20 @@
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Fecha de nacimiento</label>
-                        <input type="text" class="form-control" name="fchaNaci_estudiante" placeholder="">
+                        <input type="text" class="form-control" name="fchaNaci_estudiante" id="datepicker" placeholder="">
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de nacimiento</label>
-                          <select class="form-control" name="dptNaci_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                          <select class="form-control" name="dptNaci_estudiante" id="dptNaci_estudiante">
+                              @foreach($departamento as $departamentos)
+                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
+                              @endforeach
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de nacimiento</label>
-                          <select class="form-control" name="mpioNaci_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                          <select class="form-control" name="mpioNaci_estudiante" id="mpioNaci_estudiante">
+                              <option>Seleccione</option>
                            </select>
                       </div>
                   </div>
@@ -153,33 +141,21 @@
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de recidencia</label>
-                          <select class="form-control" name="dptReci_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                          <select class="form-control" name="dptReci_estudiante" id="dptReci_estudiante">
+                              @foreach($departamento as $departamentos)
+                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
+                              @endforeach
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de recidencia</label>
-                          <select class="form-control" name="mpioReci_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                           </select>
+                          <select class="form-control" name="mpioReci_estudiante" id="mpioReci_estudiante">
+                            <option>Seleccione</option>
+                          </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Brio de recidencia</label>
-                          <select class="form-control" name="brioReci_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                           </select>
+                          <input type="text" class="form-control" name="brioReci_estudiante" placeholder="">
                       </div>
                   </div>
 
