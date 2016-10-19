@@ -28,6 +28,7 @@ class Pagos extends Migration
             $table->integer('id_pago')->unsigned();
             $table->integer('id_matricula')->unsigned();
             $table->date('fecha_pago');
+            $table->boolean('estado');
 
             $table->foreign('id_pago')->references('id')->on('pagos')->onDelete('cascade');
             $table->foreign('id_matricula')->references('id')->on('matricula')->onDelete('cascade');
