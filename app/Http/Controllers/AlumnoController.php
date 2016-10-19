@@ -304,9 +304,11 @@ class AlumnoController extends Controller
     {
     $validator = Validator::make($request->all(),
             [
-                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf',
+                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf'
             ]
         );
+
+        $randName = md5(rand() * time());
 
 
         if ($validator->fails()){
@@ -316,9 +318,9 @@ class AlumnoController extends Controller
             if ($request->hasFile('registroCivilT')) {
                 $file3=$request->file('registroCivilT');
                 $extension3=$file3->getClientOriginalExtension();
-                $Nom_imagen3 = date('Y-m-d')."-registroCivilT.".$extension3;
+                $Nom_imagen3 = $randName."-registroCivilT.".$extension3;
                 $file3->move(public_path().'/Documentos/', $Nom_imagen3);
-                $ruta=public_path()."/Documentos/".$Nom_imagen3;
+                $ruta="Documentos/".$Nom_imagen3;
 
             }else{
                 $Nom_imagen3="";
