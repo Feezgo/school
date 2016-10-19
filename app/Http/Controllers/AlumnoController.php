@@ -23,6 +23,35 @@ class AlumnoController extends Controller
         return view('form_pin');
     }
 
+    public function loginPin()
+    {
+        return view('login_pin');
+    }
+
+    public function validacionPin(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'num_identidad'    => 'required',
+                'pin' => 'required',
+            ]);
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }
+        else{
+            $model = new Pin;
+            $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
+
+            if($datos->num_identidad_alumno==''){
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            }
+            else{
+                return redirect()->intended('/');
+            }
+        }
+        
+    }
+
     public function formularioInscripcion()
     {
         
@@ -304,9 +333,11 @@ class AlumnoController extends Controller
     {
     $validator = Validator::make($request->all(),
             [
-                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf',
+                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf'
             ]
         );
+
+        $randName = md5(rand() * time());
 
 
         if ($validator->fails()){
@@ -316,9 +347,9 @@ class AlumnoController extends Controller
             if ($request->hasFile('registroCivilT')) {
                 $file3=$request->file('registroCivilT');
                 $extension3=$file3->getClientOriginalExtension();
-                $Nom_imagen3 = date('Y-m-d')."-registroCivilT.".$extension3;
+                $Nom_imagen3 = $randName."-registroCivilT.".$extension3;
                 $file3->move(public_path().'/Documentos/', $Nom_imagen3);
-                $ruta=public_path()."/Documentos/".$Nom_imagen3;
+                $ruta="Documentos/".$Nom_imagen3;
 
             }else{
                 $Nom_imagen3="";

@@ -97,17 +97,23 @@
     </div>
     <!-- Scripts -->
     @section('scripts')
-        <script src="/js/jquery-1.12.3.js"></script>
-        <script src="/js/jquery.dataTables.min.js"></script>
-        <script src="/js/dataTables.buttons.min.js"></script>
-        <script src="/js/buttons.flash.min.js"></script>
-        <script src="/js/jszip.min.js"></script>
-        <script src="/js/pdfmake.min.js"></script>
-        <script src="/js/vfs_fonts.js"></script>
-        <script src="/js/buttons.html5.min.js"></script>
-        <script src="/js/buttons.print.min.js"></script>
-        <script src="/js/app.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <script src="/js/app.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
+          <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+          <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+          <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">      
+          <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+          <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+          <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+          <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+          <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+          <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css">
+          <script src=" https://cdn.datatables.net/responsive/2.0.1/js/dataTables.responsive.min.js"></script>
+          <script src=" https://cdn.datatables.net/responsive/2.0.1/js/responsive.bootstrap.min.js"></script> 
+          <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.1/css/responsive.bootstrap.min.css">
     @show
 </body>
 </html>
