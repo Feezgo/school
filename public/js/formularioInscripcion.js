@@ -34,7 +34,6 @@ var validador_errores = function(data)
 		    if (typeof data[error] !== 'function') {
 		        switch(error)
 		        {
-
 		        	case 'tipoIdent_estudiante':
 		        	case 'dptExp_estudiante':
 		        	case 'mpioExp_estudiante':
@@ -47,6 +46,7 @@ var validador_errores = function(data)
 		        	case 'nvelEst_estudiante':
 		        	case 'dcidad_estudiante':
 		        	case 'situAcad_estudiante':
+		        	case 'ftorRh_estudiante':
 		        		selector = 'select';
 		        	break;
 
@@ -66,7 +66,6 @@ var validador_errores = function(data)
 		        	case 'brioReci_estudiante':
 		        	case 'eps_estudiante':
 		        	case 'tfono_estudiante':
-		        	case 'ftorRh_estudiante':
 		        		selector = 'input';
 		        	break;
 		        }

@@ -10,6 +10,8 @@ use School\App\Modelos\Estudiante;
 use School\App\Modelos\Familiar;
 use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
+use School\App\Modelos\Discapacidad;
+use School\App\Modelos\Situacion;
 
 
 class AlumnoController extends Controller
@@ -25,8 +27,12 @@ class AlumnoController extends Controller
     {
         
         $model = new departamento;
+        $model2 = new Discapacidad;
+        $model3 = new Situacion;
         $datos = [
             'departamento' => $model->all(),
+            'discapacidad' => $model2->all(),
+            'situacion' => $model3->all(),
         ];
         return view('formulario',$datos);
     }
