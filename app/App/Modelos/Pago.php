@@ -12,6 +12,6 @@ class Pago extends Model
 	public function matriculas()
 	{
 		return $this->belongsTo('School\App\Modelos\Matricula', 'planes_de_pagos', 'id_pago', 'id_matricula')
-					->withPivot('fecha_pago');
+					->withPivot('fecha_pago', 'estado');
 	}
 }
