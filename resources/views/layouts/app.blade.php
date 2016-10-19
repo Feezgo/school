@@ -57,8 +57,7 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             
-                            <li><a href="{{ url('/formulario') }}">Formulario</a></li>
-                            
+                           
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Pin <span class="caret"></span>
