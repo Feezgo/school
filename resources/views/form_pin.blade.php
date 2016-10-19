@@ -43,6 +43,7 @@
                       <div class="col-md-6 form-group">
                           <label for"">Grado al que aspira</label>
                           <select class="form-control" name="grdo_aspira">
+                              <option value="">seleccionar</option>
                               <option>Pre-kinder</option>
                               <option>kinder</option>
                               <option>Transición</option>
@@ -64,15 +65,12 @@
                       </div>
                       <div class="col-xs-6  form-group">
                             <label for"">Estudiante</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="tipo_estudiante" autocomplete="off"> Antiguo
-                              </label>
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="tipo_estudiante" autocomplete="off"> 
-                                Nuevo
-                              </label>
-                            </div>
+                            <select class="form-control" name="tipo_estudiante">
+                              <option value="">seleccionar</option>
+                              <option>Antiguo</option>
+                              <option>Nuevo</option>
+                            </select>
+                           
                       </div>
                     </div>
 
