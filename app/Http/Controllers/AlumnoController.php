@@ -23,6 +23,35 @@ class AlumnoController extends Controller
         return view('form_pin');
     }
 
+    public function loginPin()
+    {
+        return view('login_pin');
+    }
+
+    public function validacionPin(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+                'num_identidad'    => 'required',
+                'pin' => 'required',
+            ]);
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }
+        else{
+            $model = new Pin;
+            $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
+
+            if($datos->num_identidad_alumno==''){
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            }
+            else{
+                return redirect()->intended('/');
+            }
+        }
+        
+    }
+
     public function formularioInscripcion()
     {
         

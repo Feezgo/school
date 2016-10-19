@@ -19,8 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-//AlumnoController
+//Rutas publicas
+Route::get('/loginPin', 'AlumnoController@loginPin');
+Route::post('/formPin/validacionPin', 'AlumnoController@validacionPin');
 Route::get('/formulario', 'AlumnoController@formularioInscripcion');
+
+//Rutas protegidas
 Route::get('/formularioPin', 'AlumnoController@formularioPin');
 Route::get('/listadoPin', 'AlumnoController@listadoPin');
 Route::post('/alumno/registroPin', 'AlumnoController@registroFormPin');
