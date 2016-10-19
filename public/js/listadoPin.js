@@ -1,8 +1,7 @@
 $(document).ready(function() {
-    $('#example').DataTable( {
+    $('#example').DataTable( {responsive: true,
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+            'copy', 'csv', 'excel', 'pdf']
     } );
 } );
