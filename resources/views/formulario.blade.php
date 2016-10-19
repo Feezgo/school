@@ -17,7 +17,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a data-toggle="tab" href="#menu1"> 1. Datos del estudiante</a></li>
               <li><a data-toggle="tab" href="#menu2"> 2. Datos del acudiente</a></li>
-              <li><a data-toggle="tab" href="#menu3"> 3. Datos del académicos</a></li>
+              <li><a data-toggle="tab" href="#menu3"> 3. Datos académicos</a></li>
               <li><a data-toggle="tab" href="#menu4"> 4. Documentos generales</a></li>
             </ul>
 
@@ -67,6 +67,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de expedición</label>
                           <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
+                              <option value="">seleccionar</option>
                               @foreach($departamento as $departamentos)
                                 <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
                               @endforeach
@@ -75,7 +76,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de expedición</label>
                           <select class="form-control" name="mpioExp_estudiante" id="mpioExp_estudiante">
-                              <option>Seleccione</option>
+                              <option value="">seleccionar</option>
                            </select>
                       </div>
                   </div>
@@ -119,6 +120,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de nacimiento</label>
                           <select class="form-control" name="dptNaci_estudiante" id="dptNaci_estudiante">
+                              <option value="">seleccionar</option>
                               @foreach($departamento as $departamentos)
                                 <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
                               @endforeach
@@ -127,7 +129,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de nacimiento</label>
                           <select class="form-control" name="mpioNaci_estudiante" id="mpioNaci_estudiante">
-                              <option>Seleccione</option>
+                              <option value="">seleccionar</option>
                            </select>
                       </div>
                   </div>
@@ -142,6 +144,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de recidencia</label>
                           <select class="form-control" name="dptReci_estudiante" id="dptReci_estudiante">
+                              <option value="">seleccionar</option>
                               @foreach($departamento as $departamentos)
                                 <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
                               @endforeach
@@ -150,7 +153,7 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Mpio de recidencia</label>
                           <select class="form-control" name="mpioReci_estudiante" id="mpioReci_estudiante">
-                            <option>Seleccione</option>
+                            <option value="">seleccionar</option>
                           </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
@@ -175,16 +178,15 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Nivel sisben</label>
                           <select class="form-control" name="nvel_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="">seleccionar</option>
+                              <option value="1">Nivel 1</option>
+                              <option value="2">Nivel 2</option>
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Nivel estrato</label>
                           <select class="form-control" name="nvelEst_estudiante">
+                              <option value="">seleccionar</option>
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
@@ -205,7 +207,17 @@
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Factor RH</label>
-                        <input type="text" class="form-control" name="ftorRh_estudiante" placeholder="">
+                            <select class="form-control" name="ftorRh_estudiante">
+                              <option value="">seleccionar</option>
+                              <option>O-</option>
+                              <option>O+</option>
+                              <option>A-</option>
+                              <option>A+</option>
+                              <option>B-</option>
+                              <option>B+</option>
+                              <option>AB+</option>
+                              <option>AB-</option>
+                           </select>
                       </div>
                   </div>
 
@@ -213,22 +225,19 @@
                       <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Discapacidad</label>
                           <select class="form-control" name="dcidad_estudiante">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="">seleccionar</option>
+                               @foreach($discapacidad as $discapacidades)
+                                <option value="{{ $discapacidades['id'] }}">{{ $discapacidades['discapacidad'] }}</option>
+                              @endforeach
                            </select>
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Situacion Academica Año Anterior</label>
                           <select class="form-control " name="situAcad_estudiante">
-                              <option></option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="">seleccionar</option>
+                               @foreach($situacion as $situaciones)
+                                <option value="{{ $situaciones['id'] }}">{{ $situaciones['situacion'] }}</option>
+                              @endforeach
                            </select>
                       </div>
                   </div>
@@ -384,7 +393,15 @@
                     <div class="row">
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Parentesco</label>
-                        <input type="text" class="form-control" name="ptesco_acudi" placeholder="">
+                        <select class="form-control" name="ptesco_acudi">
+                              <option value="">seleccionar</option>
+                              <option>padre</option>
+                              <option>madre</option>
+                              <option>abuelo</option>
+                              <option>tio</option>
+                              <option>hermano</option>
+                              <option>otro</option>
+                           </select>
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">N° Cedula</label>
@@ -558,7 +575,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-warning btn-block">Registrar datos del acudiente</button>
+                    <button type="submit" class="btn btn-warning btn-block">Registrar datos académicos</button>
                 </div>
                 <div class="col-md-12"><hr></div>
                 <div class="col-md-12"><hr></div>
