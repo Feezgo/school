@@ -19,18 +19,12 @@ var URL = $('#manu_alumno').data('url');
 								{
 									alert("vacio");
 								}
-								else
-								{
-									console.log(data);
-								}
+								
 
 							}
 					},
 					'json'
 				);
-
-	
-
 		e.preventDefault();
 	});
 

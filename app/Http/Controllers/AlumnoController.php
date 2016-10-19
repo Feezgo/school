@@ -3,6 +3,7 @@
 namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Validator;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
@@ -42,11 +43,12 @@ class AlumnoController extends Controller
             $model = new Pin;
             $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
 
-            if($datos->num_identidad_alumno==''){
-                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            if(count($datos)>0){
+                return redirect('formulario');
+                return response()->json(array('status' => 'valido', 'valido' => $validator->errors()));
             }
             else{
-                return redirect()->intended('/');
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
             }
         }
         
