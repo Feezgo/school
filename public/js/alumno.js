@@ -44,7 +44,7 @@ var validador_errores = function(data)
 		        	break;
 
 		        	case 'tipo_estudiante':
-		        		selector = 'radio';
+		        		selector = 'select';
 		        	break;
 
 		        	case 'nom_acudiente':
