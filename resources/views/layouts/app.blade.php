@@ -99,7 +99,7 @@
     @section('scripts')
           <script src="/js/app.js"></script>
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-          <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>
+          <!--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>-->
           <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
           <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
           <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
