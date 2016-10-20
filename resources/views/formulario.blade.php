@@ -22,6 +22,67 @@
             </ul>
 
             <div class="tab-content">
+
+           
+                    @if(count($estudiante)>0)
+                    <h1>arriba</h1>
+                      @foreach($estudiante as $estudiantes)
+
+                        <?php $documento = $estudiantes->documento; ?>
+                        <?php $tipo_documento = $estudiantes->tipo_documento; ?>
+                        <?php $dpto_expdicion = $estudiantes->dpto_expdicion; ?>
+                        <?php $mpio_expdicion = $estudiantes->mpio_expdicion; ?>
+                        <?php $pmer_nombre = $estudiantes->pmer_nombre; ?>
+                        <?php $sndo_nombres = $estudiantes->sndo_nombres; ?>
+                        <?php $pmer_apellido = $estudiantes->pmer_apellido; ?>
+                        <?php $sndo_apellido = $estudiantes->sndo_apellido; ?>
+                        <?php $genero = $estudiantes->genero; ?>
+                        <?php $fecha_nacimiento = $estudiantes->fecha_nacimiento; ?>
+                        <?php $dpto_nacimiento = $estudiantes->dpto_nacimiento; ?>
+                        <?php $mpio_nacimiento = $estudiantes->mpio_nacimiento; ?>
+                        <?php $direccion = $estudiantes->direccion; ?>
+                        <?php $dpto_recidencia = $estudiantes->dpto_recidencia; ?>
+                        <?php $mpio_recidencia = $estudiantes->mpio_recidencia; ?>
+                        <?php $brio_recidencia = $estudiantes->brio_recidencia; ?>
+                        <?php $zona = $estudiantes->zona; ?>
+                        <?php $nivel_sisben = $estudiantes->nivel_sisben; ?>
+                        <?php $estrato = $estudiantes->estrato; ?>
+                        <?php $eps = $estudiantes->eps; ?>
+                        <?php $telefono = $estudiantes->telefono; ?>
+                        <?php $rh = $estudiantes->rh; ?>
+                        <?php //$discapacidad = $estudiantes->discapacidad; ?>
+                        <?php $situacion_academica = $estudiantes->situacion_academica; ?>
+
+                      @endforeach
+                    @else
+                    <h1>abajo</h1>
+                        <?php $documento =""; ?>
+                        <?php $tipo_documento =""; ?>
+                        <?php $dpto_expdicion =""; ?>
+                        <?php $mpio_expdicion =""; ?>
+                        <?php $pmer_nombre =""; ?>
+                        <?php $sndo_nombres =""; ?>
+                        <?php $pmer_apellido =""; ?>
+                        <?php $sndo_apellido =""; ?>
+                        <?php $genero =""; ?>
+                        <?php $fecha_nacimiento =""; ?>
+                        <?php $dpto_nacimiento =""; ?>
+                        <?php $mpio_nacimiento =""; ?>
+                        <?php $direccion =""; ?>
+                        <?php $dpto_recidencia =""; ?>
+                        <?php $mpio_recidencia =""; ?>
+                        <?php $brio_recidencia =""; ?>
+                        <?php $zona =""; ?>
+                        <?php $nivel_sisben =""; ?>
+                        <?php $estrato =""; ?>
+                        <?php $eps =""; ?>
+                        <?php $telefono =""; ?>
+                        <?php $rh =""; ?>
+                        <?php $discapacidad =""; ?>
+                        <?php $situacion_academica =""; ?>
+                    @endif
+
+          
               
 
             <div id="menu1" class="tab-pane fade in active">
@@ -53,6 +114,9 @@
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Tipo Identificación</label>
                           <select class="form-control" name="tipoIdent_estudiante">
+                              @if($tipo_documento!="")
+                              <option>{{$tipo_documento}}</option>
+                              @endif
                               <option>Cédula de Ciudadanía</option>
                               <option>Cédula de Extranjería.</option>
                               <option>Registro civil de nacimiento</option>
@@ -62,7 +126,7 @@
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">N° Identificación</label>
-                          <input type="text" class="form-control" name="numIdent_estudiante" placeholder="">
+                          <input type="text" class="form-control" name="numIdent_estudiante" placeholder="" value="{{$documento}}">
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dpt de expedición</label>
@@ -84,19 +148,19 @@
                   <div class="row">
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Primer nombre</label>
-                        <input type="text" class="form-control" name="nom1_estudiante" placeholder="">
+                        <input type="text" class="form-control" name="nom1_estudiante" placeholder="" value="{{$pmer_nombre}}">
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Segundo nombre</label>
-                        <input type="text" class="form-control" name="nom2_estudiante" placeholder="">
+                        <input type="text" class="form-control" name="nom2_estudiante" placeholder=""value="{{$sndo_nombres}}">
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Primer apellido</label>
-                        <input type="text" class="form-control" name="apll1_estudiante" placeholder="">
+                        <input type="text" class="form-control" name="apll1_estudiante" placeholder="" value="{{$pmer_apellido}}">
                       </div>
                       <div class="col-xs-6 col-md-3 form-group">
                         <label for"">Segundo apellido</label>
-                        <input type="text" class="form-control" name="apll2_estudiante" placeholder="">
+                        <input type="text" class="form-control" name="apll2_estudiante" placeholder="" value="{{$sndo_apellido}}">
                       </div>
                   </div>
 
@@ -603,8 +667,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file1" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="1">Subir</button>
+                            <button type="button" class="btn btn-danger"  id="baj_registroCT" data-id="1" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -612,11 +676,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Certificado medico resiente o vigente
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="certificadomedico">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file2" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="2" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="2" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -626,11 +691,12 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Certificación vigente de la EPS o Sisben </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="certificacioneps">
+                          <a id="file3" href="" download style='display:none'>Archivo</a><br>
                           <p class="help-block">Formato permitido pdf.</p>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="3"  >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="3" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -638,11 +704,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Cedula padre de familia / Acudiente
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="cedulapadre">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file4" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="4" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="4" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -654,24 +721,26 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Referencia laboral del acudiente</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="referencialaboral">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file5" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="5" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="5" >Eliminar</button>
                           </div>
                         </div>
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Carnet de vacunas</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="carnetvacunas">
                           <p class="help-block">Unicamente para grados de pre-kinder, kinder, transición.</p>
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file6" href="" download style='display:none'>Archivo</a><br>
                         </div>
                         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default">Subir</button>
-                          <button type="button" class="btn btn-danger">Eliminar</button>
+                          <button type="button" class="btn btn-default" id="sub_registroCT" data-id="6" >Subir</button>
+                          <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="6" >Eliminar</button>
                         </div>
                       </div>
                     </div>               
@@ -688,11 +757,12 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Paz y salvo de colegio anterior</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="pazysalvo">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file7" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="7" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="7" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -700,11 +770,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Boletin final con la aprobación del año anterior
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="boletinfinal">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file8" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -717,11 +788,12 @@
                          <div class="form-group">
                           <label for="exampleInputFile">Certificado del retiro del SIMAT (Emitido por el colegio de origen)
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="retirosimat">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file9" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
                           </div>
                           </div>
                       </div>
