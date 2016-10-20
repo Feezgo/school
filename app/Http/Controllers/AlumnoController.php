@@ -4,6 +4,7 @@ namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use File;
 use School\Http\Requests;
@@ -14,6 +15,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
+use School\Mail\RegistroPin;
 
 
 class AlumnoController extends Controller
@@ -44,23 +46,24 @@ class AlumnoController extends Controller
             $model = new Pin;
             $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
 
-            if($datos->num_identidad_alumno==''){
-                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            if(count($datos)>0){
+                return response()->json($datos);
             }
             else{
-                return redirect()->intended('/');
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
             }
         }
         
     }
 
-    public function formularioInscripcion()
+    public function formularioInscripcion(Request $request)
     {
-        
+        $model_E = new Estudiante;
         $model = new departamento;
         $model2 = new Discapacidad;
         $model3 = new Situacion;
         $datos = [
+            'estudiante' => $model_E->where('documento',$request->input('identidad'))->get(),
             'departamento' => $model->all(),
             'discapacidad' => $model2->all(),
             'situacion' => $model3->all(),
@@ -311,6 +314,8 @@ class AlumnoController extends Controller
         $model['tipo_estudiante'] = $input['tipo_estudiante'];
         $model['pin'] = $this->generarCodigo(6);
         $model->save();
+
+        Mail::to($model['email_acudiente'])->send(new RegistroPin($model['num_identidad_alumno'], $model['pin']));
 
         return $model;
     }
