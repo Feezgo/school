@@ -3,6 +3,8 @@
 namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
@@ -12,6 +14,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
+use School\Mail\RegistroPin;
 
 
 class AlumnoController extends Controller
@@ -42,23 +45,24 @@ class AlumnoController extends Controller
             $model = new Pin;
             $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
 
-            if($datos->num_identidad_alumno==''){
-                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            if(count($datos)>0){
+                return response()->json($datos);
             }
             else{
-                return redirect()->intended('/');
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
             }
         }
         
     }
 
-    public function formularioInscripcion()
+    public function formularioInscripcion(Request $request)
     {
-        
+        $model_E = new Estudiante;
         $model = new departamento;
         $model2 = new Discapacidad;
         $model3 = new Situacion;
         $datos = [
+            'estudiante' => $model_E->where('documento',$request->input('identidad'))->get(),
             'departamento' => $model->all(),
             'discapacidad' => $model2->all(),
             'situacion' => $model3->all(),
@@ -265,10 +269,15 @@ class AlumnoController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-               
                 'nom_acudiente' => 'required',
                 'nom_alumno' => 'required',
-                'numIdnt_alumno' => 'required|integer',
+                'num_identidad_alumno' => [
+                                        'required',
+                                        'integer',
+                                        Rule::unique('pin')->where(function ($query) use ($request){
+                                            $query->whereRaw('YEAR(created_at) = "'.date('Y').'"');
+                                        })
+                                    ],
                 'email_acudiente' => 'required|email',
                 'numTelef_acudiente' => 'required',
                 'grdo_aspira' => 'required',
@@ -276,13 +285,13 @@ class AlumnoController extends Controller
             ]
         );
 
-            if ($validator->fails())
+        if ($validator->fails())
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
 
-            if($request->input('_pin') == '0')
-              return $this->guardar($request->all());
-            else
-                return view('ejemplo');
+        if($request->input('_pin') == '0')
+            return $this->guardar($request->all());
+        else
+            return view('ejemplo');
             //$this->modificar($request->all());
 
     }
@@ -297,13 +306,15 @@ class AlumnoController extends Controller
     {
         $model['nombre_acudiente'] = $input['nom_acudiente'];
         $model['nombre_alumno'] = $input['nom_alumno'];
-        $model['num_identidad_alumno'] = $input['numIdnt_alumno'];
+        $model['num_identidad_alumno'] = $input['num_identidad_alumno'];
         $model['email_acudiente'] = $input['email_acudiente'];
         $model['telefono_acudiente'] = $input['numTelef_acudiente'];
         $model['grado_aspira'] = $input['grdo_aspira'];
         $model['tipo_estudiante'] = $input['tipo_estudiante'];
         $model['pin'] = $this->generarCodigo(6);
         $model->save();
+
+        Mail::to($model['email_acudiente'])->send(new RegistroPin($model['num_identidad_alumno'], $model['pin']));
 
         return $model;
     }
@@ -331,29 +342,28 @@ class AlumnoController extends Controller
 
     public function registro_file(Request $request)
     {
-    $validator = Validator::make($request->all(),
-            [
-                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf'
-            ]
-        );
-
+        if(!is_null($request->file('registroCivilT'))){ $validator = Validator::make($request->all(),['registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('registroCivilT');}
+        if(!is_null($request->file('certificadomedico'))){ $validator = Validator::make($request->all(),['certificadomedico' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificadomedico');}
+        if(!is_null($request->file('certificacioneps'))){ $validator = Validator::make($request->all(),['certificacioneps' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificacioneps');}
+        if(!is_null($request->file('cedulapadre'))){ $validator = Validator::make($request->all(),['cedulapadre' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('cedulapadre');}
+        if(!is_null($request->file('referencialaboral'))){  $validator = Validator::make($request->all(),['referencialaboral' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('referencialaboral');}
+        if(!is_null($request->file('carnetvacunas'))){  $validator = Validator::make($request->all(),['carnetvacunas' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('carnetvacunas');}
+        if(!is_null($request->file('pazysalvo'))){  $validator = Validator::make($request->all(),['pazysalvo' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('pazysalvo');}
+        if(!is_null($request->file('boletinfinal'))){  $validator = Validator::make($request->all(),['boletinfinal' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('boletinfinal');}
+        if(!is_null($request->file('retirosimat'))){  $validator = Validator::make($request->all(),['retirosimat' => 'required|mimes:jpeg,jpg,png,bmp,pdf']) ; $file=$request->file('retirosimat');}
+       
         $randName = md5(rand() * time());
-
-
         if ($validator->fails()){
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
         }else{
 
-            if ($request->hasFile('registroCivilT')) {
-                $file3=$request->file('registroCivilT');
-                $extension3=$file3->getClientOriginalExtension();
-                $Nom_imagen3 = $randName."-registroCivilT.".$extension3;
-                $file3->move(public_path().'/Documentos/', $Nom_imagen3);
+            
+                $extension3=$file->getClientOriginalExtension();
+                $Nom_imagen3 = $randName."-doc.".$extension3;
+                $file->move(public_path().'/Documentos/', $Nom_imagen3);
                 $ruta="Documentos/".$Nom_imagen3;
 
-            }else{
-                $Nom_imagen3="";
-            }
+           
             return response()->json(array('status' => $ruta));
 
         }

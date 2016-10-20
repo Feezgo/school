@@ -47,6 +47,13 @@
         </div>
     </div>
 </div>
+
+
+
+<form id="f" action="{{ url('/formulario') }}" method="post">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+    <input type="hidden"  name="identidad" id="identidad" />
+</form>
 @endsection
 
 @section('scripts')
