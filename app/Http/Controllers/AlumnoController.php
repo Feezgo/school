@@ -60,7 +60,7 @@ class AlumnoController extends Controller
         $model2 = new Discapacidad;
         $model3 = new Situacion;
         $datos = [
-            'estudiante' => $model_E->find($request->input('identidad')),
+            'estudiante' => $model_E->where('documento',$request->input('identidad'))->get(),
             'departamento' => $model->all(),
             'discapacidad' => $model2->all(),
             'situacion' => $model3->all(),
