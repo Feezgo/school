@@ -150,11 +150,8 @@ var validador_errores_menu2 = function(data)
 	});
 
 
-
-		$('#sub_registroCT').on('click', function(e)
-		{
-				var num = $(this).data("id");
-			
+        $('body').delegate('#sub_registroCT','click',function(){
+        		var num = $(this).data("id");
 			    var formData = new FormData($("#form_menu4")[0]);
 
 		        $.ajax({
