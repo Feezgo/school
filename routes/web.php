@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index');
 //Rutas publicas
 Route::get('/loginPin', 'AlumnoController@loginPin');
 Route::post('/formPin/validacionPin', 'AlumnoController@validacionPin');
-Route::get('/formulario', 'AlumnoController@formularioInscripcion');
+Route::post('/formulario', 'AlumnoController@formularioInscripcion');
 
 //Rutas protegidas
 Route::get('/formularioPin', 'AlumnoController@formularioPin');
