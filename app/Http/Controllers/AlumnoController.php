@@ -56,19 +56,28 @@ class AlumnoController extends Controller
         
     }
 
-    public function formularioInscripcion(Request $request)
+    public function formularioInscripcion()
     {
-        $model_E = new Estudiante;
+       // $model_E = new Estudiante;
         $model = new departamento;
         $model2 = new Discapacidad;
         $model3 = new Situacion;
         $datos = [
-            'estudiante' => $model_E->where('documento',$request->input('identidad'))->get(),
+        //    'estudiante' => $model_E->where('documento',$request->input('identidad'))->get(),
             'departamento' => $model->all(),
             'discapacidad' => $model2->all(),
             'situacion' => $model3->all(),
         ];
         return view('formulario',$datos);
+    }
+
+    public function validacionEstudiante(Request $request, $id)
+    {
+        $model_E = new Estudiante;
+        $datos = [
+            'estudiante' => $model_E->where('documento',$id)->get(),
+        ];
+        return response()->json($datos);
     }
 
 
@@ -111,8 +120,7 @@ class AlumnoController extends Controller
             if($request->input('_alumno') == '0')
               return $this->guardar_estudiante($request->all());
             else
-                return view('ejemplo');
-            //$this->modificar($request->all());
+                return $this->modificar_estudiante($request->all());
 
     }
 
@@ -120,6 +128,11 @@ class AlumnoController extends Controller
     public function guardar_estudiante($input)
     {
         $model_A = new Estudiante;
+        return $this->crear_estudiante($model_A, $input);
+    }
+    public function modificar_estudiante($input)
+    {
+        $model_A =  Estudiante::where('documento',input('identidad'))->get();
         return $this->crear_estudiante($model_A, $input);
     }
 

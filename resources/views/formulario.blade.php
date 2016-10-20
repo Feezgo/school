@@ -1,840 +1,839 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content" id="form_inscripcion" class="row" data-url="alumno">
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
 
-            <h2>Formulario de inscripción</h2>
+<div class="content" id="form_inscripcion" class="row" data-url="alumno"></div>
+       
+                    
 
-            <div class="col-xs-12">
-                    <div class="alert alert-Success" role="alert">
-                      El<strong> Colegio Finlandes Juan Pablo II</strong> le da la bienvenidad y le agradece por vinvular al estudiante al plantel educativo y lo invita a ingresar la información completa en los formularios que aparecen en la parte inferior, recuerde que es muy importante para nosotros esta información. 
+<div id="div_formulario" style="display: none">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+
+              <h2>Formulario de inscripción</h2>
+
+              <div class="col-xs-12">
+                      <div class="alert alert-Success" role="alert">
+                        El<strong> Colegio Finlandes Juan Pablo II</strong> le da la bienvenidad y le agradece por vinvular al estudiante al plantel educativo y lo invita a ingresar la información completa en los formularios que aparecen en la parte inferior, recuerde que es muy importante para nosotros esta información. 
+                      </div>
+              </div>
+
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#menu1"> 1. Datos del estudiante</a></li>
+                <li><a data-toggle="tab" href="#menu2"> 2. Datos del acudiente</a></li>
+                <li><a data-toggle="tab" href="#menu3"> 3. Datos académicos</a></li>
+                <li><a data-toggle="tab" href="#menu4"> 4. Documentos generales</a></li>
+              </ul>
+
+              <div class="tab-content">
+              <div id="menu1" class="tab-pane fade in active">
+              <form id="form_menu1">
+  <!-- Datos del estudiante -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Datos generales del estudiante</div>
+                  <div class="panel-body">
+
+                    <div class="row">
+                        
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                        <input type="hidden" name="_alumno" value="0"></input>
+
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Repitente</label>
+                          <div class="btn-group-justified" data-toggle="buttons">
+                            <label class="btn btn-primary btn-xs">
+                              <input type="radio" name="repitente" id="option2" autocomplete="off"> Si
+                            </label>
+                            <label class="btn btn-primary btn-xs">
+                              <input type="radio" name="repitente" id="option3" autocomplete="off"> 
+                              No
+                            </label>
+                          </div>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Tipo Identificación</label>
+                            <select class="form-control" name="tipoIdent_estudiante">
+                                <option>Cédula de Ciudadanía</option>
+                                <option>Cédula de Extranjería.</option>
+                                <option>Registro civil de nacimiento</option>
+                                <option>Tarjeta de identidad</option>
+                                <option>NIT</option>
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">N° Identificación</label>
+                            <input type="text" class="form-control" name="numIdent_estudiante" placeholder="" value="" readonly="readonly">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Dpt de expedición</label>
+                            <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
+                                <option value="">seleccionar</option>
+                                @foreach($departamento as $departamentos)
+                                  <option value="">{{ $departamentos['departamento'] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Mpio de expedición</label>
+                            <select class="form-control" name="mpioExp_estudiante" id="mpioExp_estudiante">
+                                <option value="">seleccionar</option>
+                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer nombre</label>
+                          <input type="text" class="form-control" name="nom1_estudiante" placeholder="" value="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo nombre</label>
+                          <input type="text" class="form-control" name="nom2_estudiante" placeholder=""value="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer apellido</label>
+                          <input type="text" class="form-control" name="apll1_estudiante" placeholder="" value="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo apellido</label>
+                          <input type="text" class="form-control" name="apll2_estudiante" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                              <label for"">Genero</label>
+                              <div class="btn-group-justified" data-toggle="buttons">
+                                <label class="btn btn-primary btn-xs">
+                                  <input type="radio" name="gnro_estudiante" id="option2" autocomplete="off"> Masculino
+                                </label>
+                                <label class="btn btn-primary btn-xs">
+                                  <input type="radio" name="gnro_estudiante" id="option3" autocomplete="off"> 
+                                  Femenino
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Fecha de nacimiento</label>
+                          <input type="text" class="form-control" name="fchaNaci_estudiante" id="datepicker" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Dpt de nacimiento</label>
+                            <select class="form-control" name="dptNaci_estudiante" id="dptNaci_estudiante">
+                                <option value="">seleccionar</option>
+                                @foreach($departamento as $departamentos)
+                                  <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Mpio de nacimiento</label>
+                            <select class="form-control" name="mpioNaci_estudiante" id="mpioNaci_estudiante">
+                                <option value="">seleccionar</option>
+                             </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Dirección de recidencia</label>
+                          <input type="text" class="form-control" name="dirReci_estudiante" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Dpt de recidencia</label>
+                            <select class="form-control" name="dptReci_estudiante" id="dptReci_estudiante">
+                                <option value="">seleccionar</option>
+                                @foreach($departamento as $departamentos)
+                                  <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Mpio de recidencia</label>
+                            <select class="form-control" name="mpioReci_estudiante" id="mpioReci_estudiante">
+                              <option value="">seleccionar</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Brio de recidencia</label>
+                            <input type="text" class="form-control" name="brioReci_estudiante" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                              <label for"">Zona</label>
+                              <div class="btn-group-justified" data-toggle="buttons">
+                                <label class="btn btn-primary btn-xs">
+                                  <input type="radio" name="zna_estudiante" id="option2" autocomplete="off"> Rural
+                                </label>
+                                <label class="btn btn-primary btn-xs">
+                                  <input type="radio" name="zna_estudiante" id="option3" autocomplete="off"> 
+                                  Urbana
+                                </label>
+                              </div>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Nivel sisben</label>
+                            <select class="form-control" name="nvel_estudiante">
+                                <option value="">seleccionar</option>
+                                <option value="1">Nivel 1</option>
+                                <option value="2">Nivel 2</option>
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                            <label for"">Nivel estrato</label>
+                            <select class="form-control" name="nvelEst_estudiante">
+                                <option value="">seleccionar</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Eps afiliado</label>
+                          <input type="text" class="form-control" name="eps_estudiante" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Telefono/Celular</label>
+                          <input type="text" class="form-control" name="tfono_estudiante" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Factor RH</label>
+                              <select class="form-control" name="ftorRh_estudiante">
+                                <option value="">seleccionar</option>
+                                <option>O-</option>
+                                <option>O+</option>
+                                <option>A-</option>
+                                <option>A+</option>
+                                <option>B-</option>
+                                <option>B+</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for"">Discapacidad</label>
+                            <select class="form-control" name="dcidad_estudiante">
+                                <option value="">seleccionar</option>
+                                 @foreach($discapacidad as $discapacidades)
+                                  <option value="{{ $discapacidades['id'] }}">{{ $discapacidades['discapacidad'] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                            <label for"">Situacion Academica Año Anterior</label>
+                            <select class="form-control " name="situAcad_estudiante">
+                                <option value="">seleccionar</option>
+                                 @foreach($situacion as $situaciones)
+                                  <option value="{{ $situaciones['id'] }}">{{ $situaciones['situacion'] }}</option>
+                                @endforeach
+                             </select>
+                        </div>
+                    </div>
+
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="alert alert-Success" role="alert">
+                        <strong>Atención!</strong> Registre los datos del estudiantes dando click en el siguiente boton y siga con el formulario 2 datos del acudiente. 
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary btn-block">Registrar datos de estudiante</button>
+                  </div>
+                  <div class="col-md-12"><hr></div>
+                  <div class="col-md-12"><hr></div>
+              </div>
+
+            </form>
             </div>
 
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#menu1"> 1. Datos del estudiante</a></li>
-              <li><a data-toggle="tab" href="#menu2"> 2. Datos del acudiente</a></li>
-              <li><a data-toggle="tab" href="#menu3"> 3. Datos académicos</a></li>
-              <li><a data-toggle="tab" href="#menu4"> 4. Documentos generales</a></li>
-            </ul>
-
-            <div class="tab-content">
-
-           
-                    @if(count($estudiante)>0)
-                    <h1>arriba</h1>
-                      @foreach($estudiante as $estudiantes)
-
-                        <?php $documento = $estudiantes->documento; ?>
-                        <?php $tipo_documento = $estudiantes->tipo_documento; ?>
-                        <?php $dpto_expdicion = $estudiantes->dpto_expdicion; ?>
-                        <?php $mpio_expdicion = $estudiantes->mpio_expdicion; ?>
-                        <?php $pmer_nombre = $estudiantes->pmer_nombre; ?>
-                        <?php $sndo_nombres = $estudiantes->sndo_nombres; ?>
-                        <?php $pmer_apellido = $estudiantes->pmer_apellido; ?>
-                        <?php $sndo_apellido = $estudiantes->sndo_apellido; ?>
-                        <?php $genero = $estudiantes->genero; ?>
-                        <?php $fecha_nacimiento = $estudiantes->fecha_nacimiento; ?>
-                        <?php $dpto_nacimiento = $estudiantes->dpto_nacimiento; ?>
-                        <?php $mpio_nacimiento = $estudiantes->mpio_nacimiento; ?>
-                        <?php $direccion = $estudiantes->direccion; ?>
-                        <?php $dpto_recidencia = $estudiantes->dpto_recidencia; ?>
-                        <?php $mpio_recidencia = $estudiantes->mpio_recidencia; ?>
-                        <?php $brio_recidencia = $estudiantes->brio_recidencia; ?>
-                        <?php $zona = $estudiantes->zona; ?>
-                        <?php $nivel_sisben = $estudiantes->nivel_sisben; ?>
-                        <?php $estrato = $estudiantes->estrato; ?>
-                        <?php $eps = $estudiantes->eps; ?>
-                        <?php $telefono = $estudiantes->telefono; ?>
-                        <?php $rh = $estudiantes->rh; ?>
-                        <?php //$discapacidad = $estudiantes->discapacidad; ?>
-                        <?php $situacion_academica = $estudiantes->situacion_academica; ?>
-
-                      @endforeach
-                    @else
-                    <h1>abajo</h1>
-                        <?php $documento =""; ?>
-                        <?php $tipo_documento =""; ?>
-                        <?php $dpto_expdicion =""; ?>
-                        <?php $mpio_expdicion =""; ?>
-                        <?php $pmer_nombre =""; ?>
-                        <?php $sndo_nombres =""; ?>
-                        <?php $pmer_apellido =""; ?>
-                        <?php $sndo_apellido =""; ?>
-                        <?php $genero =""; ?>
-                        <?php $fecha_nacimiento =""; ?>
-                        <?php $dpto_nacimiento =""; ?>
-                        <?php $mpio_nacimiento =""; ?>
-                        <?php $direccion =""; ?>
-                        <?php $dpto_recidencia =""; ?>
-                        <?php $mpio_recidencia =""; ?>
-                        <?php $brio_recidencia =""; ?>
-                        <?php $zona =""; ?>
-                        <?php $nivel_sisben =""; ?>
-                        <?php $estrato =""; ?>
-                        <?php $eps =""; ?>
-                        <?php $telefono =""; ?>
-                        <?php $rh =""; ?>
-                        <?php $discapacidad =""; ?>
-                        <?php $situacion_academica =""; ?>
-                    @endif
 
           
-              
+          
+            <div id="menu2" class="tab-pane fade">
+            <form id="form_menu2">
+  <!-- Datos de la mamá -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Datos Generales de la mamá</div>
 
-            <div id="menu1" class="tab-pane fade in active">
-            <form id="form_menu1">
-<!-- Datos del estudiante -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Datos generales del estudiante</div>
-                <div class="panel-body">
-
-                  <div class="row">
-                      
+                  <div class="panel-body">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                      <input type="hidden" name="_alumno" value="0"></input>
-
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Repitente</label>
-                        <div class="btn-group-justified" data-toggle="buttons">
-                          <label class="btn btn-primary btn-xs">
-                            <input type="radio" name="repitente" id="option2" autocomplete="off"> Si
-                          </label>
-                          <label class="btn btn-primary btn-xs">
-                            <input type="radio" name="repitente" id="option3" autocomplete="off"> 
-                            No
-                          </label>
+                      <input type="hidden" name="_acudiente" value="0"></input>
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">N° Cedula</label>
+                          <input type="text" class="form-control" name="cdla_mama" placeholder="">
                         </div>
                       </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Tipo Identificación</label>
-                          <select class="form-control" name="tipoIdent_estudiante">
-                              @if($tipo_documento!="")
-                              <option>{{$tipo_documento}}</option>
-                              @endif
-                              <option>Cédula de Ciudadanía</option>
-                              <option>Cédula de Extranjería.</option>
-                              <option>Registro civil de nacimiento</option>
-                              <option>Tarjeta de identidad</option>
-                              <option>NIT</option>
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">N° Identificación</label>
-                          <input type="text" class="form-control" name="numIdent_estudiante" placeholder="" value="{{$documento}}">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Dpt de expedición</label>
-                          <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
-                              <option value="">seleccionar</option>
-                              @foreach($departamento as $departamentos)
-                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
-                              @endforeach
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Mpio de expedición</label>
-                          <select class="form-control" name="mpioExp_estudiante" id="mpioExp_estudiante">
-                              <option value="">seleccionar</option>
-                           </select>
-                      </div>
-                  </div>
 
-                  <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer nombre</label>
-                        <input type="text" class="form-control" name="nom1_estudiante" placeholder="" value="{{$pmer_nombre}}">
+                      <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer nombre</label>
+                          <input type="text" class="form-control" name="pmerNom_mama" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo nombre</label>
+                          <input type="text" class="form-control" name="sdoNom_mama" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer apellido</label>
+                          <input type="text" class="form-control" name="pmerApell_mama" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo apellido</label>
+                          <input type="text" class="form-control" name="sdoApell_mama" placeholder="">
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo nombre</label>
-                        <input type="text" class="form-control" name="nom2_estudiante" placeholder=""value="{{$sndo_nombres}}">
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Ocupación</label>
+                          <input type="text" class="form-control" name="ocup_mama" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Empresa</label>
+                          <input type="text" class="form-control" name="empr_mama" placeholder="">
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer apellido</label>
-                        <input type="text" class="form-control" name="apll1_estudiante" placeholder="" value="{{$pmer_apellido}}">
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Telefono</label>
+                          <input type="text" class="form-control" name="tfono_mama" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Celular</label>
+                          <input type="text" class="form-control" name="celu_mama" placeholder="">
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo apellido</label>
-                        <input type="text" class="form-control" name="apll2_estudiante" placeholder="" value="{{$sndo_apellido}}">
+
+                  </div>
+              </div>
+
+
+  <!-- Datos de la papá -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Datos Generales del papá</div>
+
+                  <div class="panel-body">
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">N° Cedula</label>
+                          <input type="text" class="form-control" name="cedu_papa" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer nombre</label>
+                          <input type="text" class="form-control" name="pmerNom_papa" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo nombre</label>
+                          <input type="text" class="form-control" name="sdoNom_papa" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer apellido</label>
+                          <input type="text" class="form-control" name="pmerApell_papa" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo apellido</label>
+                          <input type="text" class="form-control" name="sdoApell_papa" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Ocupación</label>
+                          <input type="text" class="form-control" name="ocup_papa" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Empresa</label>
+                          <input type="text" class="form-control" name="empr_papa" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Telefono</label>
+                          <input type="text" class="form-control" name="tfono_papa" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Celular</label>
+                          <input type="text" class="form-control" name="celu_papa" placeholder="">
+                        </div>
+                      </div>
+
+                  </div>
+              </div>            
+
+
+
+  <!-- Datos de otro acudietne -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Acudiente</div>
+
+                  <div class="panel-body">
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Parentesco</label>
+                          <select class="form-control" name="ptesco_acudi">
+                                <option value="">seleccionar</option>
+                                <option>padre</option>
+                                <option>madre</option>
+                                <option>abuelo</option>
+                                <option>tio</option>
+                                <option>hermano</option>
+                                <option>otro</option>
+                             </select>
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">N° Cedula</label>
+                          <input type="text" class="form-control" name="cedu_acudi" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer nombre</label>
+                          <input type="text" class="form-control" name="pmerNom_acudi" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo nombre</label>
+                          <input type="text" class="form-control" name="sdoNom_acudi" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Primer apellido</label>
+                          <input type="text" class="form-control" name="pmerApell_acudi" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-3 form-group">
+                          <label for"">Segundo apellido</label>
+                          <input type="text" class="form-control" name="sdoApell_acudi" placeholder="">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Telefono</label>
+                          <input type="text" class="form-control" name="tfono_acudi" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Celular</label>
+                          <input type="text" class="form-control" name="celu_acudi" placeholder="">
+                        </div>
+                      </div>
+
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="alert alert-Success" role="alert">
+                        <strong>Atención!</strong> Registre los datos del acudiente dando click en el siguiente boton y siga con el formulario 3 datos académicos. 
                       </div>
                   </div>
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-success btn-block">Registrar datos del acudiente</button>
+                  </div>
+                  <div class="col-md-12"><hr></div>
+                  <div class="col-md-12"><hr></div>
+              </div>
 
-                  <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                            <label for"">Genero</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="gnro_estudiante" id="option2" autocomplete="off"> Masculino
-                              </label>
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="gnro_estudiante" id="option3" autocomplete="off"> 
-                                Femenino
-                              </label>
+            </form>
+            </div>
+
+
+
+            <div id="menu3" class="tab-pane fade">
+            <form id="form_menu3">
+  <!-- Datos de la académicos -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Procedencia académica</div>
+
+                  <div class="panel-body">
+
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                      <input type="hidden" name="_academica" value="0"></input>
+                      <div class="row">
+                        <div class="col-xs-6 col-md-2 form-group">
+                          <label for"">Año</label>
+                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                          <label for"">Grado</label>
+                          <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <label for"">Institucion</label>
+                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                            <label for"">Tipo</label>
+                            <div class="form-group">
+                                <select class="form-control" id="sel1" name="caracter[]">
+                                  <option value="P">Publico</option>
+                                  <option value="D">Privado</option>
+                                </select>
                             </div>
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Fecha de nacimiento</label>
-                        <input type="text" class="form-control" name="fchaNaci_estudiante" id="datepicker" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Dpt de nacimiento</label>
-                          <select class="form-control" name="dptNaci_estudiante" id="dptNaci_estudiante">
-                              <option value="">seleccionar</option>
-                              @foreach($departamento as $departamentos)
-                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
-                              @endforeach
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Mpio de nacimiento</label>
-                          <select class="form-control" name="mpioNaci_estudiante" id="mpioNaci_estudiante">
-                              <option value="">seleccionar</option>
-                           </select>
-                      </div>
-                  </div>
 
+                      <div class="row">
+                        <div class="col-xs-6 col-md-2 form-group">
+                          
+                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                          
 
-                  <div class="row">
-                      
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Dirección de recidencia</label>
-                        <input type="text" class="form-control" name="dirReci_estudiante" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Dpt de recidencia</label>
-                          <select class="form-control" name="dptReci_estudiante" id="dptReci_estudiante">
-                              <option value="">seleccionar</option>
-                              @foreach($departamento as $departamentos)
-                                <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
-                              @endforeach
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Mpio de recidencia</label>
-                          <select class="form-control" name="mpioReci_estudiante" id="mpioReci_estudiante">
-                            <option value="">seleccionar</option>
-                          </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Brio de recidencia</label>
-                          <input type="text" class="form-control" name="brioReci_estudiante" placeholder="">
-                      </div>
-                  </div>
-
-                  <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                            <label for"">Zona</label>
-                            <div class="btn-group-justified" data-toggle="buttons">
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="zna_estudiante" id="option2" autocomplete="off"> Rural
-                              </label>
-                              <label class="btn btn-primary btn-xs">
-                                <input type="radio" name="zna_estudiante" id="option3" autocomplete="off"> 
-                                Urbana
-                              </label>
-                            </div>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Nivel sisben</label>
-                          <select class="form-control" name="nvel_estudiante">
-                              <option value="">seleccionar</option>
-                              <option value="1">Nivel 1</option>
-                              <option value="2">Nivel 2</option>
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                          <label for"">Nivel estrato</label>
-                          <select class="form-control" name="nvelEst_estudiante">
-                              <option value="">seleccionar</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Eps afiliado</label>
-                        <input type="text" class="form-control" name="eps_estudiante" placeholder="">
-                      </div>
-                  </div>
-
-                  <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Telefono/Celular</label>
-                        <input type="text" class="form-control" name="tfono_estudiante" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Factor RH</label>
-                            <select class="form-control" name="ftorRh_estudiante">
-                              <option value="">seleccionar</option>
-                              <option>O-</option>
-                              <option>O+</option>
-                              <option>A-</option>
-                              <option>A+</option>
-                              <option>B-</option>
-                              <option>B+</option>
-                              <option>AB+</option>
-                              <option>AB-</option>
-                           </select>
-                      </div>
-                  </div>
-
-                  <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                          <label for"">Discapacidad</label>
-                          <select class="form-control" name="dcidad_estudiante">
-                              <option value="">seleccionar</option>
-                               @foreach($discapacidad as $discapacidades)
-                                <option value="{{ $discapacidades['id'] }}">{{ $discapacidades['discapacidad'] }}</option>
-                              @endforeach
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                          <label for"">Situacion Academica Año Anterior</label>
-                          <select class="form-control " name="situAcad_estudiante">
-                              <option value="">seleccionar</option>
-                               @foreach($situacion as $situaciones)
-                                <option value="{{ $situaciones['id'] }}">{{ $situaciones['situacion'] }}</option>
-                              @endforeach
-                           </select>
-                      </div>
-                  </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="alert alert-Success" role="alert">
-                      <strong>Atención!</strong> Registre los datos del estudiantes dando click en el siguiente boton y siga con el formulario 2 datos del acudiente. 
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-block">Registrar datos de estudiante</button>
-                </div>
-                <div class="col-md-12"><hr></div>
-                <div class="col-md-12"><hr></div>
-            </div>
-
-          </form>
-          </div>
-
-
-        
-        
-          <div id="menu2" class="tab-pane fade">
-          <form id="form_menu2">
-<!-- Datos de la mamá -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Datos Generales de la mamá</div>
-
-                <div class="panel-body">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                    <input type="hidden" name="_acudiente" value="0"></input>
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">N° Cedula</label>
-                        <input type="text" class="form-control" name="cdla_mama" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer nombre</label>
-                        <input type="text" class="form-control" name="pmerNom_mama" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo nombre</label>
-                        <input type="text" class="form-control" name="sdoNom_mama" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer apellido</label>
-                        <input type="text" class="form-control" name="pmerApell_mama" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo apellido</label>
-                        <input type="text" class="form-control" name="sdoApell_mama" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Ocupación</label>
-                        <input type="text" class="form-control" name="ocup_mama" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Empresa</label>
-                        <input type="text" class="form-control" name="empr_mama" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Telefono</label>
-                        <input type="text" class="form-control" name="tfono_mama" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Celular</label>
-                        <input type="text" class="form-control" name="celu_mama" placeholder="">
-                      </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-<!-- Datos de la papá -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Datos Generales del papá</div>
-
-                <div class="panel-body">
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">N° Cedula</label>
-                        <input type="text" class="form-control" name="cedu_papa" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer nombre</label>
-                        <input type="text" class="form-control" name="pmerNom_papa" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo nombre</label>
-                        <input type="text" class="form-control" name="sdoNom_papa" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer apellido</label>
-                        <input type="text" class="form-control" name="pmerApell_papa" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo apellido</label>
-                        <input type="text" class="form-control" name="sdoApell_papa" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Ocupación</label>
-                        <input type="text" class="form-control" name="ocup_papa" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Empresa</label>
-                        <input type="text" class="form-control" name="empr_papa" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Telefono</label>
-                        <input type="text" class="form-control" name="tfono_papa" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Celular</label>
-                        <input type="text" class="form-control" name="celu_papa" placeholder="">
-                      </div>
-                    </div>
-
-                </div>
-            </div>            
-
-
-
-<!-- Datos de otro acudietne -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Acudiente</div>
-
-                <div class="panel-body">
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Parentesco</label>
-                        <select class="form-control" name="ptesco_acudi">
-                              <option value="">seleccionar</option>
-                              <option>padre</option>
-                              <option>madre</option>
-                              <option>abuelo</option>
-                              <option>tio</option>
-                              <option>hermano</option>
-                              <option>otro</option>
-                           </select>
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">N° Cedula</label>
-                        <input type="text" class="form-control" name="cedu_acudi" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer nombre</label>
-                        <input type="text" class="form-control" name="pmerNom_acudi" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo nombre</label>
-                        <input type="text" class="form-control" name="sdoNom_acudi" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Primer apellido</label>
-                        <input type="text" class="form-control" name="pmerApell_acudi" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-3 form-group">
-                        <label for"">Segundo apellido</label>
-                        <input type="text" class="form-control" name="sdoApell_acudi" placeholder="">
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Telefono</label>
-                        <input type="text" class="form-control" name="tfono_acudi" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Celular</label>
-                        <input type="text" class="form-control" name="celu_acudi" placeholder="">
-                      </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="alert alert-Success" role="alert">
-                      <strong>Atención!</strong> Registre los datos del acudiente dando click en el siguiente boton y siga con el formulario 3 datos académicos. 
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-success btn-block">Registrar datos del acudiente</button>
-                </div>
-                <div class="col-md-12"><hr></div>
-                <div class="col-md-12"><hr></div>
-            </div>
-
-          </form>
-          </div>
-
-
-
-          <div id="menu3" class="tab-pane fade">
-          <form id="form_menu3">
-<!-- Datos de la académicos -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Procedencia académica</div>
-
-                <div class="panel-body">
-
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                    <input type="hidden" name="_academica" value="0"></input>
-                    <div class="row">
-                      <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Año</label>
-                        <input type="text" class="form-control" name="ano[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                        <label for"">Grado</label>
-                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <label for"">Institucion</label>
-                        <input type="text" class="form-control" name="institucion[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                          <label for"">Tipo</label>
-                          <div class="form-group">
+                          <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          
+                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                           <div class="form-group">
                               <select class="form-control" id="sel1" name="caracter[]">
                                 <option value="P">Publico</option>
                                 <option value="D">Privado</option>
                               </select>
-                          </div>
+                            </div>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
-                        <input type="text" class="form-control" name="ano[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
+                      <div class="row">
+                        <div class="col-xs-6 col-md-2 form-group">
+                          
+                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                          
 
-                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                          <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          
+                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                           <div class="form-group">
+                              <select class="form-control" id="sel1" name="caracter[]">
+                                <option value="P">Publico</option>
+                                <option value="D">Privado</option>
+                              </select>
+                            </div>
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        
-                        <input type="text" class="form-control" name="institucion[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                         <div class="form-group">
-                            <select class="form-control" id="sel1" name="caracter[]">
-                              <option value="P">Publico</option>
-                              <option value="D">Privado</option>
-                            </select>
-                          </div>
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
-                        <input type="text" class="form-control" name="ano[]" placeholder="">
+                      <?php for($i=1; $i<=11; $i++) { ?>
+                      <div class="row">
+                        <div class="col-xs-6 col-md-2 form-group">
+                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                          <input type="text" class="form-control" value="<?php echo $i ?>" name="grado[]" placeholder="" readonly="readonly">
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                        </div>
+                        <div class="col-xs-6 col-md-2 form-group">
+                           <div class="form-group">
+                              <select class="form-control"  name="caracter[]">
+                                <option value="P">Publico</option>
+                                <option value="D">Privado</option>
+                              </select>
+                            </div>
+                        </div>
                       </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                        
+                      <?php } ?>
 
-                        <input type="text" class="form-control" value="pre" name="grado[]" placeholder="" readonly="readonly">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        
-                        <input type="text" class="form-control" name="institucion[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                         <div class="form-group">
-                            <select class="form-control" id="sel1" name="caracter[]">
-                              <option value="P">Publico</option>
-                              <option value="D">Privado</option>
-                            </select>
-                          </div>
-                      </div>
-                    </div>
-
-                    <?php for($i=1; $i<=11; $i++) { ?>
-                    <div class="row">
-                      <div class="col-xs-6 col-md-2 form-group">
-                        <input type="text" class="form-control" name="ano[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                        <input type="text" class="form-control" value="<?php echo $i ?>" name="grado[]" placeholder="" readonly="readonly">
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <input type="text" class="form-control" name="institucion[]" placeholder="">
-                      </div>
-                      <div class="col-xs-6 col-md-2 form-group">
-                         <div class="form-group">
-                            <select class="form-control"  name="caracter[]">
-                              <option value="P">Publico</option>
-                              <option value="D">Privado</option>
-                            </select>
-                          </div>
-                      </div>
-                    </div>
-                    <?php } ?>
-
-                </div>
-            </div> 
+                  </div>
+              </div> 
 
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="alert alert-Success" role="alert">
-                      <strong>Atención!</strong> Registre los datos académicos dando click en el siguiente boton y siga con el formulario 4. documentos generales.
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-warning btn-block">Registrar datos académicos</button>
-                </div>
-                <div class="col-md-12"><hr></div>
-                <div class="col-md-12"><hr></div>
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="alert alert-Success" role="alert">
+                        <strong>Atención!</strong> Registre los datos académicos dando click en el siguiente boton y siga con el formulario 4. documentos generales.
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-warning btn-block">Registrar datos académicos</button>
+                  </div>
+                  <div class="col-md-12"><hr></div>
+                  <div class="col-md-12"><hr></div>
+              </div>
+            </form>
             </div>
-          </form>
+
+
+
+
+            <div id="menu4" class="tab-pane fade">
+            <form id="form_menu4">
+                <!-- Datos del estudiante -->
+              <div class="panel panel-default">
+                  <div class="panel-heading">Documentos obligatorios generales para todos los estudiantes</div>
+                  <div class="panel-body">
+
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Registro civil / Tarjeta de indentidad</label>
+                            <input type="file" id="exampleInputFile" name="registroCivilT">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file1" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="1">Subir</button>
+                              <button type="button" class="btn btn-danger"  id="baj_registroCT" data-id="1" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Certificado medico resiente o vigente
+                            </label>
+                            <input type="file" id="exampleInputFile" name="certificadomedico">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file2" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="2" >Subir</button>
+                              <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="2" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Certificación vigente de la EPS o Sisben </label>
+                            <input type="file" id="exampleInputFile" name="certificacioneps">
+                            <a id="file3" href="" download style='display:none'>Archivo</a><br>
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="3"  >Subir</button>
+                              <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="3" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Cedula padre de familia / Acudiente
+                            </label>
+                            <input type="file" id="exampleInputFile" name="cedulapadre">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file4" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="4" >Subir</button>
+                              <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="4" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Referencia laboral del acudiente</label>
+                            <input type="file" id="exampleInputFile" name="referencialaboral">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file5" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="5" >Subir</button>
+                              <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="5" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Carnet de vacunas</label>
+                            <input type="file" id="exampleInputFile" name="carnetvacunas">
+                            <p class="help-block">Unicamente para grados de pre-kinder, kinder, transición.</p>
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file6" href="" download style='display:none'>Archivo</a><br>
+                          </div>
+                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="6" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="6" >Eliminar</button>
+                          </div>
+                        </div>
+                      </div>               
+
+                  </div>
+              </div>
+
+
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">Documentos obligatorios adicionales para estudiantes nuevos estudiantes</div>
+                  <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Paz y salvo de colegio anterior</label>
+                            <input type="file" id="exampleInputFile" name="pazysalvo">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file7" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="7" >Subir</button>
+                              <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="7" >Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 form-group">
+                          <div class="form-group">
+                            <label for="exampleInputFile">Boletin final con la aprobación del año anterior
+                            </label>
+                            <input type="file" id="exampleInputFile" name="boletinfinal">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file8" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
+                              <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="col-xs-6 col-md-6 form-group">
+                           <div class="form-group">
+                            <label for="exampleInputFile">Certificado del retiro del SIMAT (Emitido por el colegio de origen)
+                            </label>
+                            <input type="file" id="exampleInputFile" name="retirosimat">
+                            <p class="help-block">Formato permitido pdf.</p>
+                            <a id="file9" href="" download style='display:none'>Archivo</a><br>
+                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                              <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
+                              <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
+                            </div>
+                            </div>
+                        </div>
+                      </div>
+
+                  </div>
+              </div>
+
+            </form>
+            </div>
+
+
+              
+
+
+
+
+
           </div>
+      </div>
+  </div>
 
 
 
 
-          <div id="menu4" class="tab-pane fade">
-          <form id="form_menu4">
-              <!-- Datos del estudiante -->
-            <div class="panel panel-default">
-                <div class="panel-heading">Documentos obligatorios generales para todos los estudiantes</div>
-                <div class="panel-body">
 
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Registro civil / Tarjeta de indentidad</label>
-                          <input type="file" id="exampleInputFile" name="registroCivilT">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file1" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="1">Subir</button>
-                            <button type="button" class="btn btn-danger"  id="baj_registroCT" data-id="1" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Certificado medico resiente o vigente
-                          </label>
-                          <input type="file" id="exampleInputFile" name="certificadomedico">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file2" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="2" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="2" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Certificación vigente de la EPS o Sisben </label>
-                          <input type="file" id="exampleInputFile" name="certificacioneps">
-                          <a id="file3" href="" download style='display:none'>Archivo</a><br>
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="3"  >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="3" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Cedula padre de familia / Acudiente
-                          </label>
-                          <input type="file" id="exampleInputFile" name="cedulapadre">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file4" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="4" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="4" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Referencia laboral del acudiente</label>
-                          <input type="file" id="exampleInputFile" name="referencialaboral">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file5" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="5" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="5" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Carnet de vacunas</label>
-                          <input type="file" id="exampleInputFile" name="carnetvacunas">
-                          <p class="help-block">Unicamente para grados de pre-kinder, kinder, transición.</p>
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file6" href="" download style='display:none'>Archivo</a><br>
-                        </div>
-                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default" id="sub_registroCT" data-id="6" >Subir</button>
-                          <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="6" >Eliminar</button>
-                        </div>
-                      </div>
-                    </div>               
-
-                </div>
+  <div class="modal fade bs-example-modal-lg" id="incripcion_creada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+              <h4 class="modal-title">Registro Exitoso!!</h4>
             </div>
-
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Documentos obligatorios adicionales para estudiantes nuevos estudiantes</div>
-                <div class="panel-body">
-                  <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Paz y salvo de colegio anterior</label>
-                          <input type="file" id="exampleInputFile" name="pazysalvo">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file7" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="7" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="7" >Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-xs-6 col-md-6 form-group">
-                        <div class="form-group">
-                          <label for="exampleInputFile">Boletin final con la aprobación del año anterior
-                          </label>
-                          <input type="file" id="exampleInputFile" name="boletinfinal">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file8" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
-                            <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                    <div class="row">
-                      <div class="col-xs-6 col-md-6 form-group">
-                         <div class="form-group">
-                          <label for="exampleInputFile">Certificado del retiro del SIMAT (Emitido por el colegio de origen)
-                          </label>
-                          <input type="file" id="exampleInputFile" name="retirosimat">
-                          <p class="help-block">Formato permitido pdf.</p>
-                          <a id="file9" href="" download style='display:none'>Archivo</a><br>
-                          <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
-                            <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
-                          </div>
-                          </div>
-                      </div>
-                    </div>
-
-                </div>
-            </div>
-
-          </form>
+             <div class="modal-body">
+                <div id="mensaje"></div>
+             </div>
+             <div class="modal-footer" id="cerrar_actividad">
+                <button type="button"  data-funcion="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+             </div>
           </div>
-
-
-            
-
-
-
-
-
-        </div>
-    </div>
+      </div>
+  </div>
+</div>
 </div>
 
 
 
 
+<div id="div_login">
 
-<div class="modal fade bs-example-modal-lg" id="incripcion_creada" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-           <div class="modal-header">
-            <h4 class="modal-title">Registro Exitoso!!</h4>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="panel panel-default">
+                  <div class="panel-heading">REGISTRO DE FORMULARIO DE INSCRIPCIÓN</div>
+
+                  <div class="panel-body">
+                    
+                    <form  action="" id="form_login_pin">  
+                      
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
+                      <div class="row">
+                        <div class="col-md-3 form-group"></div>
+                        <div class="col-md-6 form-group">
+                          <label for"">Numero identidad del alumno</label>
+                          <input type="text" class="form-control" name="num_identidad" placeholder="">
+                        </div>
+                        <div class="col-md-3 form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3 form-group"></div>
+                        <div class="col-md-6 form-group">
+                          <label for"">Pin</label>
+                          <input type="text" class="form-control" name="pin" placeholder="">
+                        </div>
+                        <div class="col-md-3 form-group"></div>
+                      </div>
+
+
+                      <div class="row">
+                          <div class="col-md-3 form-group"></div>
+                          <div class="col-md-6">
+                              <button  type="submit" class="btn btn-success btn-block">Ingresar</button>
+                          </div>
+                          <div class="col-md-12"><hr></div>
+                          <div class="col-md-3 form-group"></div>
+                      </div>
+                    </form>
+
+                  </div>
+              </div>
           </div>
-           <div class="modal-body">
-              <div id="mensaje"></div>
-           </div>
-           <div class="modal-footer" id="cerrar_actividad">
-              <button type="button"  data-funcion="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-           </div>
-        </div>
-    </div>
+      </div>
+  </div>
 </div>
+
+             
+
+
+
+
 @endsection
 @section('scripts')
   @parent

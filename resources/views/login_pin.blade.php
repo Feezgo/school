@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="content" id="manu_alumno" class="row" data-url="formPin">
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -18,7 +20,7 @@
                       <div class="col-md-3 form-group"></div>
                       <div class="col-md-6 form-group">
                         <label for"">Numero identidad del alumno</label>
-                        <input type="text" class="form-control" name="num_identidad" placeholder="">
+                        <input type="text" class="form-control" name="num_identidad" id="num_dentidad" placeholder="">
                       </div>
                       <div class="col-md-3 form-group"></div>
                     </div>
@@ -51,8 +53,7 @@
 
 
 <form id="f" action="{{ url('/formulario') }}" method="post">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-    <input type="hidden"  name="identidad" id="identidad" />
+    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>s
 </form>
 @endsection
 
