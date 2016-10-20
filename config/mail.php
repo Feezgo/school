@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST'),
+    'host' => env('MAIL_HOST', 'mx1.hostinger.ph'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'micolegiofinlandes@gmail.com',
-        'name' => 'anabella123',
+        'address' => 'hello@example.com',
+        'name' => 'Example',
     ],
 
     /*
