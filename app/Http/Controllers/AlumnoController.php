@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use Validator;
+use File;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
 use School\App\Modelos\Estudiante;
@@ -338,6 +339,18 @@ class AlumnoController extends Controller
     }
     
 
+        public function delete_file(Request $request)
+    {
+        
+        if (!File::exists($request->url)){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{            
+               
+            File::delete($request->url);
+            return response()->json(array('status' => 'borrado'));
+
+        }
+    }
 
 
     public function registro_file(Request $request)
