@@ -4,6 +4,7 @@ namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
@@ -13,6 +14,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
+use School\Mail\RegistroPin;
 
 
 class AlumnoController extends Controller
@@ -311,6 +313,8 @@ class AlumnoController extends Controller
         $model['tipo_estudiante'] = $input['tipo_estudiante'];
         $model['pin'] = $this->generarCodigo(6);
         $model->save();
+
+        Mail::to($model['email_acudiente'])->send(new RegistroPin($model['num_identidad_alumno'], $model['pin']));
 
         return $model;
     }
