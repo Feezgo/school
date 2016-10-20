@@ -31,7 +31,7 @@
                       </div>
                       <div class="col-md-6 form-group">
                         <label for"">N° identidad de alumno</label>
-                        <input type="text" class="form-control" name="numIdnt_alumno" placeholder="" >
+                        <input type="text" class="form-control" name="num_identidad_alumno" placeholder="" >
                       </div>
                     </div>
 
