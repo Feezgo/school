@@ -286,6 +286,86 @@ var validador_errores_menu2 = function(data)
       dateFormat:'y-mm-dd'
     });
 
+
+
+
+
+    $('#form_login_pin').on('submit', function(e){
+		
+				$.post(
+					URL+'/validacionPin',
+					$(this).serialize(),
+					function(data){
+						
+							if(data.status == 'error')
+							{
+								validador_errores(data.errors);
+							} 
+							else 
+							{
+								if(data.status == 'invalido')
+								{
+									alert("vacio");
+								}
+								else
+								{
+									$.get(
+										URL+'/validacionEstudiante/'+data[0].num_identidad_alumno,
+										{},
+										function(data1){ 
+											campos_formulario(data1);
+											$('#div_login').hide();
+											$('#div_formulario').show();
+											$('input[name="numIdent_estudiante"]').val(data[0].num_identidad_alumno);
+						                },
+						                'json'
+						            );								
+									
+								}
+
+							}
+					},
+					'json'
+				);
+
+		e.preventDefault();
+	});
+
+	var campos_formulario = function(data)
+	{
+		if(data.estudiante.length>0){
+
+			$.each(data, function(i, e){
+				$('input[name="_alumno"]').val(e['documento']);
+				$('input[name="numIdent_estudiante"]').val(e['documento']);
+				$('input[name="nom1_estudiante"]').val(e[0].pmer_nombre);
+			});
+		}
+		
+	}
+
+
+
+	var validador_errores = function(data)
+	{
+		$('#form_login_pin .form-group').removeClass('has-error');
+		var selector = '';
+		for (var error in data){
+		    if (typeof data[error] !== 'function') {
+		        switch(error)
+		        {
+
+		        	case 'num_identidad':
+		        	case 'pin':
+		        		selector = 'input';
+		        	break;
+
+		        }
+		        $('#form_login_pin '+selector+'[name="'+error+'"]').closest('.form-group').addClass('has-error');
+		    }
+		}
+	}
+
 	
 
 

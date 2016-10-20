@@ -21,8 +21,9 @@ var URL = $('#manu_alumno').data('url');
 								}
 								else
 								{
-									$('#identidad').val(data[0].num_identidad_alumno);
-									$('#f').submit();
+									$('input[name="num_dentidad"]').val(data[0].num_identidad_alumno);
+									$('#div_login').hide();
+									$('#div_formulario').show();
 								}
 
 							}
