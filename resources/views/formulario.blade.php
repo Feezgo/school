@@ -603,8 +603,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file1" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="1">Subir</button>
+                            <button type="button" class="btn btn-danger"  id="baj_registroCT" data-id="1" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -612,11 +612,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Certificado medico resiente o vigente
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="certificadomedico">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file2" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="2" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="2" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -626,11 +627,12 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Certificación vigente de la EPS o Sisben </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="certificacioneps">
+                          <a id="file3" href="" download style='display:none'>Archivo</a><br>
                           <p class="help-block">Formato permitido pdf.</p>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="3"  >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="3" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -638,11 +640,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Cedula padre de familia / Acudiente
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="cedulapadre">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file4" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="4" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="4" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -654,24 +657,26 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Referencia laboral del acudiente</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="referencialaboral">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file5" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="5" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="5" >Eliminar</button>
                           </div>
                         </div>
                       </div>
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Carnet de vacunas</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="carnetvacunas">
                           <p class="help-block">Unicamente para grados de pre-kinder, kinder, transición.</p>
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file6" href="" download style='display:none'>Archivo</a><br>
                         </div>
                         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default">Subir</button>
-                          <button type="button" class="btn btn-danger">Eliminar</button>
+                          <button type="button" class="btn btn-default" id="sub_registroCT" data-id="6" >Subir</button>
+                          <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="6" >Eliminar</button>
                         </div>
                       </div>
                     </div>               
@@ -688,11 +693,12 @@
                       <div class="col-xs-6 col-md-6 form-group">
                         <div class="form-group">
                           <label for="exampleInputFile">Paz y salvo de colegio anterior</label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="pazysalvo">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file7" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="7" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="7" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -700,11 +706,12 @@
                         <div class="form-group">
                           <label for="exampleInputFile">Boletin final con la aprobación del año anterior
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="boletinfinal">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file8" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -717,11 +724,12 @@
                          <div class="form-group">
                           <label for="exampleInputFile">Certificado del retiro del SIMAT (Emitido por el colegio de origen)
                           </label>
-                          <input type="file" id="exampleInputFile">
+                          <input type="file" id="exampleInputFile" name="retirosimat">
                           <p class="help-block">Formato permitido pdf.</p>
+                          <a id="file9" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default">Subir</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
                           </div>
                           </div>
                       </div>
