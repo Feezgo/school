@@ -150,10 +150,8 @@ var validador_errores_menu2 = function(data)
 	});
 
 
-
-	$('#sub_registroCT').on('click', function(e)
-	{
-			
+        $('body').delegate('#sub_registroCT','click',function(){
+        		var num = $(this).data("id");
 			    var formData = new FormData($("#form_menu4")[0]);
 
 		        $.ajax({
@@ -172,17 +170,48 @@ var validador_errores_menu2 = function(data)
 							else 
 							{
 								$('#form_menu4')[0].reset();
-								$('#file1').attr('href',data.status);//Conocimiento adquirido attr
-								$('#file1').show();
-								var menj='Ha registrado el archivo';
+								$('#file'+num).attr('href',data.status);//Conocimiento adquirido attr
+								$('#file'+num).show();
+								$('button[data-id='+num+']').attr('data-url' , data.status);
+								var menj='Ha registrado el archivo numero'+num;
 								$('#mensaje').html(menj);
 								$('#incripcion_creada').modal('show');
 							}
 		            }
 		        });        
 			return false;
-	});
+		});
 
+         $('body').delegate('#baj_registroCT','click',function(){
+        		var num = $(this).data("id");
+        		var url = $(this).data("url");
+        		var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+			    var formData = {'url':url,'_token':AUTH_TOKEN };
+
+		        $.ajax({
+		            url: URL+'/delete_file',  
+		            type: 'POST',
+		            data: formData,
+		            dataType: "json",
+		            success: function(data){
+						    if(data.status == 'error')
+							{
+								validador_errores_registroEjecucion(data.errors);
+								$("#espera_eje").html("");
+							}
+							else 
+							{
+								$('#form_menu4')[0].reset();
+								$('#file'+num).attr('href','');//Conocimiento adquirido attr
+								$('#file'+num).hide();
+								var menj='Se ha borrado el archivo '+num;
+								$('#mensaje').html(menj);
+								$('#incripcion_creada').modal('show');
+							}
+		            }
+		        });        
+			return false;
+		});
 
 	var validador_errores_registroEjecucion = function(data)
 	{

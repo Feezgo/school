@@ -19,12 +19,17 @@ var URL = $('#manu_alumno').data('url');
 								{
 									alert("vacio");
 								}
-								
+								else
+								{
+									$('#identidad').val(data[0].num_identidad_alumno);
+									$('#f').submit();
+								}
 
 							}
 					},
 					'json'
 				);
+
 		e.preventDefault();
 	});
 
