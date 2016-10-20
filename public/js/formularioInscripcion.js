@@ -150,9 +150,9 @@ var validador_errores_menu2 = function(data)
 	});
 
 
-
-	$('#sub_registroCT').on('click', function(e)
-	{
+	for (var i = 1; i <= 9; i++) {
+		$('#sub_registroCT'+i).on('click', function(e)
+		{
 			
 			    var formData = new FormData($("#form_menu4")[0]);
 
@@ -172,16 +172,17 @@ var validador_errores_menu2 = function(data)
 							else 
 							{
 								$('#form_menu4')[0].reset();
-								$('#file1').attr('href',data.status);//Conocimiento adquirido attr
-								$('#file1').show();
-								var menj='Ha registrado el archivo';
+								$('#file'+i).attr('href',data.status);//Conocimiento adquirido attr
+								$('#file'+i).show();
+								var menj='Ha registrado el archivo numero'+i;
 								$('#mensaje').html(menj);
 								$('#incripcion_creada').modal('show');
 							}
 		            }
 		        });        
 			return false;
-	});
+		});
+	}
 
 
 	var validador_errores_registroEjecucion = function(data)
