@@ -341,29 +341,28 @@ class AlumnoController extends Controller
 
     public function registro_file(Request $request)
     {
-    $validator = Validator::make($request->all(),
-            [
-                'registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf'
-            ]
-        );
-
+        if(!is_null($request->file('registroCivilT'))){ $validator = Validator::make($request->all(),['registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('registroCivilT');}
+        if(!is_null($request->file('certificadomedico'))){ $validator = Validator::make($request->all(),['certificadomedico' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificadomedico');}
+        if(!is_null($request->file('certificacioneps'))){ $validator = Validator::make($request->all(),['certificacioneps' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificacioneps');}
+        if(!is_null($request->file('cedulapadre'))){ $validator = Validator::make($request->all(),['cedulapadre' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('cedulapadre');}
+        if(!is_null($request->file('referencialaboral'))){  $validator = Validator::make($request->all(),['referencialaboral' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('referencialaboral');}
+        if(!is_null($request->file('carnetvacunas'))){  $validator = Validator::make($request->all(),['carnetvacunas' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('carnetvacunas');}
+        if(!is_null($request->file('pazysalvo'))){  $validator = Validator::make($request->all(),['pazysalvo' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('pazysalvo');}
+        if(!is_null($request->file('boletinfinal'))){  $validator = Validator::make($request->all(),['boletinfinal' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('boletinfinal');}
+        if(!is_null($request->file('retirosimat'))){  $validator = Validator::make($request->all(),['retirosimat' => 'required|mimes:jpeg,jpg,png,bmp,pdf']) ; $file=$request->file('retirosimat');}
+       
         $randName = md5(rand() * time());
-
-
         if ($validator->fails()){
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
         }else{
 
-            if ($request->hasFile('registroCivilT')) {
-                $file3=$request->file('registroCivilT');
-                $extension3=$file3->getClientOriginalExtension();
-                $Nom_imagen3 = $randName."-registroCivilT.".$extension3;
-                $file3->move(public_path().'/Documentos/', $Nom_imagen3);
+            
+                $extension3=$file->getClientOriginalExtension();
+                $Nom_imagen3 = $randName."-doc.".$extension3;
+                $file->move(public_path().'/Documentos/', $Nom_imagen3);
                 $ruta="Documentos/".$Nom_imagen3;
 
-            }else{
-                $Nom_imagen3="";
-            }
+           
             return response()->json(array('status' => $ruta));
 
         }
