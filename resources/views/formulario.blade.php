@@ -603,8 +603,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file1" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT1">Subir</button>
-                            <button type="button" class="btn btn-danger"  id="baj_registroCT1" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="1">Subir</button>
+                            <button type="button" class="btn btn-danger"  id="baj_registroCT" data-id="1" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -616,8 +616,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file2" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT2" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT2" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="2" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="2" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -631,8 +631,8 @@
                           <a id="file3" href="" download style='display:none'>Archivo</a><br>
                           <p class="help-block">Formato permitido pdf.</p>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT3"  >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT3" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="3"  >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="3" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -644,8 +644,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file4" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT4" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT4" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="4" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="4" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -661,8 +661,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file5" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT5" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT5" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="5" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="5" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -675,8 +675,8 @@
                           <a id="file6" href="" download style='display:none'>Archivo</a><br>
                         </div>
                         <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default" id="sub_registroCT6" >Subir</button>
-                          <button type="button" class="btn btn-danger" id="baj_registroCT6" >Eliminar</button>
+                          <button type="button" class="btn btn-default" id="sub_registroCT" data-id="6" >Subir</button>
+                          <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="6" >Eliminar</button>
                         </div>
                       </div>
                     </div>               
@@ -697,8 +697,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file7" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT7" >Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT7" >Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="7" >Subir</button>
+                            <button type="button" class="btn btn-danger" id="baj_registroCT" data-id="7" >Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -710,8 +710,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file8" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT8">Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT8">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
                           </div>
                         </div>
                       </div>
@@ -728,8 +728,8 @@
                           <p class="help-block">Formato permitido pdf.</p>
                           <a id="file9" href="" download style='display:none'>Archivo</a><br>
                           <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-default" id="sub_registroCT9">Subir</button>
-                            <button type="button" class="btn btn-danger" id="baj_registroCT9">Eliminar</button>
+                            <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
+                            <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
                           </div>
                           </div>
                       </div>
