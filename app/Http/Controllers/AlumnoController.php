@@ -3,6 +3,7 @@
 namespace School\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Validator;
 use School\Http\Requests;
 use School\App\Modelos\Pin;
@@ -266,10 +267,15 @@ class AlumnoController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-               
                 'nom_acudiente' => 'required',
                 'nom_alumno' => 'required',
-                'numIdnt_alumno' => 'required|integer',
+                'num_identidad_alumno' => [
+                                        'required',
+                                        'integer',
+                                        Rule::unique('pin')->where(function ($query) use ($request){
+                                            $query->whereRaw('YEAR(created_at) = "'.date('Y').'"');
+                                        })
+                                    ],
                 'email_acudiente' => 'required|email',
                 'numTelef_acudiente' => 'required',
                 'grdo_aspira' => 'required',
@@ -277,13 +283,13 @@ class AlumnoController extends Controller
             ]
         );
 
-            if ($validator->fails())
+        if ($validator->fails())
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
 
-            if($request->input('_pin') == '0')
-              return $this->guardar($request->all());
-            else
-                return view('ejemplo');
+        if($request->input('_pin') == '0')
+            return $this->guardar($request->all());
+        else
+            return view('ejemplo');
             //$this->modificar($request->all());
 
     }
@@ -298,7 +304,7 @@ class AlumnoController extends Controller
     {
         $model['nombre_acudiente'] = $input['nom_acudiente'];
         $model['nombre_alumno'] = $input['nom_alumno'];
-        $model['num_identidad_alumno'] = $input['numIdnt_alumno'];
+        $model['num_identidad_alumno'] = $input['num_identidad_alumno'];
         $model['email_acudiente'] = $input['email_acudiente'];
         $model['telefono_acudiente'] = $input['numTelef_acudiente'];
         $model['grado_aspira'] = $input['grdo_aspira'];
