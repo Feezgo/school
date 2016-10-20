@@ -42,23 +42,24 @@ class AlumnoController extends Controller
             $model = new Pin;
             $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
 
-            if($datos->num_identidad_alumno==''){
-                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
+            if(count($datos)>0){
+                return response()->json($datos);
             }
             else{
-                return redirect()->intended('/');
+                return response()->json(array('status' => 'invalido', 'invalido' => $validator->errors()));
             }
         }
         
     }
 
-    public function formularioInscripcion()
+    public function formularioInscripcion(Request $request)
     {
-        
+        $model_E = new Estudiante;
         $model = new departamento;
         $model2 = new Discapacidad;
         $model3 = new Situacion;
         $datos = [
+            'estudiante' => $model_E->find($request->input('identidad')),
             'departamento' => $model->all(),
             'discapacidad' => $model2->all(),
             'situacion' => $model3->all(),
