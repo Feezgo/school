@@ -7,10 +7,11 @@ var URL = $('#form_inscripcion').data('url');
 					URL+'/registro_estudiante',
 					$(this).serialize(),
 					function(data){
-						
+							
 							if(data.status == 'error')
 							{
-								validador_errores(data.errors);
+								console.log(data);
+								validador_errores_form1(data.errors);
 							} 
 							else 
 							{
@@ -26,8 +27,9 @@ var URL = $('#form_inscripcion').data('url');
 	});
 
 
-var validador_errores = function(data)
+var validador_errores_form1 = function(data)
 	{
+		console.log(data);
 		$('#form_menu1 .form-group').removeClass('has-error');
 		var selector = '';
 		for (var error in data){
@@ -305,7 +307,10 @@ var validador_errores_menu2 = function(data)
 							{
 								if(data.status == 'invalido')
 								{
-									alert("vacio");
+									$("#datosNoValidos").show(0);
+									setTimeout(function() {
+								        $("#datosNoValidos").fadeOut(1500);
+								    },3000);
 								}
 								else
 								{
@@ -336,9 +341,33 @@ var validador_errores_menu2 = function(data)
 		if(data.estudiante.length>0){
 
 			$.each(data, function(i, e){
-				$('input[name="_alumno"]').val(e['documento']);
-				$('input[name="numIdent_estudiante"]').val(e['documento']);
+				$('input[name="_alumno"]').val(e[0].id);
+
+				$('input[name="tipoIdent_estudiante"]').val(e[0].tipo_documento);
+				$('input[name="numIdent_estudiante"]').val(e[0].documento);
+				$("input[name='dptExp_estudiante'] option[value="+ e[0].dpto_expdicion +"]").attr("selected",true);
+				$('input[name="mpioExp_estudiante"]').val(e[0].mpio_expdicion);
 				$('input[name="nom1_estudiante"]').val(e[0].pmer_nombre);
+				$('input[name="nom2_estudiante"]').val(e[0].sndo_nombres);
+				$('input[name="apll1_estudiante"]').val(e[0].pmer_apellido);
+				$('input[name="apll2_estudiante"]').val(e[0].sndo_apellido);
+				$('input[name="gnro_estudiante"]').val(e[0].genero);
+				$('input[name="fchaNaci_estudiante"]').val(e[0].fecha_nacimiento);
+				$('input[name="dptNaci_estudiante"]').val(e[0].dpto_nacimiento);
+				$('input[name="mpioNaci_estudiante"]').val(e[0].mpio_nacimiento);
+				$('input[name="dirReci_estudiante"]').val(e[0].direccion);
+				$('input[name="dptReci_estudiante"]').val(e[0].dpto_recidencia);
+				$('input[name="mpioReci_estudiante"]').val(e[0].mpio_recidencia);
+				$('input[name="brioReci_estudiante"]').val(e[0].brio_recidencia);
+				$('input[name="zna_estudiante"]').val(e[0].zona);
+				$('input[name="nvel_estudiante"]').val(e[0].nivel_sisben);
+				$('input[name="nvelEst_estudiante"]').val(e[0].estrato);
+				$('input[name="eps_estudiante"]').val(e[0].eps);
+				$('input[name="tfono_estudiante"]').val(e[0].telefono);
+				$('input[name="ftorRh_estudiante"]').val(e[0].rh);
+				$('input[name="dcidad_estudiante"]').val(e[0].discapacidad);
+				$('input[name="situAcad_estudiante"]').val(e[0].situacion_academica);
+
 			});
 		}
 		

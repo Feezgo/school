@@ -71,8 +71,8 @@
                             <label for"">Dpt de expedición</label>
                             <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
                                 <option value="">seleccionar</option>
-                                @foreach($departamento as $departamentos)
-                                  <option value="">{{ $departamentos['departamento'] }}</option>
+                                 @foreach($departamento as $departamentos)
+                                  <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
                                 @endforeach
                              </select>
                         </div>
@@ -108,10 +108,10 @@
                               <label for"">Genero</label>
                               <div class="btn-group-justified" data-toggle="buttons">
                                 <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="gnro_estudiante" id="option2" autocomplete="off"> Masculino
+                                  <input type="radio" name="gnro_estudiante" id="option2" autocomplete="off" value="1"> Masculino
                                 </label>
                                 <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="gnro_estudiante" id="option3" autocomplete="off"> 
+                                  <input type="radio" name="gnro_estudiante" id="option3" autocomplete="off" value="2"> 
                                   Femenino
                                 </label>
                               </div>
@@ -170,10 +170,10 @@
                               <label for"">Zona</label>
                               <div class="btn-group-justified" data-toggle="buttons">
                                 <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="zna_estudiante" id="option2" autocomplete="off"> Rural
+                                  <input type="radio" name="zna_estudiante" id="option2" autocomplete="off" value="1"> Rural
                                 </label>
                                 <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="zna_estudiante" id="option3" autocomplete="off"> 
+                                  <input type="radio" name="zna_estudiante" id="option3" autocomplete="off" value="2"> 
                                   Urbana
                                 </label>
                               </div>
@@ -822,6 +822,17 @@
                       </div>
                     </form>
 
+                      <div class="row">
+                          <div class="col-md-3 form-group"></div>
+                          <div class="col-md-6">
+                              <div class="alert alert-danger" id="datosNoValidos" style="display: none">
+                                <strong>Error!</strong> Los datos ingresados no son validos.
+                              </div>
+                          </div>
+                          <div class="col-md-12"><hr></div>
+                          <div class="col-md-3 form-group"></div>
+                      </div>
+                      
                   </div>
               </div>
           </div>
