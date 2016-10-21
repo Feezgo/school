@@ -132,7 +132,9 @@ class AlumnoController extends Controller
     }
     public function modificar_estudiante($input)
     {
-        $model_A =  Estudiante::where('documento',input('identidad'))->get();
+
+        $model_A = Estudiante::find($input["_alumno"]);
+
         return $this->crear_estudiante($model_A, $input);
     }
 
