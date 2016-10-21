@@ -328,7 +328,7 @@ class AlumnoController extends Controller
         $model['pin'] = $this->generarCodigo(6);
         $model->save();
 
-      //  Mail::to($model['email_acudiente'])->send(new RegistroPin($model['num_identidad_alumno'], $model['pin']));
+        Mail::to($model['email_acudiente'])->send(new RegistroPin($model['num_identidad_alumno'], $model['pin']));
 
         return $model;
     }
