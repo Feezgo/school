@@ -16,6 +16,7 @@ use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
 use School\Mail\RegistroPin;
+use Illuminate\Support\Facades\Auth;
 
 
 class AlumnoController extends Controller
@@ -44,7 +45,7 @@ class AlumnoController extends Controller
         }
         else{
             $model = new Pin;
-            $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();;
+            $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();
 
             if(count($datos)>0){
                 return response()->json($datos);
@@ -71,13 +72,50 @@ class AlumnoController extends Controller
         return view('formulario',$datos);
     }
 
-    public function validacionEstudiante(Request $request, $id)
+    public function validacionEstudiante(Request $request)
     {
-        $model_E = new Estudiante;
-        $datos = [
-            'estudiante' => $model_E->where('documento',$id)->get(),
-        ];
-        return response()->json($datos);
+
+
+        $this->validate($request, [
+                'num_identidad' => 'required', 'El numero de identidad es requerido',
+                'pin' => 'required','El pin es requerido',
+            ]);
+
+        $model = new Pin;
+        $datos = $model::where('num_identidad_alumno', '=', $request['num_identidad'])->where('pin', '=', $request['pin'])->get();
+
+        if(count($datos)>0)
+        {    
+            
+
+            $model_E = Estudiante::with('departamento')->where('documento',$request->num_identidad)->get();
+            if(count($model_E)>0){
+                foreach ($model_E as $model_)
+                {
+                    $_SESSION['Estudiante']=$model_->documento;
+                }
+            }else{
+                $_SESSION['Estudiante']=0;
+            }
+            
+
+            $model = new departamento;
+            $model2 = new Discapacidad;
+            $model3 = new Situacion;
+            $identidad= $request['num_identidad'];
+            $datos = [
+                'estudiante' => $model_E,
+                'departamento' => $model->all(),
+                'discapacidad_m' => $model2->all(),
+                'situacion' => $model3->all(),
+                'identidad'=>$identidad,
+            ];
+            //dd($datos);
+            //exit();
+            return view('formulario',$datos);
+        }else{
+            return view('datoserroneos');
+        }
     }
 
 
@@ -134,7 +172,6 @@ class AlumnoController extends Controller
     {
 
         $model_A = Estudiante::find($input["_alumno"]);
-
         return $this->crear_estudiante($model_A, $input);
     }
 
