@@ -5,8 +5,70 @@
 <div class="content" id="form_inscripcion" class="row" data-url="alumno"></div>
        
                     
+                                
+                            @if(count($estudiante)>0)
+                                @foreach($estudiante as $dt_estudiante)
+                                  <?php 
+                                    $nuevo=$dt_estudiante->id;
+                                    $documento=$dt_estudiante->documento;
+                                    $tipo_documento=$dt_estudiante->tipo_documento; 
+                                    $dpto_expedicion=$dt_estudiante['departamento'][0]->departamento;
+                                    $dpto_id_expedicion=$dt_estudiante['departamento'][0]->id;
+                                    $mpio_expdicion=$dt_estudiante->mpio_expdicion;
+                                    $pmer_nombre=$dt_estudiante->pmer_nombre;
+                                    $sndo_nombres=$dt_estudiante->sndo_nombres;
+                                    $pmer_apellido=$dt_estudiante->pmer_apellido;
+                                    $sndo_apellido=$dt_estudiante->sndo_apellido;
+                                    $genero=$dt_estudiante->genero;
+                                    $fecha_nacimiento=$dt_estudiante->fecha_nacimiento;
+                                    $dpto_nacimiento=$dt_estudiante->dpto_nacimiento;
+                                    $mpio_nacimiento=$dt_estudiante->mpio_nacimiento;
+                                    $direccion=$dt_estudiante->direccion;
+                                    $dpto_recidencia=$dt_estudiante->dpto_recidencia;
+                                    $mpio_recidencia=$dt_estudiante->mpio_recidencia;
+                                    $brio_recidencia=$dt_estudiante->brio_recidencia;
+                                    $zona=$dt_estudiante->zona;
+                                    $nivel_sisben=$dt_estudiante->nivel_sisben;
+                                    $estrato=$dt_estudiante->estrato;
+                                    $eps=$dt_estudiante->eps;
+                                    $telefono=$dt_estudiante->telefono;
+                                    $rh=$dt_estudiante->rh;
+                                    $discapacidad=$dt_estudiante->discapacidad;
+                                    $situacion_academica=$dt_estudiante->situacion_academica;
+                                  ?>
+                                @endforeach
+                            @else
+                                  <?php 
+                                    $nuevo=0;
+                                    $documento=$identidad; 
+                                    $tipo_documento=''; 
+                                    $dpto_expedicion='';
+                                    $mpio_expdicion="";
+                                    $pmer_nombre='';
+                                    $sndo_nombres='';
+                                    $pmer_apellido='';
+                                    $sndo_apellido='';
+                                    $genero="";
+                                    $fecha_nacimiento="";
+                                    $dpto_nacimiento="";
+                                    $mpio_nacimiento="";
+                                    $direccion="";
+                                    $dpto_recidencia="";
+                                    $mpio_recidencia="";
+                                    $brio_recidencia="";
+                                    $zona="";
+                                    $nivel_sisben="";
+                                    $estrato="";
+                                    $eps="";
+                                    $telefono="";
+                                    $rh="";
+                                    $discapacidad="";
+                                    $situacion_academica="";
 
-<div id="div_formulario" style="display: none">
+                                  ?>
+                            @endif
+
+
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
@@ -37,25 +99,23 @@
                     <div class="row">
                         
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                        <input type="hidden" name="_alumno" value="0"></input>
+                        <input type="hidden" name="_alumno" value="{{$nuevo}}"></input>
 
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Repitente</label>
-                          <div class="btn-group-justified" data-toggle="buttons">
-                            <label class="btn btn-primary btn-xs">
-                              <input type="radio" name="repitente" id="option2" autocomplete="off"> Si
-                            </label>
-                            <label class="btn btn-primary btn-xs">
-                              <input type="radio" name="repitente" id="option3" autocomplete="off"> 
-                              No
-                            </label>
-                          </div>
+                          <select class="form-control" name="repitente">
+                                <option>No</option>
+                                <option>Si</option>
+                          </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Tipo Identificación</label>
                             <select class="form-control" name="tipoIdent_estudiante">
+                                @if($tipo_documento1='')
+                                <option>{{$tipo_documento1}}</option>
+                                @endif
                                 <option>Cédula de Ciudadanía</option>
                                 <option>Cédula de Extranjería.</option>
                                 <option>Registro civil de nacimiento</option>
@@ -65,12 +125,16 @@
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">N° Identificación</label>
-                            <input type="text" class="form-control" name="numIdent_estudiante" placeholder="" value="" readonly="readonly">
+                            <input type="text" class="form-control" name="numIdent_estudiante" placeholder="" value="{{$documento}}" readonly="readonly">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Dpt de expedición</label>
                             <select class="form-control"  name="dptExp_estudiante" id="dptExp_estudiante">
-                                <option value="">seleccionar</option>
+                                
+                                  @if($dpto_expedicion!='')
+                                    <option value="{{$dpto_id_expedicion}}">{{$dpto_expedicion}}</option>
+                                  @endif
+                                  <option value="">seleccionar</option>
                                  @foreach($departamento as $departamentos)
                                   <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
                                 @endforeach
@@ -87,38 +151,37 @@
                     <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer nombre</label>
-                          <input type="text" class="form-control" name="nom1_estudiante" placeholder="" value="">
+                          <input type="text" class="form-control" name="nom1_estudiante" placeholder="" value="{{$pmer_nombre}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo nombre</label>
-                          <input type="text" class="form-control" name="nom2_estudiante" placeholder=""value="">
+                          <input type="text" class="form-control" name="nom2_estudiante" placeholder=""value="{{$sndo_nombres}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer apellido</label>
-                          <input type="text" class="form-control" name="apll1_estudiante" placeholder="" value="">
+                          <input type="text" class="form-control" name="apll1_estudiante" placeholder="" value="{{$pmer_apellido}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo apellido</label>
-                          <input type="text" class="form-control" name="apll2_estudiante" placeholder="" value="">
+                          <input type="text" class="form-control" name="apll2_estudiante" placeholder="" value="{{$sndo_apellido}}">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                               <label for"">Genero</label>
-                              <div class="btn-group-justified" data-toggle="buttons">
-                                <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="gnro_estudiante" id="option2" autocomplete="off" value="1"> Masculino
-                                </label>
-                                <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="gnro_estudiante" id="option3" autocomplete="off" value="2"> 
-                                  Femenino
-                                </label>
-                              </div>
+                              <select class="form-control" name="gnro_estudiante">
+                                    @if($genero!='')
+                                    <option>{{$genero}}</option>
+                                    @endif
+                                    <option value="">seleccionar</option>
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>
+                              </select>
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Fecha de nacimiento</label>
-                          <input type="text" class="form-control" name="fchaNaci_estudiante" id="datepicker" placeholder="">
+                          <input type="text" class="form-control" name="fchaNaci_estudiante" id="datepicker" placeholder="" value="{{$fecha_nacimiento}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Dpt de nacimiento</label>
@@ -142,7 +205,7 @@
                         
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Dirección de recidencia</label>
-                          <input type="text" class="form-control" name="dirReci_estudiante" placeholder="">
+                          <input type="text" class="form-control" name="dirReci_estudiante" placeholder="" value="{{$direccion}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Dpt de recidencia</label>
@@ -161,26 +224,28 @@
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Brio de recidencia</label>
-                            <input type="text" class="form-control" name="brioReci_estudiante" placeholder="">
+                            <input type="text" class="form-control" name="brioReci_estudiante" placeholder=""  value="{{$brio_recidencia}}">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                               <label for"">Zona</label>
-                              <div class="btn-group-justified" data-toggle="buttons">
-                                <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="zna_estudiante" id="option2" autocomplete="off" value="1"> Rural
-                                </label>
-                                <label class="btn btn-primary btn-xs">
-                                  <input type="radio" name="zna_estudiante" id="option3" autocomplete="off" value="2"> 
-                                  Urbana
-                                </label>
-                              </div>
+                               <select class="form-control" name="zna_estudiante">
+                                    @if($zona!='')
+                                    <option>{{$zona}}</option>
+                                    @endif
+                                    <option value="">seleccionar</option>
+                                    <option>Rural</option>
+                                    <option>Urbana</option>
+                              </select>
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Nivel sisben</label>
                             <select class="form-control" name="nvel_estudiante">
+                                @if($nivel_sisben!='')
+                                <option>{{$nivel_sisben}}</option>
+                                @endif
                                 <option value="">seleccionar</option>
                                 <option value="1">Nivel 1</option>
                                 <option value="2">Nivel 2</option>
@@ -189,6 +254,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Nivel estrato</label>
                             <select class="form-control" name="nvelEst_estudiante">
+                                @if($estrato!='')
+                                <option>{{$estrato}}</option>
+                                @endif
                                 <option value="">seleccionar</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -199,18 +267,21 @@
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Eps afiliado</label>
-                          <input type="text" class="form-control" name="eps_estudiante" placeholder="">
+                          <input type="text" class="form-control" name="eps_estudiante" placeholder="" value="{{$eps}}">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Telefono/Celular</label>
-                          <input type="text" class="form-control" name="tfono_estudiante" placeholder="">
+                          <input type="text" class="form-control" name="tfono_estudiante" placeholder="" value="{{$telefono}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Factor RH</label>
                               <select class="form-control" name="ftorRh_estudiante">
+                                @if($rh!='')
+                                <option>{{$rh}}</option>
+                                @endif
                                 <option value="">seleccionar</option>
                                 <option>O-</option>
                                 <option>O+</option>
@@ -229,7 +300,7 @@
                             <label for"">Discapacidad</label>
                             <select class="form-control" name="dcidad_estudiante">
                                 <option value="">seleccionar</option>
-                                 @foreach($discapacidad as $discapacidades)
+                                 @foreach($discapacidad_m as $discapacidades)
                                   <option value="{{ $discapacidades['id'] }}">{{ $discapacidades['discapacidad'] }}</option>
                                 @endforeach
                              </select>
@@ -775,76 +846,15 @@
       </div>
   </div>
 </div>
-</div>
 
 
 
 
-<div id="div_login">
-
-  <div class="container">
-      <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-              <div class="panel panel-default">
-                  <div class="panel-heading">REGISTRO DE FORMULARIO DE INSCRIPCIÓN</div>
-
-                  <div class="panel-body">
-                    
-                    <form  action="" id="form_login_pin">  
-                      
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-
-                      <div class="row">
-                        <div class="col-md-3 form-group"></div>
-                        <div class="col-md-6 form-group">
-                          <label for"">Numero identidad del alumno</label>
-                          <input type="text" class="form-control" name="num_identidad" placeholder="">
-                        </div>
-                        <div class="col-md-3 form-group"></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-3 form-group"></div>
-                        <div class="col-md-6 form-group">
-                          <label for"">Pin</label>
-                          <input type="text" class="form-control" name="pin" placeholder="">
-                        </div>
-                        <div class="col-md-3 form-group"></div>
-                      </div>
-
-
-                      <div class="row">
-                          <div class="col-md-3 form-group"></div>
-                          <div class="col-md-6">
-                              <button  type="submit" class="btn btn-success btn-block">Ingresar</button>
-                          </div>
-                          <div class="col-md-12"><hr></div>
-                          <div class="col-md-3 form-group"></div>
-                      </div>
-                    </form>
-
-                      <div class="row">
-                          <div class="col-md-3 form-group"></div>
-                          <div class="col-md-6">
-                              <div class="alert alert-danger" id="datosNoValidos" style="display: none">
-                                <strong>Error!</strong> Los datos ingresados no son validos.
-                              </div>
-                          </div>
-                          <div class="col-md-12"><hr></div>
-                          <div class="col-md-3 form-group"></div>
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-             
 
 
 
 
+ 
 @endsection
 @section('scripts')
   @parent

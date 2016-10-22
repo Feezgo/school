@@ -49,14 +49,12 @@ var validador_errores_form1 = function(data)
 		        	case 'dcidad_estudiante':
 		        	case 'situAcad_estudiante':
 		        	case 'ftorRh_estudiante':
-		        		selector = 'select';
-		        	break;
-
 		        	case 'repitente':
 		        	case 'gnro_estudiante':
 		        	case 'zna_estudiante':
-		        		selector = 'radio';
+		        		selector = 'select';
 		        	break;
+
 
 		        	case 'numIdent_estudiante':
 		        	case 'nom1_estudiante':
@@ -319,9 +317,8 @@ var validador_errores_menu2 = function(data)
 										{},
 										function(data1){ 
 											campos_formulario(data1);
-											$('#div_login').hide();
-											$('#div_formulario').show();
 											$('input[name="numIdent_estudiante"]').val(data[0].num_identidad_alumno);
+											location.reload();
 						                },
 						                'json'
 						            );								

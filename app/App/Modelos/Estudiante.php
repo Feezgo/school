@@ -17,6 +17,11 @@ class Estudiante extends Model
 		return $this->hasMany('School\App\Modelos\HistoriaAcademica', 'id_estudiante');
 	}
 
+	public function departamento() 
+	{
+		return $this->hasMany('School\App\Modelos\departamento', 'id');
+	}
+
 	public function familiares()
 	{
 		return $this->belongsTo('School\App\Modelos\HistoriaAcademica', 'estudiantes_familiares', 'id_estudiante', 'id_familiar')
