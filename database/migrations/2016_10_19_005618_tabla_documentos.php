@@ -19,6 +19,8 @@ class TablaDocumentos extends Migration
             $table->increments('id');
             $table->integer('id_estudiante');
             $table->text('documentos');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
