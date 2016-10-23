@@ -15,7 +15,7 @@ var URL = $('#form_inscripcion').data('url');
 							} 
 							else 
 							{
-								$('#form_menu1')[0].reset();
+								//$('#form_menu1')[0].reset();
 								 var menj='Ha registrado el pirmer formulario <strong>Datos del estudiante</strong>, por favor siga con el siguiente formulario.';
 								 $('#mensaje').html(menj);
 								$('#incripcion_creada').modal('show');

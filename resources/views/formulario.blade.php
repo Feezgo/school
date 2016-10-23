@@ -13,20 +13,34 @@
                                     $nuevo=$dt_estudiante->id;
                                     $documento=$dt_estudiante->documento;
                                     $tipo_documento=$dt_estudiante->tipo_documento; 
+                                    
                                     $dpto_expedicion=$dt_estudiante['departamento'][0]->departamento;
                                     $dpto_id_expedicion=$dt_estudiante['departamento'][0]->id;
-                                    $mpio_expdicion=$dt_estudiante->mpio_expdicion;
+                                    
+                                    $dpto_nacimiento=$dt_estudiante['departamento1'][0]->departamento;
+                                    $dpto_id_nacimiento=$dt_estudiante['departamento1'][0]->id;
+
+                                    $dpto_recidencia=$dt_estudiante['departamento2'][0]->departamento;
+                                    $dpto_id_recidencia=$dt_estudiante['departamento2'][0]->id;
+
+
+                                    $mpio_expdicion=$dt_estudiante['municipio'][0]->municipio;
+                                    $mpio_id_expdicion=$dt_estudiante['municipio'][0]->id;
+                                    
+                                    $mpio_nacimiento=$dt_estudiante['municipio1'][0]->municipio;
+                                    $mpio_id_nacimiento=$dt_estudiante['municipio1'][0]->id;
+
+                                    $mpio_recidencia=$dt_estudiante['municipio2'][0]->municipio;
+                                    $mpio_id_recidencia=$dt_estudiante['municipio2'][0]->id;
+
+
                                     $pmer_nombre=$dt_estudiante->pmer_nombre;
                                     $sndo_nombres=$dt_estudiante->sndo_nombres;
                                     $pmer_apellido=$dt_estudiante->pmer_apellido;
                                     $sndo_apellido=$dt_estudiante->sndo_apellido;
                                     $genero=$dt_estudiante->genero;
                                     $fecha_nacimiento=$dt_estudiante->fecha_nacimiento;
-                                    $dpto_nacimiento=$dt_estudiante->dpto_nacimiento;
-                                    $mpio_nacimiento=$dt_estudiante->mpio_nacimiento;
                                     $direccion=$dt_estudiante->direccion;
-                                    $dpto_recidencia=$dt_estudiante->dpto_recidencia;
-                                    $mpio_recidencia=$dt_estudiante->mpio_recidencia;
                                     $brio_recidencia=$dt_estudiante->brio_recidencia;
                                     $zona=$dt_estudiante->zona;
                                     $nivel_sisben=$dt_estudiante->nivel_sisben;
@@ -34,8 +48,15 @@
                                     $eps=$dt_estudiante->eps;
                                     $telefono=$dt_estudiante->telefono;
                                     $rh=$dt_estudiante->rh;
-                                    $discapacidad=$dt_estudiante->discapacidad;
-                                    $situacion_academica=$dt_estudiante->situacion_academica;
+
+
+                                    $discapacidad=$dt_estudiante['Discapacidad'][0]->discapacidad;
+                                    $discapacidad_id=$dt_estudiante['Discapacidad'][0]->id;
+
+                                
+                                    $situacion=$dt_estudiante['Situacion'][0]->situacion;
+                                    $situacion_id=$dt_estudiante['Situacion'][0]->id;
+
                                   ?>
                                 @endforeach
                             @else
@@ -144,6 +165,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Mpio de expedición</label>
                             <select class="form-control" name="mpioExp_estudiante" id="mpioExp_estudiante">
+                                @if($mpio_expdicion!='')
+                                    <option value="{{$mpio_id_expdicion}}">{{$mpio_expdicion}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
                              </select>
                         </div>
@@ -187,6 +211,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Dpt de nacimiento</label>
                             <select class="form-control" name="dptNaci_estudiante" id="dptNaci_estudiante">
+                                @if($dpto_nacimiento!='')
+                                    <option value="{{$dpto_id_nacimiento}}">{{$dpto_nacimiento}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
                                 @foreach($departamento as $departamentos)
                                   <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
@@ -196,6 +223,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Mpio de nacimiento</label>
                             <select class="form-control" name="mpioNaci_estudiante" id="mpioNaci_estudiante">
+                                 @if($mpio_nacimiento!='')
+                                    <option value="{{$mpio_id_nacimiento}}">{{$mpio_nacimiento}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
                              </select>
                         </div>
@@ -211,6 +241,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Dpt de recidencia</label>
                             <select class="form-control" name="dptReci_estudiante" id="dptReci_estudiante">
+                                @if($dpto_recidencia!='')
+                                    <option value="{{$dpto_id_recidencia}}">{{$dpto_recidencia}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
                                 @foreach($departamento as $departamentos)
                                   <option value="{{ $departamentos['id'] }}">{{ $departamentos['departamento'] }}</option>
@@ -220,6 +253,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Mpio de recidencia</label>
                             <select class="form-control" name="mpioReci_estudiante" id="mpioReci_estudiante">
+                                  @if($mpio_recidencia!='')
+                                    <option value="{{$mpio_id_recidencia}}">{{$mpio_recidencia}}</option>
+                                  @endif
                               <option value="">seleccionar</option>
                             </select>
                         </div>
@@ -248,8 +284,8 @@
                                 <option>{{$nivel_sisben}}</option>
                                 @endif
                                 <option value="">seleccionar</option>
-                                <option value="1">Nivel 1</option>
-                                <option value="2">Nivel 2</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
                              </select>
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
@@ -300,6 +336,9 @@
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for"">Discapacidad</label>
                             <select class="form-control" name="dcidad_estudiante">
+                                @if($discapacidad!='')
+                                    <option value="{{$discapacidad_id}}">{{$discapacidad}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
                                  @foreach($discapacidad_m as $discapacidades)
                                   <option value="{{ $discapacidades['id'] }}">{{ $discapacidades['discapacidad'] }}</option>
@@ -309,8 +348,11 @@
                         <div class="col-xs-6 col-md-6 form-group">
                             <label for"">Situacion Academica Año Anterior</label>
                             <select class="form-control " name="situAcad_estudiante">
+                                 @if($situacion!='')
+                                    <option value="{{$situacion_id}}">{{$situacion}}</option>
+                                  @endif
                                 <option value="">seleccionar</option>
-                                 @foreach($situacion as $situaciones)
+                                 @foreach($situacion_m as $situaciones)
                                   <option value="{{ $situaciones['id'] }}">{{ $situaciones['situacion'] }}</option>
                                 @endforeach
                              </select>
