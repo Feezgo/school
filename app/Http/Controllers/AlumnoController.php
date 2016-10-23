@@ -92,10 +92,12 @@ class AlumnoController extends Controller
             if(count($model_E)>0){
                 foreach ($model_E as $model_)
                 {
-                    $_SESSION['Estudiante']=$model_->documento;
+                    session('Estudiante','default');
+                    session(['Estudiante' => $model_->documento]);
                 }
             }else{
-                $_SESSION['Estudiante']=0;
+                    session('Estudiante','default');
+                    session(['Estudiante' => '0']);
             }
             
 
