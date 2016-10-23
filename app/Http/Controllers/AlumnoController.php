@@ -437,14 +437,15 @@ class AlumnoController extends Controller
         }
     }
 
+    public function traer_ficheros_estudiante(Request $request){
 
-    public function registro_file(Request $request)
-    {           
-               $id_estudiante=$request->session()->get('Estudiante');
+                $id_estudiante=$request->session()->get('Estudiante');
                 if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
                     $consulta=Documentos::where('id_estudiante',$id_estudiante)->get();
-                    $a=json_decode($consulta->documentos);
+                   
+                    $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
+                    'registroCivilT'  => '', 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
@@ -456,6 +457,42 @@ class AlumnoController extends Controller
                     );             
                 }else{
                     $documentos = array(
+                    'registroCivilT'  => '', 
+                    'certificadomedico'=> '',
+                    'certificacioneps'=> '',
+                    'cedulapadre'=> '',
+                    'referencialaboral'=> '',
+                    'carnetvacunas'=> '',
+                    'pazysalvo'=> '',
+                    'boletinfinal'=> '',
+                    'retirosimat'=>'' 
+                    );             
+                }
+                return response()->json($documentos);
+    }
+
+
+    public function registro_file(Request $request)
+    {           
+               $id_estudiante=$request->session()->get('Estudiante');
+                if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
+                    $consulta=Documentos::where('id_estudiante',$id_estudiante)->get();
+                   
+                    $a = (array) json_decode($consulta[0]['documentos']);
+                    $documentos = array(
+                    'registroCivilT'  => '', 
+                    'certificadomedico'=>  $a['certificadomedico'],
+                    'certificacioneps'=>  $a['certificacioneps'],
+                    'cedulapadre'=>  $a['cedulapadre'],
+                    'referencialaboral'=>  $a['referencialaboral'],
+                    'carnetvacunas'=>  $a['carnetvacunas'],
+                    'pazysalvo'=>  $a['pazysalvo'],
+                    'boletinfinal'=>  $a['boletinfinal'],
+                    'retirosimat'=> $a['retirosimat'] 
+                    );             
+                }else{
+                    $documentos = array(
+                    'registroCivilT'  => '', 
                     'certificadomedico'=> '',
                     'certificacioneps'=> '',
                     'cedulapadre'=> '',
@@ -496,7 +533,7 @@ class AlumnoController extends Controller
                 if(!is_null($request->file('boletinfinal'))){  $documentos['boletinfinal']= $ruta; }
                 if(!is_null($request->file('retirosimat'))){  $documentos['retirosimat']= $ruta; }
                 if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
-                Documentos::update(['documentos' => json_encode($documentos)]);
+                Documentos::where('id_estudiante',$id_estudiante)->update(['documentos' => json_encode($documentos)]);
                 }else{
                 Documentos::insert(['id_estudiante' => $id_estudiante, 'documentos' => json_encode($documentos) ]);
                 }
