@@ -101,7 +101,7 @@ class AlumnoController extends Controller
             }else{ 
                 $_SESSION['Estudiante']=0; 
                     session('Estudiante','default'); 
-                    session(['Estudiante' => '0']); 
+                    session(['Estudiante' => $request->num_identidad]); 
             } 
 
             $model = new departamento;
