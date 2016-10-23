@@ -368,6 +368,10 @@
                         <strong>Atención!</strong> Registre los datos del estudiantes dando click en el siguiente boton y siga con el formulario 2 datos del acudiente. 
                       </div>
                   </div>
+                  <div class="col-xs-12">
+                      <div id="men_error_fomr1" class="alert alert-danger" style="display:none"> 
+                      </div>
+                  </div>
                   <div class="col-md-12">
                       <button type="submit" class="btn btn-primary btn-block">Registrar datos de estudiante</button>
                   </div>
