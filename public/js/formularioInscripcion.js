@@ -28,10 +28,18 @@ $(function() {
             function(data) {
 
                 if (data.status == 'error') {
-                    console.log(data);
+                    //console.log(data);
                     validador_errores_form1(data.errors);
+
+                    var menj = ' <strong>Error!</strong> Revisa los campos de color rojo en el formulario.';
+                    $('#men_error_fomr1').html(menj);
+                    $("#men_error_fomr1").show(0);
+                        setTimeout(function() {
+                            $("#men_error_fomr1").fadeOut(1500);
+                        }, 3000);
+                    
                 } else {
-                    $('#form_menu1')[0].reset();
+                	validador_errores_form1(data.errors);
                     var menj = 'Ha registrado el pirmer formulario <strong>Datos del estudiante</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
                     $('#incripcion_creada').modal('show');
@@ -99,7 +107,6 @@ $(function() {
                 if (data.status == 'error') {
                     validador_errores_menu2(data.errors);
                 } else {
-                    $('#form_menu2')[0].reset();
                     var menj = 'Ha registrado el segundo formulario <strong>Datos del acudiente</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
                     $('#incripcion_creada').modal('show');

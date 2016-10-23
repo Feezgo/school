@@ -6,12 +6,12 @@
        
 
                                 
+                              <?php $documento=$identidad;?>
 
                             @if(count($estudiante)>0)
                                 @foreach($estudiante as $dt_estudiante)
                                   <?php 
                                     $nuevo=$dt_estudiante->id;
-                                    $documento=$dt_estudiante->documento;
                                     $tipo_documento=$dt_estudiante->tipo_documento; 
                                     
                                     $dpto_expedicion=$dt_estudiante['departamento'][0]->departamento;
@@ -61,8 +61,7 @@
                                 @endforeach
                             @else
                                   <?php 
-                                    $nuevo=0;
-                                    $documento=$identidad; 
+                                    $nuevo=0; 
                                     $tipo_documento=''; 
                                     $dpto_expedicion='';
                                     $mpio_expdicion="";
@@ -407,6 +406,7 @@
                   <div class="panel-body">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                       <input type="hidden" name="_acudiente" value="{{$acudiente}}"></input>
+                      <input type="hidden" class="form-control" name="numIdent_estudiante" value="{{$documento}}" >
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">N° Cedula</label>
