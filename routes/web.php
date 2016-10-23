@@ -33,6 +33,7 @@ Route::post('/alumno/registro_estudiante', 'AlumnoController@registroEstudiante'
 Route::post('/alumno/registro_acudiente', 'AlumnoController@registro_acudiente');
 Route::post('/alumno/registro_academico', 'AlumnoController@registro_academico');
 
+
 Route::post('/alumno/registro_file', 'AlumnoController@registro_file');
 Route::post('/alumno/delete_file', 'AlumnoController@delete_file');
 Route::get('/alumno/getMunicipio/{id}', 'AlumnoController@getMunicipio');

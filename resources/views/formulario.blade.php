@@ -4,9 +4,8 @@
 
 <div class="content" id="form_inscripcion" class="row" data-url="alumno"></div>
        
-
+                    
                                 
-
                             @if(count($estudiante)>0)
                                 @foreach($estudiante as $dt_estudiante)
                                   <?php 
