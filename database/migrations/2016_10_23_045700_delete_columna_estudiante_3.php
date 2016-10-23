@@ -29,5 +29,11 @@ class DeleteColumnaEstudiante3 extends Migration
     public function down()
     {
         //
+        Schema::table('estudiantes', function ($table) {
+    
+            $table->string('discapacidad')->nullable();
+            $table->string('situacion_academica')->nullable();
+        });
+
     }
 }
