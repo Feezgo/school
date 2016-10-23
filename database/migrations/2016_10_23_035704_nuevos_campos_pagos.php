@@ -21,7 +21,7 @@ class NuevosCamposPagos extends Migration
 
         Schema::table('planes_de_pagos', function($table)
         {
-            $table->date('fecha_limite');
+            $table->date('fecha_limite')->after('fecha_pago');
         });
     }
 

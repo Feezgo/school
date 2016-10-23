@@ -10,9 +10,8 @@ class Matricula extends Model
 	protected $table = "matricula";
 	protected $dates = ['deleted_at'];
 
-	public function pagos()
+	public function planesDePagos()
 	{
-		return $this->belongsTo('School\App\Modelos\Pago', 'planes_de_pagos', 'id_matricula', 'id_pago')
-					->withPivot('fecha_pago', 'estado');
+		return $this->hasMany('School\App\Modelos\PlanDePago', 'id_matricula');
 	}
 }
