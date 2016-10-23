@@ -87,6 +87,8 @@ class AlumnoController extends Controller
 
         if(count($datos)>0)
         {    
+
+            $model_E = Estudiante::with('departamento')->where('documento',$request->num_identidad)->get();
             
 
               if(count($model_E)>0){ 
