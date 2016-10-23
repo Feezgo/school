@@ -19,7 +19,44 @@ class Estudiante extends Model
 
 	public function departamento() 
 	{
-		return $this->hasMany('School\App\Modelos\departamento', 'id');
+		return $this->hasMany('School\App\Modelos\departamento', 'id','dpto_expdicion');
+	}
+
+	public function departamento1() 
+	{
+		return $this->hasMany('School\App\Modelos\departamento', 'id','dpto_nacimiento');
+	}
+
+	public function departamento2() 
+	{
+		return $this->hasMany('School\App\Modelos\departamento', 'id','dpto_recidencia');
+	}
+
+
+	public function municipio() 
+	{
+		return $this->hasMany('School\App\Modelos\municipio', 'id','mpio_expdicion');
+	}
+
+	public function municipio1() 
+	{
+		return $this->hasMany('School\App\Modelos\municipio', 'id','mpio_nacimiento');
+	}
+
+	public function municipio2() 
+	{
+		return $this->hasMany('School\App\Modelos\municipio', 'id','mpio_recidencia');
+	}
+
+
+	public function discapacidad() 
+	{
+		return $this->hasMany('School\App\Modelos\Discapacidad', 'id','discapacidad');
+	}
+
+	public function situacion() 
+	{
+		return $this->hasMany('School\App\Modelos\Situacion', 'id','situacion_academica');
 	}
 
 	public function familiares()
