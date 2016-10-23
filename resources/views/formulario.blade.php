@@ -92,6 +92,17 @@
                             @endif
 
 
+                            @if(count($acudiente)>0)
+                              <?php
+                                $acudiente=0;
+                              ?>
+                            @else
+                              <?php
+                                $acudiente=0;
+                              ?>
+                            @endif
+
+
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
@@ -395,7 +406,7 @@
 
                   <div class="panel-body">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                      <input type="hidden" name="_acudiente" value="0"></input>
+                      <input type="hidden" name="_acudiente" value="{{$acudiente}}"></input>
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">N° Cedula</label>

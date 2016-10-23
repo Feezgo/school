@@ -114,6 +114,7 @@ class AlumnoController extends Controller
                 'discapacidad_m' => $model2->all(),
                 'situacion_m' => $model3->all(),
                 'identidad'=>$identidad,
+                'acudiente'=>$identidad,
             ];
             //dd($datos);
             //exit();
@@ -233,63 +234,90 @@ class AlumnoController extends Controller
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
 
             if($request->input('_acudiente') == '0')
-              return $this->crear_acudiente($request->all());
+                return $this->guardar_acudiente($request->all());
             else
-                return view('ejemplo');
-            //$this->modificar($request->all());
+                return $this->modificar_acudiente($request->all());
 
+    }
+
+
+    public function guardar_acudiente($input)
+    {
+        $model_A = new Familiar;
+        $model_B = new Familiar;
+        $model_C = new Familiar;
+        return $this->crear_acudiente($model_A,$model_B,$model_C,$input);
+    }
+
+    public function modificar_acudiente($input)
+    {
+
+        $model_A = new Familiar;
+        $model_A =$model_A->find($input["_acudiente"]);
+        $model_B = new Familiar;
+        $model_B =$model_B->find($input["_acudiente"]);
+        $model_C = new Familiar;
+        $model_C =$model_C->find($input["_acudiente"]);
+        return $this->crear_acudiente($model_A,$model_B,$model_C,$input);
     }
 
  
 
-    public function crear_acudiente($input)
+    public function crear_acudiente($model_A,$model_B,$model_C,$input)
     {
-        $model_A = new Familiar;
-        $model_A['pmer_nombre'] = $input['pmerNom_mama'];
-        $model_A['sndo_nombres'] = $input['sdoNom_mama'];
-        $model_A['pmer_apellido'] = $input['pmerApell_mama'];
-        $model_A['sndo_apellido'] = $input['sdoApell_mama'];
-        $model_A['identificacion'] = $input['cdla_mama'];
-        $model_A['ocupacion'] = $input['ocup_mama'];
-        $model_A['empresa'] = $input['empr_mama'];
-        $model_A['telefono'] = $input['tfono_mama'];
-        $model_A['celular'] = $input['celu_mama'];
-        $model_A['parentesco'] = "madre";
-        $model_A['parentesco_otro'] = "";
-        $model_A->save();
+        
+        if(count($model_A)>0){
+            $model_A['pmer_nombre'] = $input['pmerNom_mama'];
+            $model_A['sndo_nombres'] = $input['sdoNom_mama'];
+            $model_A['pmer_apellido'] = $input['pmerApell_mama'];
+            $model_A['sndo_apellido'] = $input['sdoApell_mama'];
+            $model_A['identificacion'] = $input['cdla_mama'];
+            $model_A['ocupacion'] = $input['ocup_mama'];
+            $model_A['empresa'] = $input['empr_mama'];
+            $model_A['telefono'] = $input['tfono_mama'];
+            $model_A['celular'] = $input['celu_mama'];
+            $model_A['parentesco'] = "madre";
+            $model_A['parentesco_otro'] = "";
+            $model_A->save();
+        }
 
-        $model_B = new Familiar;
-        $model_B['pmer_nombre'] = $input['pmerNom_papa'];
-        $model_B['sndo_nombres'] = $input['sdoNom_papa'];
-        $model_B['pmer_apellido'] = $input['pmerApell_papa'];
-        $model_B['sndo_apellido'] = $input['sdoApell_papa'];
-        $model_B['identificacion'] = $input['cedu_papa'];
-        $model_B['ocupacion'] = $input['ocup_papa'];
-        $model_B['empresa'] = $input['empr_papa'];
-        $model_B['telefono'] = $input['tfono_papa'];
-        $model_B['celular'] = $input['celu_papa'];
-        $model_B['parentesco'] = "padre";
-        $model_B['parentesco_otro'] = "";
-        $model_B->save();
+        if(count($model_B)>0){
+            $model_B['pmer_nombre'] = $input['pmerNom_papa'];
+            $model_B['sndo_nombres'] = $input['sdoNom_papa'];
+            $model_B['pmer_apellido'] = $input['pmerApell_papa'];
+            $model_B['sndo_apellido'] = $input['sdoApell_papa'];
+            $model_B['identificacion'] = $input['cedu_papa'];
+            $model_B['ocupacion'] = $input['ocup_papa'];
+            $model_B['empresa'] = $input['empr_papa'];
+            $model_B['telefono'] = $input['tfono_papa'];
+            $model_B['celular'] = $input['celu_papa'];
+            $model_B['parentesco'] = "padre";
+            $model_B['parentesco_otro'] = "";
+            $model_B->save();
+        }
 
-        $model_C = new Familiar;
-        $model_C['pmer_nombre'] = $input['pmerNom_acudi'];
-        $model_C['sndo_nombres'] = $input['sdoNom_acudi'];
-        $model_C['pmer_apellido'] = $input['pmerApell_acudi'];
-        $model_C['sndo_apellido'] = $input['sdoApell_acudi'];
-        $model_C['identificacion'] = $input['cedu_acudi'];
-        $model_C['ocupacion'] = "";
-        $model_C['empresa'] = "";
-        $model_C['telefono'] = $input['tfono_acudi'];
-        $model_C['celular'] = $input['celu_acudi'];
-        $model_C['parentesco'] = $input['ptesco_acudi'];
-        $model_C['parentesco_otro'] = "";
-        $model_C->save();
+              
+            $model_C['pmer_nombre'] = $input['pmerNom_acudi'];
+            $model_C['sndo_nombres'] = $input['sdoNom_acudi'];
+            $model_C['pmer_apellido'] = $input['pmerApell_acudi'];
+            $model_C['sndo_apellido'] = $input['sdoApell_acudi'];
+            $model_C['identificacion'] = $input['cedu_acudi'];
+            $model_C['ocupacion'] = "";
+            $model_C['empresa'] = "";
+            $model_C['telefono'] = $input['tfono_acudi'];
+            $model_C['celular'] = $input['celu_acudi'];
+            $model_C['parentesco'] = $input['ptesco_acudi'];
+            $model_C['parentesco_otro'] = "";
+
+            $model_C->save();
+        
 
 
          //'repitente' => 'required'
         return $model_C;
     }
+
+
 
 
      public function registro_academico(Request $request)
