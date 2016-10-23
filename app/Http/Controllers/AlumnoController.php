@@ -90,14 +90,18 @@ class AlumnoController extends Controller
             
 
             $model_E = Estudiante::with('departamento')->where('documento',$request->num_identidad)->get();
-            if(count($model_E)>0){
-                foreach ($model_E as $model_)
-                {
-                    $_SESSION['Estudiante']=$model_->documento;
-                }
-            }else{
-                $_SESSION['Estudiante']=0;
-            }
+            if(count($model_E)>0){ 
+                foreach ($model_E as $model_) 
+                { 
+                    session('Estudiante','default'); 
+                    session(['Estudiante' => $model_->documento]); 
+                    $_SESSION['Estudiante']=$model_->documento; 
+                } 
+            }else{ 
+                    session('Estudiante','default'); 
+                    session(['Estudiante' => '0']); 
+                $_SESSION['Estudiante']=0; 
+            } 
             
 
             $model = new departamento;
