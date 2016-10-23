@@ -15,6 +15,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
+use School\App\Modelos\Documentos;
 use School\Mail\RegistroPin;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,12 +93,10 @@ class AlumnoController extends Controller
             if(count($model_E)>0){
                 foreach ($model_E as $model_)
                 {
-                    session('Estudiante','default');
-                    session(['Estudiante' => $model_->documento]);
+                    $_SESSION['Estudiante']=$model_->documento;
                 }
             }else{
-                    session('Estudiante','default');
-                    session(['Estudiante' => '0']);
+                $_SESSION['Estudiante']=0;
             }
             
 
@@ -408,32 +407,69 @@ class AlumnoController extends Controller
 
 
     public function registro_file(Request $request)
-    {
-        if(!is_null($request->file('registroCivilT'))){ $validator = Validator::make($request->all(),['registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('registroCivilT');}
-        if(!is_null($request->file('certificadomedico'))){ $validator = Validator::make($request->all(),['certificadomedico' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificadomedico');}
-        if(!is_null($request->file('certificacioneps'))){ $validator = Validator::make($request->all(),['certificacioneps' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificacioneps');}
-        if(!is_null($request->file('cedulapadre'))){ $validator = Validator::make($request->all(),['cedulapadre' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('cedulapadre');}
-        if(!is_null($request->file('referencialaboral'))){  $validator = Validator::make($request->all(),['referencialaboral' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('referencialaboral');}
-        if(!is_null($request->file('carnetvacunas'))){  $validator = Validator::make($request->all(),['carnetvacunas' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('carnetvacunas');}
-        if(!is_null($request->file('pazysalvo'))){  $validator = Validator::make($request->all(),['pazysalvo' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('pazysalvo');}
-        if(!is_null($request->file('boletinfinal'))){  $validator = Validator::make($request->all(),['boletinfinal' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('boletinfinal');}
-        if(!is_null($request->file('retirosimat'))){  $validator = Validator::make($request->all(),['retirosimat' => 'required|mimes:jpeg,jpg,png,bmp,pdf']) ; $file=$request->file('retirosimat');}
-       
-        $randName = md5(rand() * time());
-        if ($validator->fails()){
-            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
-        }else{
-
-            
+    {           
+               $id_estudiante=$request->session()->get('Estudiante');
+                if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
+                    $consulta=Documentos::where('id_estudiante',$id_estudiante)->get();
+                    $a=json_decode($consulta->documentos);
+                    $documentos = array(
+                    'certificadomedico'=>  $a['certificadomedico'],
+                    'certificacioneps'=>  $a['certificacioneps'],
+                    'cedulapadre'=>  $a['cedulapadre'],
+                    'referencialaboral'=>  $a['referencialaboral'],
+                    'carnetvacunas'=>  $a['carnetvacunas'],
+                    'pazysalvo'=>  $a['pazysalvo'],
+                    'boletinfinal'=>  $a['boletinfinal'],
+                    'retirosimat'=> $a['retirosimat'] 
+                    );             
+                }else{
+                    $documentos = array(
+                    'certificadomedico'=> '',
+                    'certificacioneps'=> '',
+                    'cedulapadre'=> '',
+                    'referencialaboral'=> '',
+                    'carnetvacunas'=> '',
+                    'pazysalvo'=> '',
+                    'boletinfinal'=> '',
+                    'retirosimat'=>'' 
+                    );             
+                }
+                
+                if(!is_null($request->file('registroCivilT'))){ $validator = Validator::make($request->all(),['registroCivilT' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('registroCivilT');}
+                if(!is_null($request->file('certificadomedico'))){ $validator = Validator::make($request->all(),['certificadomedico' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificadomedico');}
+                if(!is_null($request->file('certificacioneps'))){ $validator = Validator::make($request->all(),['certificacioneps' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('certificacioneps');}
+                if(!is_null($request->file('cedulapadre'))){ $validator = Validator::make($request->all(),['cedulapadre' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('cedulapadre');}
+                if(!is_null($request->file('referencialaboral'))){  $validator = Validator::make($request->all(),['referencialaboral' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('referencialaboral');}
+                if(!is_null($request->file('carnetvacunas'))){  $validator = Validator::make($request->all(),['carnetvacunas' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('carnetvacunas');}
+                if(!is_null($request->file('pazysalvo'))){  $validator = Validator::make($request->all(),['pazysalvo' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('pazysalvo');}
+                if(!is_null($request->file('boletinfinal'))){  $validator = Validator::make($request->all(),['boletinfinal' => 'required|mimes:jpeg,jpg,png,bmp,pdf']); $file=$request->file('boletinfinal');}
+                if(!is_null($request->file('retirosimat'))){  $validator = Validator::make($request->all(),['retirosimat' => 'required|mimes:jpeg,jpg,png,bmp,pdf']) ; $file=$request->file('retirosimat');}
+               
+                $randName = md5(rand() * time());
+                if ($validator->fails()){
+                    return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+                }else{        
                 $extension3=$file->getClientOriginalExtension();
                 $Nom_imagen3 = $randName."-doc.".$extension3;
                 $file->move(public_path().'/Documentos/', $Nom_imagen3);
                 $ruta="Documentos/".$Nom_imagen3;
-
-           
-            return response()->json(array('status' => $ruta));
-
-        }
+                        
+                if(!is_null($request->file('registroCivilT'))){ $documentos['registroCivilT']= $ruta; }
+                if(!is_null($request->file('certificadomedico'))){ $documentos['certificadomedico']= $ruta; }
+                if(!is_null($request->file('certificacioneps'))){ $documentos['certificacioneps']= $ruta; }
+                if(!is_null($request->file('cedulapadre'))){ $documentos['cedulapadre']= $ruta; }
+                if(!is_null($request->file('referencialaboral'))){  $documentos['referencialaboral']= $ruta; }
+                if(!is_null($request->file('carnetvacunas'))){  $documentos['carnetvacunas']= $ruta; }
+                if(!is_null($request->file('pazysalvo'))){  $documentos['pazysalvo']= $ruta; }
+                if(!is_null($request->file('boletinfinal'))){  $documentos['boletinfinal']= $ruta; }
+                if(!is_null($request->file('retirosimat'))){  $documentos['retirosimat']= $ruta; }
+                if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
+                Documentos::update(['documentos' => json_encode($documentos)]);
+                }else{
+                Documentos::insert(['id_estudiante' => $id_estudiante, 'documentos' => json_encode($documentos) ]);
+                }
+                return response()->json(array('status' => $ruta));
+                }
     }
 
 
