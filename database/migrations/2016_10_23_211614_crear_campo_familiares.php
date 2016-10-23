@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TablaDocumentos extends Migration
+class CrearCampoFamiliares extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,11 @@ class TablaDocumentos extends Migration
     public function up()
     {
         //
-        Schema::create('documentos', function(Blueprint $table)
-        {
-            $table->increments('id');
-            $table->integer('id_estudiante');
-            $table->text('documentos');
-            $table->timestamps();
-            $table->softDeletes();
+        
+        Schema::table('familiares', function ($table) {
+
+            $table->string('acudiente');;
+
         });
     }
 
@@ -32,7 +30,10 @@ class TablaDocumentos extends Migration
     public function down()
     {
         //
-        Schema::drop('documentos');
+        Schema::table('familiares', function ($table) {
+
+            $table->dropColumn('acudiente');
+            
+        });
     }
 }
-
