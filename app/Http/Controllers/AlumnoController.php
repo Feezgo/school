@@ -278,6 +278,8 @@ class AlumnoController extends Controller
             $model_A['celular'] = $input['celu_mama'];
             $model_A['parentesco'] = "madre";
             $model_A['parentesco_otro'] = "";
+            $model_A['acudiente'] = "No";
+            $model_A['id_estudiante'] = $input['numIdent_estudiante'];
             $model_A->save();
         }
 
@@ -293,6 +295,8 @@ class AlumnoController extends Controller
             $model_B['celular'] = $input['celu_papa'];
             $model_B['parentesco'] = "padre";
             $model_B['parentesco_otro'] = "";
+            $model_B['acudiente'] = "No";
+            $model_B['id_estudiante'] = $input['numIdent_estudiante'];
             $model_B->save();
         }
 
@@ -308,6 +312,8 @@ class AlumnoController extends Controller
             $model_C['celular'] = $input['celu_acudi'];
             $model_C['parentesco'] = $input['ptesco_acudi'];
             $model_C['parentesco_otro'] = "";
+            $model_C['acudiente'] = "Si";
+            $model_C['id_estudiante'] = $input['numIdent_estudiante'];
 
             $model_C->save();
         
