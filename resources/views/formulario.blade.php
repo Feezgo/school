@@ -86,6 +86,7 @@
                                     $rh="";
                                     $discapacidad="";
                                     $situacion_academica="";
+                                    $situacion="";
 
                                   ?>
                             @endif
@@ -135,9 +136,10 @@
                         <div class="col-xs-6 col-md-3 form-group">
                             <label for"">Tipo Identificación</label>
                             <select class="form-control" name="tipoIdent_estudiante">
-                                @if($tipo_documento1='')
-                                <option>{{$tipo_documento1}}</option>
+                                @if($tipo_documento!='')
+                                <option>{{$tipo_documento}}</option>
                                 @endif
+                                <option value="">seleccionar</option>
                                 <option>Cédula de Ciudadanía</option>
                                 <option>Cédula de Extranjería.</option>
                                 <option>Registro civil de nacimiento</option>

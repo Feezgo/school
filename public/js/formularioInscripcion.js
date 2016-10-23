@@ -12,7 +12,7 @@ var URL = $('#form_inscripcion').data('url');
 							{
 								console.log(data);
 								validador_errores_form1(data.errors);
-								
+
 								var menj='<strong>Error:</strong> Por favor verifique los campos de color rojo.';
 								$('#men_error_fomr1').html(menj);
 								$("#men_error_fomr1").show(0);
@@ -23,6 +23,7 @@ var URL = $('#form_inscripcion').data('url');
 							else 
 							{
 								//$('#form_menu1')[0].reset();
+								validador_errores_form1(data.errors);
 								var menj='Ha registrado el pirmer formulario <strong>Datos del estudiante</strong>, por favor siga con el siguiente formulario.';
 								$('#mensaje').html(menj);
 								$('#incripcion_creada').modal('show');
