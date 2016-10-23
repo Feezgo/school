@@ -9,9 +9,8 @@ class Pago extends Model
 	public $timestamps = false;
 	protected $table = "pagos";
 
-	public function matriculas()
+	public function planesDePagos()
 	{
-		return $this->belongsTo('School\App\Modelos\Matricula', 'planes_de_pagos', 'id_pago', 'id_matricula')
-					->withPivot('fecha_pago', 'estado');
+		return $this->hasMany('School\App\Modelos\PlanDePago', 'id_pago');
 	}
 }

@@ -7,7 +7,6 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use Validator;
 use File;
-use School\Http\Requests;
 use School\App\Modelos\Pin;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Familiar;

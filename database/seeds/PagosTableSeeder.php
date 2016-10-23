@@ -14,15 +14,26 @@ class PagosTableSeeder extends Seeder
         DB::table('pagos')->insert([
         	[
 	            'concepto' => 'matricula',
-				'aplica' => 'antiguo',
-				'descipcion' => 'Matricula estudiantes antiguos',
-				'costo' => 350000
+				'aplica' => 'nuevo',
+				'descipcion' => 'Matricula estudiantes nuevos',
+				'costo' => 350000,
+                'recargo' => 0,
+                'cursos' => 'prekinder,kinder,transición'
 			],[
 	            'concepto' => 'matricula',
 				'aplica' => 'nuevo',
 				'descipcion' => 'Matricula estudiantes nuevos',
-				'costo' => 400000
-			]
+				'costo' => 400000,
+                'recargo' => 0,
+                'cursos' => 'prekinder,kinder,transición'
+			],[
+                'concepto' => 'pension',
+                'aplica' => 'todos',
+                'descipcion' => 'Pensión',
+                'costo' => 85000,
+                'recargo' => 8000,
+                'cursos' => 'prekinder,kinder,transición'
+            ]
         ]);
     }
 }
