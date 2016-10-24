@@ -400,7 +400,7 @@ class AlumnoController extends Controller
     {
         
         if (!File::exists($request->url)){
-            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+            return response()->json(array('status' => 'error', 'errors' =>'El fichero no existe.'));
         }else{            
                
             File::delete($request->url);
