@@ -17,4 +17,9 @@ class Familiar extends Model
 		return $this->belongsTo('School\App\Modelos\HistoriaAcademica', 'estudiantes_familiares', 'id_familiar', 'id_estudiante')
 					->withPivot('acudiente');
 	}
+
+	public function estudiante()
+    {
+        return $this->belongsTo('App\Estudiante');
+    }
 }
