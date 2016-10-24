@@ -43,20 +43,39 @@
 
 
                                     $_academica="0";
+                                    
+                                    $id_p="";
                                     $ano_p="";
                                     $institucion_p="";
                                     $caracter_p="";
                                     $caracter_p_="";
 
+                                    $id_k="";
                                     $ano_k="";
                                     $institucion_k="";
                                     $caracter_k="";
                                     $caracter_k_="";
 
+                                    $id_t="";
                                     $ano_t="";
                                     $institucion_t="";
                                     $caracter_t="";
                                     $caracter_t_="";
+
+                                    $ano[]=array();
+                                    $id[]=array();
+                                    $caracter[]=array();
+                                    $institucion[]=array();
+                                    $caracter_[]=array();
+                                    for($i=1; $i<=11; $i++) { 
+                                      $ano[$i]="";
+                                      $id[$i]="";
+                                      $caracter[$i]="";
+                                      $institucion[$i]="";
+                                      $caracter_[$i]="";
+                                    }
+                        
+
                               ?>
 
                             @if(count($estudiante)>0)
@@ -138,12 +157,13 @@
                                     <?php
 
                                     
-
+                                    $i=1;
                                     ?>
                                     @foreach($dt_estudiante['historiasAcademicas'] as $ht_academica)
                                     <?php
                                       if($ht_academica['grado']=="Pre-Kinder"){
                                             $_academica="1";
+                                            $id_p=$ht_academica['id'];
                                             $caracter_p=$ht_academica['caracter'];
                                             $institucion_p=$ht_academica['institucion'];
                                             $ano_p=$ht_academica['ano'];
@@ -156,6 +176,7 @@
 
                                       if($ht_academica['grado']=="Kinder"){
                                             $_academica="1";
+                                            $id_k=$ht_academica['id'];
                                             $caracter_k=$ht_academica['caracter'];
                                             $institucion_k=$ht_academica['institucion'];
                                             $ano_k=$ht_academica['ano'];
@@ -168,6 +189,7 @@
 
                                       if($ht_academica['grado']=="Transicion"){
                                             $_academica="1";
+                                            $id_t=$ht_academica['id'];
                                             $caracter_t=$ht_academica['caracter'];
                                             $institucion_t=$ht_academica['institucion'];
                                             $ano_t=$ht_academica['ano'];
@@ -179,17 +201,19 @@
                                       }
 
 
-                                      /*if(is_numeric($ht_academica['grado'])){
+                                      if(is_numeric($ht_academica['grado'])){
                                             $_academica="1";
-                                            $caracter_f=$ht_academica['caracter'];
-                                            $institucion_t=$ht_academica['institucion'];
-                                            $ano_t=$ht_academica['ano'];
-                                              if($caracter_t=="P")
-                                              {                                              $caracter_t_="Publico";
+                                            $id[$i]=$ht_academica['id'];
+                                            $caracter[$i]=$ht_academica['caracter'];
+                                            $institucion[$i]=$ht_academica['institucion'];
+                                            $ano[$i]=$ht_academica['ano'];
+                                              if($caracter[$i]=="P")
+                                              {                                              $caracter_[$i]="Publico";
                                               }else{
-                                                $caracter_t_="Privado";
+                                                $caracter_[$i]="Privado";
                                               }
-                                      }*/
+                                              $i++;
+                                      }
                                     ?>
                                     @endforeach
                                     <?php
@@ -771,6 +795,7 @@
                         <div class="col-xs-6 col-md-2 form-group">
                           <label for"">Año</label>
                           <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano_p}}">
+                          <input type="hidden" class="form-control" name="id[]" placeholder="" value="{{$id_p}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           <label for"">Grado</label>
@@ -798,6 +823,7 @@
                         <div class="col-xs-6 col-md-2 form-group">
                           
                           <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano_k}}">
+                          <input type="hidden" class="form-control" name="id[]" placeholder="" value="{{$id_k}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           
@@ -825,6 +851,7 @@
                         <div class="col-xs-6 col-md-2 form-group">
                           
                           <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano_t}}">
+                          <input type="hidden" class="form-control" name="id[]" placeholder="" value="{{$id_t}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           
@@ -851,17 +878,21 @@
                       <?php for($i=1; $i<=11; $i++) { ?>
                       <div class="row">
                         <div class="col-xs-6 col-md-2 form-group">
-                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                          <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano[$i]}}">
+                          <input type="hidden" class="form-control" name="id[]" placeholder="" value="{{$id[$i]}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           <input type="text" class="form-control" value="<?php echo $i ?>" name="grado[]" placeholder="" readonly="readonly">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
-                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                          <input type="text" class="form-control" name="institucion[]" placeholder="" value="{{$institucion[$i]}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                            <div class="form-group">
                               <select class="form-control"  name="caracter[]">
+                                 @if($caracter[$i]!='')
+                                    <option value="{{$caracter[$i]}}">{{$caracter_[$i]}}</option>
+                                  @endif
                                 <option value="P">Publico</option>
                                 <option value="D">Privado</option>
                               </select>
