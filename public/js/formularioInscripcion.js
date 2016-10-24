@@ -154,7 +154,7 @@ $(function() {
             function(data) {
 
 
-                $('#form_menu3')[0].reset();
+                
                 var menj = 'Ha registrado el tercer formulario <strong>Datos académico</strong>, por favor siga con el siguiente formulario.';
                 $('#mensaje').html(menj);
                 $('#incripcion_creada').modal('show');
