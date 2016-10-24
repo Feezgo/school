@@ -438,7 +438,7 @@ class AlumnoController extends Controller
     {
         
         if (!File::exists($request->url)){
-            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+            return response()->json(array('status' => 'error', 'errors' =>'El fichero no existe.'));
         }else{            
                
             File::delete($request->url);
@@ -455,7 +455,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  => $a['certificadomedico'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
@@ -490,7 +490,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  =>  $a['registroCivilT'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
