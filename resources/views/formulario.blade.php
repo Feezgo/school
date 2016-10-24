@@ -115,8 +115,44 @@
 
                                        ?>
                                     @endforeach
-                                    
                                     <?php
+
+                                    $_academica="0";
+                                    $ano_p="";
+                                    $institucion_p="";
+                                    $caracter_p="";
+                                    $caracter_p_="";
+                                    ?>
+                                    @foreach($dt_estudiante['historiasAcademicas'] as $ht_academica)
+                                    <?php
+                                      if($ht_academica['grado']=="Pre-Kinder"){
+                                            $_academica="1";
+                                            $caracter_p=$ht_academica['caracter'];
+                                            $institucion_p=$ht_academica['institucion'];
+                                            $ano_p=$ht_academica['ano'];
+                                            if($caracter_p=="P")
+                                              {                                              $caracter_p_="Publico";
+                                              }else{
+                                                 $caracter_p_="Privado";
+                                              }
+                                      }
+
+                                      if($ht_academica['grado']=="Kinder"){
+                                            $_academica="1";
+                                            $caracter_k=$ht_academica['caracter'];
+                                            $institucion_k=$ht_academica['institucion'];
+                                            $ano_k=$ht_academica['ano'];
+                                              if($caracter_k=="P")
+                                              {                                              $caracter_k_="Publico";
+                                              }else{
+                                                $caracter_k_="Privado";
+                                              }
+                                      }
+                                    ?>
+                                    @endforeach
+                                    <?php
+
+
 
                                     $pmer_nombre=$dt_estudiante->pmer_nombre;
                                     $sndo_nombres=$dt_estudiante->sndo_nombres;
@@ -686,12 +722,13 @@
                   <div class="panel-body">
 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                      <input type="hidden" name="_academica" value="0"></input>
+                      <input type="hidden" name="_academica" value="{{$_academica}}"></input>
+                      <input type="hidden" class="form-control" name="numIdent_estudiante" value="{{$documento}}" >
 
                       <div class="row">
                         <div class="col-xs-6 col-md-2 form-group">
                           <label for"">Año</label>
-                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                          <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano_p}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           <label for"">Grado</label>
@@ -699,12 +736,15 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Institucion</label>
-                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                          <input type="text" class="form-control" name="institucion[]" placeholder="" value="{{$institucion_p}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                             <label for"">Tipo</label>
                             <div class="form-group">
                                 <select class="form-control" id="sel1" name="caracter[]">
+                                  @if($caracter_p!='')
+                                    <option value="{{$caracter_p}}">{{$caracter_p_}}</option>
+                                  @endif
                                   <option value="P">Publico</option>
                                   <option value="D">Privado</option>
                                 </select>
@@ -715,7 +755,7 @@
                       <div class="row">
                         <div class="col-xs-6 col-md-2 form-group">
                           
-                          <input type="text" class="form-control" name="ano[]" placeholder="">
+                          <input type="text" class="form-control" name="ano[]" placeholder="" value="{{$ano_k}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                           
@@ -724,11 +764,14 @@
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           
-                          <input type="text" class="form-control" name="institucion[]" placeholder="">
+                          <input type="text" class="form-control" name="institucion[]" placeholder="" value="{{$institucion_k}}">
                         </div>
                         <div class="col-xs-6 col-md-2 form-group">
                            <div class="form-group">
                               <select class="form-control" id="sel1" name="caracter[]">
+                                 @if($caracter_k!='')
+                                    <option value="{{$caracter_k}}">{{$caracter_k_}}</option>
+                                  @endif
                                 <option value="P">Publico</option>
                                 <option value="D">Privado</option>
                               </select>
@@ -744,7 +787,7 @@
                         <div class="col-xs-6 col-md-2 form-group">
                           
 
-                          <input type="text" class="form-control" value="Transición" name="grado[]" placeholder="" readonly="readonly">
+                          <input type="text" class="form-control" value="Transicion" name="grado[]" placeholder="" readonly="readonly">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           

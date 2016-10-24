@@ -333,17 +333,30 @@ class AlumnoController extends Controller
      public function registro_academico(Request $request)
     {
 
+        if($request->input('_academica') == '0')
+                return $this->crear_academico($request->all());
+        else
+                return $this->modificar_acudiente($request->all());
 
-        
-        $ano = $request->input('ano');
-        $caracter = $request->input('caracter');
-        $institucion = $request->input('institucion');
+    }
+
+    public function crear_academico($input){
+
+        $ano = $input['ano'];
+        $caracter = $input['caracter'];
+        $institucion = $input['institucion'];
+        $model = Estudiante::where('documento',$input['numIdent_estudiante'])->get();
+        foreach ($model as $user)
+            {
+                $id_est=$user->id;
+            }
         $i=0;
-
-        foreach($request->get('grado') as $key => $value)
+       // dd($id_est);
+       // exit();
+        foreach($input['grado'] as $key => $value)
         {
             $modelHistoriaAcademica = new HistoriaAcademica;
-            $modelHistoriaAcademica['id_estudiante'] = "1";
+            $modelHistoriaAcademica['id_estudiante'] = $id_est;
             $modelHistoriaAcademica['ano'] = $ano[$i];
             $modelHistoriaAcademica['institucion'] = $institucion[$i];
             $modelHistoriaAcademica['grado'] = $value;
@@ -352,9 +365,6 @@ class AlumnoController extends Controller
             $i++;
         }
         return $modelHistoriaAcademica;
-
-        
-
     }
 
 
