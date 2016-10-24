@@ -32,7 +32,6 @@ class Estudiante extends Model
 		return $this->hasMany('School\App\Modelos\departamento', 'id','dpto_recidencia');
 	}
 
-
 	public function municipio() 
 	{
 		return $this->hasMany('School\App\Modelos\municipio', 'id','mpio_expdicion');
@@ -48,7 +47,6 @@ class Estudiante extends Model
 		return $this->hasMany('School\App\Modelos\municipio', 'id','mpio_recidencia');
 	}
 
-
 	public function discapacidad() 
 	{
 		return $this->hasMany('School\App\Modelos\Discapacidad', 'id','discapacidad');
@@ -57,6 +55,11 @@ class Estudiante extends Model
 	public function situacion() 
 	{
 		return $this->hasMany('School\App\Modelos\Situacion', 'id','situacion_academica');
+	}
+
+	public function matriculas()
+	{
+		return $this->hasMany('School\App\Modelos\Matricula', 'id_estudiante');
 	}
 
 	public function familiares()

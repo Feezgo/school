@@ -10,6 +10,11 @@ class Matricula extends Model
 	protected $table = "matricula";
 	protected $dates = ['deleted_at'];
 
+	public function estudiante()
+	{
+		return $this->belongsTo('School\App\Modelos\Estudiante', 'id_estudiante');
+	}
+
 	public function planesDePagos()
 	{
 		return $this->hasMany('School\App\Modelos\PlanDePago', 'id_matricula');

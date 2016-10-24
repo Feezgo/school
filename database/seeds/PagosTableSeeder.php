@@ -21,9 +21,9 @@ class PagosTableSeeder extends Seeder
                 'cursos' => 'prekinder,kinder,transición'
 			],[
 	            'concepto' => 'matricula',
-				'aplica' => 'nuevo',
-				'descipcion' => 'Matricula estudiantes nuevos',
-				'costo' => 400000,
+				'aplica' => 'antiguos',
+				'descipcion' => 'Matricula estudiantes antiguos',
+				'costo' => 300000,
                 'recargo' => 0,
                 'cursos' => 'prekinder,kinder,transición'
 			],[

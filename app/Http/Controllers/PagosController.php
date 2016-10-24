@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use School\App\Modelos\Pago;
 use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
+use School\App\Modelos\Estudiante;
 use Carbon\Carbon;
 
 class PagosController extends Controller
@@ -15,9 +16,57 @@ class PagosController extends Controller
 
     }
 
+    public function buscador(Request $request)
+    {	
+    	$data = [
+    		'status' => session('status'),
+    		'matricula' => session('matricula')
+    	];
+
+    	return view('pagos.buscador')
+    				->with($data);
+    }
+
     public function obtenerPagosPendientes(Request $request)
     {
-    	
+    	$matricula = Matricula::with('estudiante', 'planesDePagos', 'planesDePagos.pago')
+    					->whereHas('estudiante', function($query) use ($request)
+    					{
+    						$query->where('documento', $request->input('documento'));
+    					})
+    					->first();
+
+    	return redirect('pagos')
+    				->withInput()
+    				->with(['matricula' => $matricula]);
+    }
+
+    public function gestionarPagos(Request $request)
+    {
+    	switch ($request->input('operacion')) {
+    		case 'pagar':
+    			$fecha_pago = Carbon::now();
+    			$planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->get();
+
+    			foreach ($planes_de_pagos as $pago) 
+    			{
+    				$pago->estado = !$pago->estado;
+    				
+    				if($pago->estado)
+    					$pago->pagado = $fecha_pago->gt($pago->fecha_limite) ? $pago->pago['recargo'] + $pago->pago['costo'] : $pago->pago['costo'];
+    				else
+    					$pago->pagado = 0;
+
+    				$pago->save();
+    			}
+
+    			return redirect('pagos')
+    						->with(['status' => 'success']);
+    		break;
+    		case 'imprimir':
+
+    		break;
+    	}
     }
 
     public function asignarPlanPagos(Request $request)
@@ -25,13 +74,13 @@ class PagosController extends Controller
     	$matricula = Matricula::find($request->input('id_matricula'));
     	$pagos = Pago::where(function($query) use ($matricula)
 			    	{
-			    		return $query->where('aplica', $matricula->tipo)
-			    					->orWhere('aplica', 'todos');
+			    		$query->where('aplica', $matricula->tipo)
+			    			->orWhere('aplica', 'todos');
 			    	})
     				->where(function($query) use ($matricula)
     				{
-    					return $query->where('cursos', 'LIKE', '%'.$matricula->grado.'%')
-									->orWhere('cursos', 'LIKE', '%todos%');
+    					$query->where('cursos', 'LIKE', '%'.$matricula->grado.'%')
+							->orWhere('cursos', 'LIKE', '%todos%');
     				})
 					->get();
 
@@ -44,6 +93,7 @@ class PagosController extends Controller
 				case 'matricula':
 					$plan_de_pagos[] = [
 							'id_pago' => $pago->id,
+							'pagado' => 0,
 							'fecha_pago' => $fecha->toDateString(),
 							'fecha_limite' => $fecha->toDateString(),
 							'estado' => 0
@@ -57,6 +107,7 @@ class PagosController extends Controller
 
 						$plan_de_pagos[] = [
 							'id_pago' => $pago->id,
+							'pagado' => 0,
 							'fecha_pago' => $fecha_pago->toDateString(),
 							'fecha_limite' => $fecha_pago->addWeekdays(7)->toDateString(),
 							'estado' => 0

@@ -8,7 +8,8 @@ class PlanDePago extends Model
 {
 	public $timestamps = false;
 	protected $table = "planes_de_pagos"; 
-	protected $fillable = ['id_pago', 'fecha_pago', 'fecha_limite', 'estado'];
+	protected $fillable = ['id_pago', 'fecha_pago', 'fecha_limite', 'estado', 'pagado'];
+	protected $dates = ['deleted_at', 'fecha_pago', 'fecha_limite'];
 
 	public function matricula()
 	{

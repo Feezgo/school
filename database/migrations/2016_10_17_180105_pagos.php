@@ -18,7 +18,7 @@ class Pagos extends Migration
             $table->increments('id');
             $table->enum('concepto', ['matricula', 'pension', 'otro']);
             $table->enum('aplica', ['nuevo', 'antiguo', 'todos']);
-            $table->string('descipcion');
+            $table->string('descripcion');
             $table->integer('costo')->unsigned();
         });
 

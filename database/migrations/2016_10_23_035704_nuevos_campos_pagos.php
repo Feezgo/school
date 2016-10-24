@@ -13,14 +13,15 @@ class NuevosCamposPagos extends Migration
      */
     public function up()
     {
-        Schema::table('pagos', function($table)
+        Schema::table('pagos', function(Blueprint $table)
         {
             $table->integer('recargo')->unsigned()->default(0);
             $table->string('cursos')->default('');
         });
 
-        Schema::table('planes_de_pagos', function($table)
+        Schema::table('planes_de_pagos', function(Blueprint $table)
         {
+            $table->integer('pagado')->unsigned()->default(0)->after('id_matricula');
             $table->date('fecha_limite')->after('fecha_pago');
         });
     }
@@ -32,14 +33,15 @@ class NuevosCamposPagos extends Migration
      */
     public function down()
     {
-       Schema::table('pagos', function($table)
+       Schema::table('pagos', function(Blueprint $table)
         {
             $table->dropColumn('recargo');
             $table->dropColumn('cursos');
         });
 
-        Schema::table('planes_de_pagos', function($table)
+        Schema::table('planes_de_pagos', function(Blueprint $table)
         {
+            $table->dropColumn('pagado');
             $table->dropColumn('fecha_limite');
         });
     }
