@@ -417,7 +417,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  => $a['certificadomedico'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
@@ -452,7 +452,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  =>  $a['registroCivilT'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
