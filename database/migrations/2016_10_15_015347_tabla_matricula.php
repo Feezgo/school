@@ -24,9 +24,9 @@ class TablaMatricula extends Migration
             $table->string('jornada');
             $table->enum('tipo', ['nuevo', 'antiguo']);
             $table->integer('grado');
-            $table->string('repitente');
+            $table->string('repitente')->nullable();
             $table->date('fecha_retiro')->nullable(); 
-            $table->string('motivo_retiro');
+            $table->string('motivo_retiro')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
