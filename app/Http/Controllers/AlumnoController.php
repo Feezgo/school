@@ -14,7 +14,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
-use School\App\Modelos\Documentos;
+use School\App\Modelos\documentos;
 use School\Mail\RegistroPin;
 use Illuminate\Support\Facades\Auth;
 
