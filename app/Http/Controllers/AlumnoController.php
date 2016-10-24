@@ -450,9 +450,19 @@ class AlumnoController extends Controller
         if (!File::exists($request->url)){
             return response()->json(array('status' => 'error', 'errors' =>'El fichero no existe.'));
         }else{            
-               
-            File::delete($request->url);
-            return response()->json(array('status' => 'borrado'));
+               $id_estudiante=$request->session()->get('Estudiante');
+                if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
+                    $consulta=Documentos::where('id_estudiante',$id_estudiante)->get();
+                    $i=0;
+                    $a = (array) json_decode($consulta[0]['documentos']);
+                    foreach ($a as $b => $value) {
+                        $i++;
+                        if($request->num == $i){$a[$b]='';}
+                    }
+                    Documentos::where('id_estudiante',$id_estudiante)->update(['documentos' => json_encode($a)]);
+                    File::delete($request->url);
+                    return response()->json(array('status' => 'borrado'));
+                }
 
         }
     }
@@ -465,7 +475,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => $a['certificadomedico'], 
+                    'registroCivilT'  => $a['registroCivilT'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],

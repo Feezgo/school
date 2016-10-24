@@ -198,9 +198,10 @@ $(function() {
     $('body').delegate('#baj_registroCT', 'click', function() {
         var num = $(this).data("id");
         var url = $('#file' + num).attr('href');
-        
+
         var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
         var formData = {
+        	'num':num,
             'url': url,
             '_token': AUTH_TOKEN
         };
