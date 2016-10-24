@@ -786,7 +786,7 @@
                             <a id="file8" href="" download style='display:none'>Archivo</a><br>
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                               <button type="button" class="btn btn-default" id="sub_registroCT" data-id="8">Subir</button>
-                              <button type="button" class="btn btn-danger" i= data-id="8""baj_registroCT8">Eliminar</button>
+                              <button type="button" class="btn btn-danger"  data-id="8" id="baj_registroCT">Eliminar</button>
                             </div>
                           </div>
                         </div>
@@ -804,7 +804,7 @@
                             <a id="file9" href="" download style='display:none'>Archivo</a><br>
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                               <button type="button" class="btn btn-default" id="sub_registroCT" data-id="9">Subir</button>
-                              <button type="button" class="btn btn-danger" i= data-id="9""baj_registroCT9">Eliminar</button>
+                              <button type="button" class="btn btn-danger" i= data-id="9" id="baj_registroCT">Eliminar</button>
                             </div>
                             </div>
                         </div>
