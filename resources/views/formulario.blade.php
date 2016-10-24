@@ -33,6 +33,90 @@
                                     $mpio_recidencia=$dt_estudiante['municipio2'][0]->municipio;
                                     $mpio_id_recidencia=$dt_estudiante['municipio2'][0]->id;
 
+                                    
+                                      $ptesco_acudi="";
+                                      $cedu_acudi="";
+                                      $pmerNom_acudi="";
+                                      $sdoNom_acudi="";
+                                      $pmerApell_acudi="";
+                                      $sdoApell_acudi="";
+                                      $tfono_acudi="";
+                                      $celu_acudi="";
+
+                                      $cdla_mama="";
+                                      $pmerNom_mama="";
+                                      $sdoNom_mama="";
+                                      $pmerApell_mama="";
+                                      $sdoApell_mama="";
+                                      $ocup_mama="";
+                                      $empr_mama="";
+                                      $tfono_mama="";
+                                      $celu_mama="";
+                                      
+                                      $cedu_papa="";
+                                      $pmerNom_papa="";
+                                      $sdoNom_papa="";
+                                      $pmerApell_papa="";
+                                      $sdoApell_papa="";
+                                      $ocup_papa="";
+                                      $empr_papa="";
+                                      $tfono_papa="";
+                                      $celu_papa="";
+
+                                      $acudiente=0;
+                                      $id_acu=0;
+                                      $id_mam=0;
+                                      $id_pap=0;
+                                    ?>
+
+                                    @foreach($dt_estudiante['familiar'] as $dt_familiar)
+                                       <?php 
+                                        if($dt_familiar['acudiente']=="Si"){
+                                            $acudiente=1;
+                                            $id_acu=$dt_familiar['id'];
+                                            $ptesco_acudi=$dt_familiar['parentesco'];
+                                            $cedu_acudi=$dt_familiar['identificacion'];
+                                            $pmerNom_acudi=$dt_familiar['pmer_nombre'];
+                                            $sdoNom_acudi=$dt_familiar['sndo_nombres'];
+                                            $pmerApell_acudi=$dt_familiar['pmer_apellido'];
+                                            $sdoApell_acudi=$dt_familiar['sndo_apellido'];
+                                            $tfono_acudi=$dt_familiar['telefono'];
+                                            $celu_acudi=$dt_familiar['celular'];
+                                        }
+
+
+                                        if($dt_familiar['acudiente']=="No" && $dt_familiar['parentesco']=="madre")
+                                        {
+                                            $id_mam=$dt_familiar['id'];
+                                            $cdla_mama=$dt_familiar['identificacion'];
+                                            $pmerNom_mama=$dt_familiar['pmer_nombre'];
+                                            $sdoNom_mama=$dt_familiar['sndo_nombres'];
+                                            $pmerApell_mama=$dt_familiar['pmer_apellido'];
+                                            $sdoApell_mama=$dt_familiar['sndo_apellido'];
+                                            $tfono_mama=$dt_familiar['telefono'];
+                                            $celu_mama=$dt_familiar['celular'];
+                                            $ocup_mama=$dt_familiar['ocupacion'];
+                                            $empr_mama=$dt_familiar['empresa'];
+                                        }
+
+                                        if($dt_familiar['acudiente']=="No" && $dt_familiar['parentesco']=="padre")
+                                        {
+                                            $id_pap=$dt_familiar['id'];
+                                            $cedu_papa=$dt_familiar['identificacion'];
+                                            $pmerNom_papa=$dt_familiar['pmer_nombre'];
+                                            $sdoNom_papa=$dt_familiar['sndo_nombres'];
+                                            $pmerApell_papa=$dt_familiar['pmer_apellido'];
+                                            $sdoApell_papa=$dt_familiar['sndo_apellido'];
+                                            $tfono_papa=$dt_familiar['telefono'];
+                                            $celu_papa=$dt_familiar['celular'];
+                                            $ocup_papa=$dt_familiar['ocupacion'];
+                                            $empr_papa=$dt_familiar['empresa'];
+                                        }
+
+                                       ?>
+                                    @endforeach
+                                    
+                                    <?php
 
                                     $pmer_nombre=$dt_estudiante->pmer_nombre;
                                     $sndo_nombres=$dt_estudiante->sndo_nombres;
@@ -91,15 +175,7 @@
                             @endif
 
 
-                            @if(count($acudiente)>0)
-                              <?php
-                                $acudiente=0;
-                              ?>
-                            @else
-                              <?php
-                                $acudiente=0;
-                              ?>
-                            @endif
+                           
 
 
   <div class="container">
@@ -407,51 +483,55 @@
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                       <input type="hidden" name="_acudiente" value="{{$acudiente}}"></input>
                       <input type="hidden" class="form-control" name="numIdent_estudiante" value="{{$documento}}" >
+                      <input type="hidden" name="id_acu" value="{{$id_acu}}"></input>
+                      <input type="hidden" name="id_mam" value="{{$id_mam}}"></input>
+                      <input type="hidden" name="id_pap" value="{{$id_pap}}"></input>
+
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">N° Cedula</label>
-                          <input type="text" class="form-control" name="cdla_mama" placeholder="">
+                          <input type="text" class="form-control" name="cdla_mama" placeholder="" value="{{$cdla_mama}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer nombre</label>
-                          <input type="text" class="form-control" name="pmerNom_mama" placeholder="">
+                          <input type="text" class="form-control" name="pmerNom_mama" placeholder="" value="{{$pmerNom_mama}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo nombre</label>
-                          <input type="text" class="form-control" name="sdoNom_mama" placeholder="">
+                          <input type="text" class="form-control" name="sdoNom_mama" placeholder="" value="{{$sdoNom_mama}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer apellido</label>
-                          <input type="text" class="form-control" name="pmerApell_mama" placeholder="">
+                          <input type="text" class="form-control" name="pmerApell_mama" placeholder="" value="{{$pmerApell_mama}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo apellido</label>
-                          <input type="text" class="form-control" name="sdoApell_mama" placeholder="">
+                          <input type="text" class="form-control" name="sdoApell_mama" placeholder="" value="{{$sdoApell_mama}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Ocupación</label>
-                          <input type="text" class="form-control" name="ocup_mama" placeholder="">
+                          <input type="text" class="form-control" name="ocup_mama" placeholder="" value="{{$ocup_mama}}">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Empresa</label>
-                          <input type="text" class="form-control" name="empr_mama" placeholder="">
+                          <input type="text" class="form-control" name="empr_mama" placeholder="" value="{{$empr_mama}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Telefono</label>
-                          <input type="text" class="form-control" name="tfono_mama" placeholder="">
+                          <input type="text" class="form-control" name="tfono_mama" placeholder="" value="{{$tfono_mama}}">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Celular</label>
-                          <input type="text" class="form-control" name="celu_mama" placeholder="">
+                          <input type="text" class="form-control" name="celu_mama" placeholder="" value="{{$celu_mama}}">
                         </div>
                       </div>
 
@@ -468,48 +548,48 @@
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">N° Cedula</label>
-                          <input type="text" class="form-control" name="cedu_papa" placeholder="">
+                          <input type="text" class="form-control" name="cedu_papa" placeholder="" value="{{$cedu_papa}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer nombre</label>
-                          <input type="text" class="form-control" name="pmerNom_papa" placeholder="">
+                          <input type="text" class="form-control" name="pmerNom_papa" placeholder="" value="{{$pmerNom_papa}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo nombre</label>
-                          <input type="text" class="form-control" name="sdoNom_papa" placeholder="">
+                          <input type="text" class="form-control" name="sdoNom_papa" placeholder="" value="{{$sdoNom_papa}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer apellido</label>
-                          <input type="text" class="form-control" name="pmerApell_papa" placeholder="">
+                          <input type="text" class="form-control" name="pmerApell_papa" placeholder="" value="{{$pmerApell_papa}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo apellido</label>
-                          <input type="text" class="form-control" name="sdoApell_papa" placeholder="">
+                          <input type="text" class="form-control" name="sdoApell_papa" placeholder="" value="{{$sdoApell_papa}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Ocupación</label>
-                          <input type="text" class="form-control" name="ocup_papa" placeholder="">
+                          <input type="text" class="form-control" name="ocup_papa" placeholder=""value="{{$ocup_papa}}">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Empresa</label>
-                          <input type="text" class="form-control" name="empr_papa" placeholder="">
+                          <input type="text" class="form-control" name="empr_papa" placeholder="" value="{{$empr_papa}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Telefono</label>
-                          <input type="text" class="form-control" name="tfono_papa" placeholder="">
+                          <input type="text" class="form-control" name="tfono_papa" placeholder="" value="{{$tfono_papa}}">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Celular</label>
-                          <input type="text" class="form-control" name="celu_papa" placeholder="">
+                          <input type="text" class="form-control" name="celu_papa" placeholder="" value="{{$celu_papa}}">
                         </div>
                       </div>
 
@@ -528,6 +608,9 @@
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Parentesco</label>
                           <select class="form-control" name="ptesco_acudi">
+                                @if($ptesco_acudi!='')
+                                <option>{{$ptesco_acudi}}</option>
+                                @endif
                                 <option value="">seleccionar</option>
                                 <option>padre</option>
                                 <option>madre</option>
@@ -539,37 +622,37 @@
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">N° Cedula</label>
-                          <input type="text" class="form-control" name="cedu_acudi" placeholder="">
+                          <input type="text" class="form-control" name="cedu_acudi" placeholder="" value="{{$cedu_acudi}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer nombre</label>
-                          <input type="text" class="form-control" name="pmerNom_acudi" placeholder="">
+                          <input type="text" class="form-control" name="pmerNom_acudi" placeholder="" value="{{$pmerNom_acudi}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo nombre</label>
-                          <input type="text" class="form-control" name="sdoNom_acudi" placeholder="">
+                          <input type="text" class="form-control" name="sdoNom_acudi" placeholder="" value="{{$sdoNom_acudi}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Primer apellido</label>
-                          <input type="text" class="form-control" name="pmerApell_acudi" placeholder="">
+                          <input type="text" class="form-control" name="pmerApell_acudi" placeholder="" value="{{$pmerApell_acudi}}">
                         </div>
                         <div class="col-xs-6 col-md-3 form-group">
                           <label for"">Segundo apellido</label>
-                          <input type="text" class="form-control" name="sdoApell_acudi" placeholder="">
+                          <input type="text" class="form-control" name="sdoApell_acudi" placeholder="" value="{{$sdoApell_acudi}}">
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Telefono</label>
-                          <input type="text" class="form-control" name="tfono_acudi" placeholder="">
+                          <input type="text" class="form-control" name="tfono_acudi" placeholder="" value="{{$tfono_acudi}}">
                         </div>
                         <div class="col-xs-6 col-md-6 form-group">
                           <label for"">Celular</label>
-                          <input type="text" class="form-control" name="celu_acudi" placeholder="">
+                          <input type="text" class="form-control" name="celu_acudi" placeholder=""value="{{$celu_acudi}}" >
                         </div>
                       </div>
 
@@ -604,6 +687,7 @@
 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                       <input type="hidden" name="_academica" value="0"></input>
+
                       <div class="row">
                         <div class="col-xs-6 col-md-2 form-group">
                           <label for"">Año</label>

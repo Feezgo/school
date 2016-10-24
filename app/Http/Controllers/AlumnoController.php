@@ -87,7 +87,7 @@ class AlumnoController extends Controller
         if(count($datos)>0)
         {    
 
-            $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion')->where('documento',$request->num_identidad)->get();
+            $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion','familiar')->where('documento',$request->num_identidad)->get();
             
 
               if(count($model_E)>0){ 
@@ -242,6 +242,7 @@ class AlumnoController extends Controller
 
     public function guardar_acudiente($input)
     {
+        
         $model_A = new Familiar;
         $model_B = new Familiar;
         $model_C = new Familiar;
@@ -250,13 +251,12 @@ class AlumnoController extends Controller
 
     public function modificar_acudiente($input)
     {
-
         $model_A = new Familiar;
-        $model_A =$model_A->find($input["_acudiente"]);
+        $model_A =$model_A->find($input["id_mam"]);
         $model_B = new Familiar;
-        $model_B =$model_B->find($input["_acudiente"]);
+        $model_B =$model_B->find($input["id_pap"]);
         $model_C = new Familiar;
-        $model_C =$model_C->find($input["_acudiente"]);
+        $model_C =$model_C->find($input["id_acu"]);
         return $this->crear_acudiente($model_A,$model_B,$model_C,$input);
     }
 
@@ -265,6 +265,11 @@ class AlumnoController extends Controller
     public function crear_acudiente($model_A,$model_B,$model_C,$input)
     {
         
+        $model = Estudiante::where('documento',$input['numIdent_estudiante'])->get();
+        foreach ($model as $user)
+            {
+                $id_est=$user->id;
+            }
         if(count($model_A)>0){
             $model_A['pmer_nombre'] = $input['pmerNom_mama'];
             $model_A['sndo_nombres'] = $input['sdoNom_mama'];
@@ -278,7 +283,7 @@ class AlumnoController extends Controller
             $model_A['parentesco'] = "madre";
             $model_A['parentesco_otro'] = "";
             $model_A['acudiente'] = "No";
-            $model_A['id_estudiante'] = $input['numIdent_estudiante'];
+            $model_A['id_estudiante'] = $id_est;
             $model_A->save();
         }
 
@@ -295,7 +300,7 @@ class AlumnoController extends Controller
             $model_B['parentesco'] = "padre";
             $model_B['parentesco_otro'] = "";
             $model_B['acudiente'] = "No";
-            $model_B['id_estudiante'] = $input['numIdent_estudiante'];
+            $model_B['id_estudiante'] = $id_est;
             $model_B->save();
         }
 
@@ -312,7 +317,7 @@ class AlumnoController extends Controller
             $model_C['parentesco'] = $input['ptesco_acudi'];
             $model_C['parentesco_otro'] = "";
             $model_C['acudiente'] = "Si";
-            $model_C['id_estudiante'] = $input['numIdent_estudiante'];
+            $model_C['id_estudiante'] = $id_est;
 
             $model_C->save();
         
@@ -550,7 +555,7 @@ class AlumnoController extends Controller
     public function getMunicipio(Request $request, $id)
     {
         $model = new departamento;
-        $datos = $model::with('municipios')->where('id', '=', $id)->get();;
+        $datos = $model::with('municipios')->where('id', '=', $id)->get();
         
         return $datos;
     }
