@@ -336,7 +336,7 @@ class AlumnoController extends Controller
         if($request->input('_academica') == '0')
                 return $this->crear_academico($request->all());
         else
-                return $this->modificar_acudiente($request->all());
+                return $this->modificar_academico($request->all());
 
     }
 
@@ -362,6 +362,37 @@ class AlumnoController extends Controller
             $modelHistoriaAcademica['grado'] = $value;
             $modelHistoriaAcademica['caracter'] = $caracter[$i];
             $modelHistoriaAcademica->save();
+            $i++;
+        }
+        return $modelHistoriaAcademica;
+    }
+
+    public function modificar_academico($input){
+
+        $id_mol = $input['id'];
+        $ano = $input['ano'];
+        $caracter = $input['caracter'];
+        $institucion = $input['institucion'];
+        $model = Estudiante::where('documento',$input['numIdent_estudiante'])->get();
+        foreach ($model as $user)
+            {
+                $id_est=$user->id;
+            }
+        $i=0;
+       // dd($id_est);
+       // exit();
+        foreach($input['grado'] as $key => $value)
+        {
+            $modelHistoriaAcademica = new HistoriaAcademica;
+            $modelHistoriaAcademica=$modelHistoriaAcademica->find($id_mol[$i]);
+            if(count($modelHistoriaAcademica)>0){
+                $modelHistoriaAcademica['id_estudiante'] = $id_est;
+                $modelHistoriaAcademica['ano'] = $ano[$i];
+                $modelHistoriaAcademica['institucion'] = $institucion[$i];
+                $modelHistoriaAcademica['grado'] = $value;
+                $modelHistoriaAcademica['caracter'] = $caracter[$i];
+                $modelHistoriaAcademica->save();
+            }
             $i++;
         }
         return $modelHistoriaAcademica;
