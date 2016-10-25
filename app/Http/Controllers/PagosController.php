@@ -16,29 +16,22 @@ class PagosController extends Controller
 
     }
 
-    public function buscador(Request $request)
-    {	
+    public function obtenerPagosPendientes(Request $request, $documento = "")
+    {
+    	$matricula = Matricula::with('estudiante', 'planesDePagos', 'planesDePagos.pago')
+    					->whereHas('estudiante', function($query) use ($documento)
+    					{
+    						$query->where('documento', $documento);
+    					})
+    					->first();
+
     	$data = [
     		'status' => session('status'),
-    		'matricula' => session('matricula')
+    		'matricula' => $matricula
     	];
 
     	return view('pagos.buscador')
     				->with($data);
-    }
-
-    public function obtenerPagosPendientes(Request $request)
-    {
-    	$matricula = Matricula::with('estudiante', 'planesDePagos', 'planesDePagos.pago')
-    					->whereHas('estudiante', function($query) use ($request)
-    					{
-    						$query->where('documento', $request->input('documento'));
-    					})
-    					->first();
-
-    	return redirect('pagos')
-    				->withInput()
-    				->with(['matricula' => $matricula]);
     }
 
     public function gestionarPagos(Request $request)
@@ -60,7 +53,7 @@ class PagosController extends Controller
     				$pago->save();
     			}
 
-    			return redirect('pagos')
+    			return redirect('pagos/buscar/'.$request->input('documento'))
     						->with(['status' => 'success']);
     		break;
     		case 'imprimir':
