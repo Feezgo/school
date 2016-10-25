@@ -154,7 +154,7 @@ $(function() {
             function(data) {
 
 
-                $('#form_menu3')[0].reset();
+                
                 var menj = 'Ha registrado el tercer formulario <strong>Datos académico</strong>, por favor siga con el siguiente formulario.';
                 $('#mensaje').html(menj);
                 $('#incripcion_creada').modal('show');
@@ -197,9 +197,11 @@ $(function() {
 
     $('body').delegate('#baj_registroCT', 'click', function() {
         var num = $(this).data("id");
-        var url = $(this).data("url");
+        var url = $('#file' + num).attr('href');
+
         var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
         var formData = {
+        	'num':num,
             'url': url,
             '_token': AUTH_TOKEN
         };

@@ -14,7 +14,7 @@ use School\App\Modelos\HistoriaAcademica;
 use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
-use School\App\Modelos\Documentos;
+use School\App\Modelos\documentos;
 use School\Mail\RegistroPin;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,7 +87,7 @@ class AlumnoController extends Controller
         if(count($datos)>0)
         {    
 
-            $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion','familiar')->where('documento',$request->num_identidad)->get();
+            $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion','familiar','historiasAcademicas')->where('documento',$request->num_identidad)->get();
             
 
               if(count($model_E)>0){ 
@@ -333,17 +333,30 @@ class AlumnoController extends Controller
      public function registro_academico(Request $request)
     {
 
+        if($request->input('_academica') == '0')
+                return $this->crear_academico($request->all());
+        else
+                return $this->modificar_academico($request->all());
 
-        
-        $ano = $request->input('ano');
-        $caracter = $request->input('caracter');
-        $institucion = $request->input('institucion');
+    }
+
+    public function crear_academico($input){
+
+        $ano = $input['ano'];
+        $caracter = $input['caracter'];
+        $institucion = $input['institucion'];
+        $model = Estudiante::where('documento',$input['numIdent_estudiante'])->get();
+        foreach ($model as $user)
+            {
+                $id_est=$user->id;
+            }
         $i=0;
-
-        foreach($request->get('grado') as $key => $value)
+       // dd($id_est);
+       // exit();
+        foreach($input['grado'] as $key => $value)
         {
             $modelHistoriaAcademica = new HistoriaAcademica;
-            $modelHistoriaAcademica['id_estudiante'] = "1";
+            $modelHistoriaAcademica['id_estudiante'] = $id_est;
             $modelHistoriaAcademica['ano'] = $ano[$i];
             $modelHistoriaAcademica['institucion'] = $institucion[$i];
             $modelHistoriaAcademica['grado'] = $value;
@@ -352,9 +365,37 @@ class AlumnoController extends Controller
             $i++;
         }
         return $modelHistoriaAcademica;
+    }
 
-        
+    public function modificar_academico($input){
 
+        $id_mol = $input['id'];
+        $ano = $input['ano'];
+        $caracter = $input['caracter'];
+        $institucion = $input['institucion'];
+        $model = Estudiante::where('documento',$input['numIdent_estudiante'])->get();
+        foreach ($model as $user)
+            {
+                $id_est=$user->id;
+            }
+        $i=0;
+       // dd($id_est);
+       // exit();
+        foreach($input['grado'] as $key => $value)
+        {
+            $modelHistoriaAcademica = new HistoriaAcademica;
+            $modelHistoriaAcademica=$modelHistoriaAcademica->find($id_mol[$i]);
+            if(count($modelHistoriaAcademica)>0){
+                $modelHistoriaAcademica['id_estudiante'] = $id_est;
+                $modelHistoriaAcademica['ano'] = $ano[$i];
+                $modelHistoriaAcademica['institucion'] = $institucion[$i];
+                $modelHistoriaAcademica['grado'] = $value;
+                $modelHistoriaAcademica['caracter'] = $caracter[$i];
+                $modelHistoriaAcademica->save();
+            }
+            $i++;
+        }
+        return $modelHistoriaAcademica;
     }
 
 
@@ -438,11 +479,21 @@ class AlumnoController extends Controller
     {
         
         if (!File::exists($request->url)){
-            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+            return response()->json(array('status' => 'error', 'errors' =>'El fichero no existe.'));
         }else{            
-               
-            File::delete($request->url);
-            return response()->json(array('status' => 'borrado'));
+               $id_estudiante=$request->session()->get('Estudiante');
+                if(Documentos::where('id_estudiante',$id_estudiante)->count('id')>=1){
+                    $consulta=Documentos::where('id_estudiante',$id_estudiante)->get();
+                    $i=0;
+                    $a = (array) json_decode($consulta[0]['documentos']);
+                    foreach ($a as $b => $value) {
+                        $i++;
+                        if($request->num == $i){$a[$b]='';}
+                    }
+                    Documentos::where('id_estudiante',$id_estudiante)->update(['documentos' => json_encode($a)]);
+                    File::delete($request->url);
+                    return response()->json(array('status' => 'borrado'));
+                }
 
         }
     }
@@ -455,7 +506,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  => $a['registroCivilT'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
@@ -490,7 +541,7 @@ class AlumnoController extends Controller
                    
                     $a = (array) json_decode($consulta[0]['documentos']);
                     $documentos = array(
-                    'registroCivilT'  => '', 
+                    'registroCivilT'  =>  $a['registroCivilT'], 
                     'certificadomedico'=>  $a['certificadomedico'],
                     'certificacioneps'=>  $a['certificacioneps'],
                     'cedulapadre'=>  $a['cedulapadre'],
