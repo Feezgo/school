@@ -53,8 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <li><a href="{{ url('/login') }}">Ingresar</a></li>
                         @else
                             
                            
@@ -63,6 +62,7 @@
                                     Pin <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/register') }}">Registrar</a></li>
                                     <li><a href="{{ url('/formularioPin') }}">Generar pin</a></li>
                                     <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
                                 </ul>
