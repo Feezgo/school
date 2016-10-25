@@ -1,25 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="main" data-url="">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Pagos</div>
                 <div class="panel-body">
                     <div class="row">
-                        <form action="{{ url('/pagos/buscar') }}" method="post">
-                            <div class="col-md-12 form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="documento" value="{{ old('documento') }}" placeholder="Documento estudiante">
-                                    <span class="input-group-btn">
-                                        <input type="hidden" name="_method" value="POST">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button class="btn btn-default" type="submit">Buscar</button>
-                                    </span>
-                                </div>
+                        <div class="col-md-12 form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="documento" value="{{ $matricula ? $matricula->estudiante['documento'] : old('documento') }}" placeholder="Documento estudiante">
+                                <span class="input-group-btn">
+                                    <input type="hidden" name="_method" value="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <a class="btn btn-default" href="{{ url('/pagos/buscar/') }}" id="buscar">Buscar</a>
+                                </span>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="row">
                         @if ($status == 'success')
@@ -36,6 +34,14 @@
                             </div>
                         @else
                         <form action="{{ url('/pagos/gestionarPagos') }}" method="post">
+                            <div class="col-md-12">
+                                <strong>Estudiante</strong><br>
+                                Nombre: {{ $matricula->estudiante['pmer_nombre'].' '.$matricula->estudiante['pmer_apellido'] }}<br>
+                                Documento: {{ $matricula->estudiante['documento'] }}
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
                             <div class="col-md-12">
                                 <table class="table table-stripped">
                                     <thead>
@@ -63,7 +69,7 @@
                                 </table>
                             </div>
                             <div class="col-md-12">
-                                <input type="hidden" name="documento" value="{{ old('documento') }}">
+                                <input type="hidden" name="documento" value="{{ $matricula->estudiante['documento'] }}">
                                 <input type="hidden" name="_method" value="POST">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button name="operacion" value="pagar" class="btn btn-success">Pagar</button>
@@ -78,3 +84,8 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+  @parent
+  <script src="{{ elixir('js/pagos/buscador.js') }}"></script>
+@stop
