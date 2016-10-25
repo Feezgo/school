@@ -38,7 +38,6 @@ Route::get('/alumno/getMunicipio/{id}', 'AlumnoController@getMunicipio');
 Route::post('/traer_ficheros_estudiante','AlumnoController@traer_ficheros_estudiante');
 
 Route::post('/pagos/asignar_plan_pagos', 'PagosController@asignarPlanPagos');
-Route::get('/pagos', 'PagosController@buscador');
-Route::post('/pagos/buscar', 'PagosController@obtenerPagosPendientes');
+Route::get('/pagos/buscar/{documento?}', 'PagosController@obtenerPagosPendientes');
 Route::post('/pagos/gestionarPagos', 'PagosController@gestionarPagos');
 
