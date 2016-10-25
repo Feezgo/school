@@ -107,6 +107,7 @@ $(function() {
                 if (data.status == 'error') {
                     validador_errores_menu2(data.errors);
                 } else {
+                    validador_errores_menu2(data.errors);
                     var menj = 'Ha registrado el segundo formulario <strong>Datos del acudiente</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
                     $('#incripcion_creada').modal('show');
