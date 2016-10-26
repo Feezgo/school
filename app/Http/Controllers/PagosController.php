@@ -7,7 +7,8 @@ use School\App\Modelos\Pago;
 use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
 use School\App\Modelos\Estudiante;
-use Carbon\Carbon;
+use PDF;
+use Carbon;
 
 class PagosController extends Controller
 {
@@ -57,7 +58,11 @@ class PagosController extends Controller
     						->with(['status' => 'success']);
     		break;
     		case 'imprimir':
+    			$html = view('pagos.factura')->render();
+    			PDF::load($html);
+    			PDF::setPaper([0,0,200,200], 'portrait');
 
+    			return PDF::show();
     		break;
     	}
     }
