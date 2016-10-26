@@ -42,6 +42,7 @@ $(function() {
                 	validador_errores_form1(data.errors);
                     var menj = 'Ha registrado el pirmer formulario <strong>Datos del estudiante</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
+                    $( "input[name='_alumno']" ).val(data.id);
                     $('#incripcion_creada').modal('show');
                 }
             },
@@ -52,7 +53,7 @@ $(function() {
 
 
     var validador_errores_form1 = function(data) {
-        console.log(data);
+       // console.log(data);
         $('#form_menu1 .form-group').removeClass('has-error');
         var selector = '';
         for (var error in data) {
