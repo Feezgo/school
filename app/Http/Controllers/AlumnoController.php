@@ -380,6 +380,7 @@ class AlumnoController extends Controller
             }
         $i=0;
        // dd($id_est);
+        $_modicar_val = $input['_modicar_val']-13;
        // exit();
         foreach($input['grado'] as $key => $value)
         {
@@ -392,6 +393,20 @@ class AlumnoController extends Controller
                 $modelHistoriaAcademica['grado'] = $value;
                 $modelHistoriaAcademica['caracter'] = $caracter[$i];
                 $modelHistoriaAcademica->save();
+            }
+            else{
+                $modelHistoriaAcademica = new HistoriaAcademica;
+                $modelHistoriaAcademica=$modelHistoriaAcademica->find($_modicar_val);
+                if(count($modelHistoriaAcademica)>0){
+                    $modelHistoriaAcademica['id_estudiante'] = $id_est;
+                    $modelHistoriaAcademica['ano'] = $ano[$i];
+                    $modelHistoriaAcademica['institucion'] = $institucion[$i];
+                    $modelHistoriaAcademica['grado'] = $value;
+                    $modelHistoriaAcademica['caracter'] = $caracter[$i];
+                    $modelHistoriaAcademica->save();
+                    $_modicar_val++;
+                }
+                
             }
             $i++;
         }

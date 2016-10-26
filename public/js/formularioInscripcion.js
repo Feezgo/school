@@ -155,11 +155,12 @@ $(function() {
             $(this).serialize(),
             function(data) {
 
-
-                
+                //console.log(data);
                 var menj = 'Ha registrado el tercer formulario <strong>Datos académico</strong>, por favor siga con el siguiente formulario.';
                 $('#mensaje').html(menj);
                 $('#incripcion_creada').modal('show');
+                $("input[name='_academica']").val(1);
+                $("input[name='_modicar_val']").val(data.id);
 
             },
             'json'
