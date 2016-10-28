@@ -22,6 +22,55 @@ use Illuminate\Support\Facades\Auth;
 class AlumnoController extends Controller
 {
     //
+   public function buscar_formulario(Request $request){
+
+        $model = new Pin;
+        $identificacion = $request['identificacion'];
+        $datos = $model::select('pin')->where('num_identidad_alumno', '=', $identificacion)->get();
+        $pin =  $datos[0]['attributes']['pin'];
+        if(empty($pin)){'Identificacion no registrada';exit();}
+        else{
+
+
+      
+
+            $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion','familiar','historiasAcademicas')->where('documento',$identificacion)->get();
+            
+
+              if(count($model_E)>0){ 
+                foreach ($model_E as $model_) 
+                { 
+                    $_SESSION['Estudiante']=$model_->documento; 
+                    session('Estudiante','default'); 
+                    session(['Estudiante' => $model_->documento]); 
+                } 
+            }else{ 
+                $_SESSION['Estudiante']=0; 
+                    session('Estudiante','default'); 
+                    session(['Estudiante' => $identificacion]); 
+            } 
+
+            $model = new departamento;
+            $model2 = new Discapacidad;
+            $model3 = new Situacion;
+            $identidad= $request['num_identidad'];
+            $datos = [
+                'estudiante' => $model_E,
+                'departamento' => $model->all(),
+                'discapacidad_m' => $model2->all(),
+                'situacion_m' => $model3->all(),
+                'identidad'=>$identidad,
+                'acudiente'=>$identidad,
+                'administrativo'=>true,
+            ];
+            //dd($datos);
+            //exit();
+            return view('formulario',$datos);
+        
+
+        }
+
+   }
 
     public function formularioPin()
     {

@@ -18,8 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/validar', 'HomeController@validar');
+
 
 //Rutas publicas
+Route::get('/buscar_formulario', 'AlumnoController@buscar_formulario');
 Route::get('/loginPin', 'AlumnoController@loginPin');
 Route::post('/alumno/validacionPin', 'AlumnoController@validacionPin');
 Route::post('/validacionEstudiante', 'AlumnoController@validacionEstudiante');
