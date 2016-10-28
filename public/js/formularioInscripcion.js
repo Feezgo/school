@@ -42,6 +42,7 @@ $(function() {
                 	validador_errores_form1(data.errors);
                     var menj = 'Ha registrado el pirmer formulario <strong>Datos del estudiante</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
+                    $( "input[name='_alumno']" ).val(data.id);
                     $('#incripcion_creada').modal('show');
                 }
             },
@@ -52,7 +53,7 @@ $(function() {
 
 
     var validador_errores_form1 = function(data) {
-        console.log(data);
+       // console.log(data);
         $('#form_menu1 .form-group').removeClass('has-error');
         var selector = '';
         for (var error in data) {
@@ -107,6 +108,7 @@ $(function() {
                 if (data.status == 'error') {
                     validador_errores_menu2(data.errors);
                 } else {
+                    validador_errores_menu2(data.errors);
                     var menj = 'Ha registrado el segundo formulario <strong>Datos del acudiente</strong>, por favor siga con el siguiente formulario.';
                     $('#mensaje').html(menj);
                     $('#incripcion_creada').modal('show');
@@ -153,11 +155,12 @@ $(function() {
             $(this).serialize(),
             function(data) {
 
-
-                
+                //console.log(data);
                 var menj = 'Ha registrado el tercer formulario <strong>Datos académico</strong>, por favor siga con el siguiente formulario.';
                 $('#mensaje').html(menj);
                 $('#incripcion_creada').modal('show');
+                $("input[name='_academica']").val(1);
+                $("input[name='_modicar_val']").val(data.id);
 
             },
             'json'

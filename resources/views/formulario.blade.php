@@ -789,6 +789,7 @@
 
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                       <input type="hidden" name="_academica" value="{{$_academica}}"></input>
+                      <input type="hidden" name="_modicar_val" value="0"></input>
                       <input type="hidden" class="form-control" name="numIdent_estudiante" value="{{$documento}}" >
 
                       <div class="row">
