@@ -69,11 +69,10 @@ class PagosController extends Controller
     						->with(['status' => 'success']);
     		break;
     		case 'imprimir':
-                $planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
+                $planes_de_pagos = PlanDePago::with('pago', 'matricula', 'matricula.estudiante')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
                 $html = view('pagos.factura')->with(['planes_de_pagos' => $planes_de_pagos])->render();
 
     			$pdf = PDF::load($html);
-    			$pdf->setPaper([0,0,250,250+(count($planes_de_pagos) * 20)], 'portrait');
 
     			return $pdf->show();
     		break;
