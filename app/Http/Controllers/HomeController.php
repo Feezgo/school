@@ -26,5 +26,9 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function validar()
+    {
+        return view('validar_matricula');
+    }
         
 }
