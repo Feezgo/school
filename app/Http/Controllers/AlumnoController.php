@@ -163,6 +163,7 @@ class AlumnoController extends Controller
                 'situacion_m' => $model3->all(),
                 'identidad'=>$identidad,
                 'acudiente'=>$identidad,
+                'administrativo'=>false,
             ];
             //dd($datos);
             //exit();
