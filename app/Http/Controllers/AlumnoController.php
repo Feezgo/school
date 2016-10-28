@@ -53,7 +53,7 @@ class AlumnoController extends Controller
             $model = new departamento;
             $model2 = new Discapacidad;
             $model3 = new Situacion;
-            $identidad= $request['num_identidad'];
+            $identidad= $identificacion;
             $datos = [
                 'estudiante' => $model_E,
                 'departamento' => $model->all(),
