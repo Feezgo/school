@@ -40,16 +40,27 @@ class PagosController extends Controller
     	switch ($request->input('operacion')) {
     		case 'pagar':
     			$fecha_pago = Carbon::now();
+                $ultimo_pago = PlanDePago::where('estado', '=', '1')->orderBy('id', 'desc')->first();
+                $factura = 0;
+                if ($ultimo_pago)
+                    $factura = $ultimo_pago->factura;
+
+                $factura++;
+
     			$planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->get();
 
     			foreach ($planes_de_pagos as $pago) 
     			{
     				$pago->estado = !$pago->estado;
-    				
+    				$pago->factura = $factura;
+
     				if($pago->estado)
+                    {
     					$pago->pagado = $fecha_pago->gt($pago->fecha_limite) ? $pago->pago['recargo'] + $pago->pago['costo'] : $pago->pago['costo'];
-    				else
+                    } else {
     					$pago->pagado = 0;
+                        $pago->anulado = 1;
+                    }
 
     				$pago->save();
     			}
@@ -58,11 +69,13 @@ class PagosController extends Controller
     						->with(['status' => 'success']);
     		break;
     		case 'imprimir':
-    			$html = view('pagos.factura')->render();
-    			PDF::load($html);
-    			PDF::setPaper([0,0,200,200], 'portrait');
+                $planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
+                $html = view('pagos.factura')->with(['planes_de_pagos' => $planes_de_pagos])->render();
 
-    			return PDF::show();
+    			$pdf = PDF::load($html);
+    			$pdf->setPaper([0,0,250,250+(count($planes_de_pagos) * 20)], 'portrait');
+
+    			return $pdf->show();
     		break;
     	}
     }
