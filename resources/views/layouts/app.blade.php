@@ -28,8 +28,7 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                <img style="max-width:50px; margin-top: 1px;"
-             src="/imagen/cole.jpg">
+                <img style="max-width:50px; margin-top: 1px;" src="/imagen/cole.jpg">
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -66,6 +65,7 @@
                                     <li><a href="{{ url('/register') }}">Registrar</a></li>
                                     <li><a href="{{ url('/formularioPin') }}">Generar pin</a></li>
                                     <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
+                                    <li><a href="{{ url('/validar') }}">Aprovar Matricula</a></li>
                                 </ul>
                             </li>
 
