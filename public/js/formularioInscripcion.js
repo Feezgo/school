@@ -439,5 +439,69 @@ $(function() {
 
 
 
+     $('#crear_matricula').on('submit', function(e) {
+                    $( "input[name='matri_num_alumn']" ).val($("input[name='id_alum']").val());
+                    $('#modal_crear_matricula').modal('show');
+        e.preventDefault();
+    });
+
+    $('#matricula_form').on('submit', function(e) {
+        $.post(
+            URL + '/registro_matricula',
+            $(this).serialize(),
+            function(data) {
+
+                if (data.status == 'error') {
+                    //console.log(data);
+                    validador_errores_form_matri(data.errors);
+
+                    var menj = ' <strong>Error!</strong> Revisa los campos de color rojo en el formulario.';
+                    $('#men_error_matric').html(menj);
+                    $("#men_error_matric").show(0);
+                        setTimeout(function() {
+                            $("#men_error_fomr1").fadeOut(1500);
+                        }, 3000);
+                    
+                } else {
+                    validador_errores_form_matri(data.errors);
+                    var menj = 'Ha registrado la <strong>matricula</strong>.';
+                    $('#men_error_matric').html(menj);
+                    $('#modal_crear_matricula').modal('hide');
+                }
+            },
+            'json'
+        );
+        e.preventDefault();
+    });
+
+    var validador_errores_form_matri = function(data) {
+
+        $('#matricula_form .form-group').removeClass('has-error');
+        var selector = '';
+        for (var error in data) {
+            if (typeof data[error] !== 'function') {
+                switch (error) {
+                    case 'matri_sede':
+                    case 'matri_jornada':
+                    case 'matri_tipo_estudiante':
+                    case 'matri_grdo':
+                    case 'matri_repitente':
+                        selector = 'select';
+                        break;
+
+                    case 'matri_num_alumn':
+                    case 'matri_folio':
+                        selector = 'input';
+                        break;
+                }
+                $('#matricula_form ' + selector + '[name="' + error + '"]').closest('.form-group').addClass('has-error');
+            }
+        }
+    }
+
+
+
+
+
 
 });

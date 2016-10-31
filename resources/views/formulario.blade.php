@@ -562,16 +562,9 @@
                       <div id="men_error_fomr1" class="alert alert-danger" style="display:none"> 
                       </div>
                   </div>
-                  @if($administrativo==false)
                   <div class="col-md-12">
                       <button type="submit" class="btn btn-primary btn-block">Registrar datos de estudiante</button>
                   </div>
-                  @endif
-                  @if($administrativo==true)
-                  <div class="col-md-12">
-                      <button type="button" class="btn btn-primary btn-block">Registrar en la matricula</button>
-                  </div>
-                  @endif
                   <div class="col-md-12"><hr></div>
                   <div class="col-md-12"><hr></div>
               </div>
@@ -1094,7 +1087,22 @@
 
 
           </div>
+          @if($administrativo==true)
+              <form id="crear_matricula">
+              <div class="row">
+                  <div class="col-xs-12">
+                  </div>
+                  <div class="col-md-12">
+                      <input type="hidden" name="id_alum" value="{{$documento}}"></input>
+                      <button type="submit" class="btn btn-success btn-lg">CREAR MATRICULA</button>
+                  </div>
+                  <div class="col-md-12"><hr></div>
+                  <div class="col-md-12"><hr></div>
+              </div>
+              </form>
+          @endif
       </div>
+
   </div>
 
 
@@ -1116,7 +1124,97 @@
           </div>
       </div>
   </div>
+
+
+<!-- formulario matricula-->
+  <div class="modal fade bs-example-modal-lg" id="modal_crear_matricula" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+              <h4 class="modal-title">Formulario para la creación de matriculas</h4>
+            </div>
+             <div class="modal-body">
+              <form id="matricula_form">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Documento alumno</label>
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                      <input type="text" class="form-control" name="matri_num_alumn" readonly="readonly">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Folio</label>
+                      <input type="text" class="form-control" name="matri_folio">
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Grado definitivo</label>
+                          <select class="form-control" name="matri_grdo">
+                              <option>{{$grado_aspira}}</option>
+                              <option>Pre-kinder</option>
+                              <option>kinder</option>
+                              <option>Transición</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                           </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Jornada</label>
+                          <select class="form-control" name="matri_jornada">
+                              <option>Jornada calendario A 2017</option>
+                              <option>Jornada calendario B 2017</option>
+                              <option>Otra</option>
+                          </select>
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Sede</label>
+                          <select class="form-control" name="matri_sede">
+                              <option value="1">Principal</option>
+                              <option value="2">Otra</option>
+                          </select>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Repitente</label>
+                          <select class="form-control" name="matri_repitente">
+                                <option>No</option>
+                                <option>Si</option>
+                          </select>
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Estudiante</label>
+                          <select class="form-control" name="matri_tipo_estudiante">
+                              <option>{{$tipo_estudi}}</option>
+                              <option>Antiguo</option>
+                              <option>Nuevo</option>
+                            </select>
+                    </div>
+                </div>
+              
+             </div>
+             <div class="modal-footer" id="cerrar_actividad">
+                <div id="men_error_matric" class="alert alert-danger" style="display:none"></div>
+             <button type="submit" class="btn btn-success">Matricular</button>
+                <button type="button"  data-funcion="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+             </div>
+             </form>
+          </div>
+      </div>
+  </div>
 </div>
+
+
 
 
 

@@ -15,6 +15,7 @@ use School\App\Modelos\departamento;
 use School\App\Modelos\Discapacidad;
 use School\App\Modelos\Situacion;
 use School\App\Modelos\documentos;
+use School\App\Modelos\Matricula;
 use School\Mail\RegistroPin;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +27,11 @@ class AlumnoController extends Controller
 
         $model = new Pin;
         $identificacion = $request['identificacion'];
-        $datos = $model::select('pin')->where('num_identidad_alumno', '=', $identificacion)->get();
+        $datos = $model::select('*')->where('num_identidad_alumno', '=', $identificacion)->get();
+       
         $pin =  $datos[0]['attributes']['pin'];
+        $grado =  $datos[0]['attributes']['grado_aspira'];
+        $tip_est =  $datos[0]['attributes']['tipo_estudiante'];
         if(empty($pin)){'Identificacion no registrada';exit();}
         else{
 
@@ -62,6 +66,8 @@ class AlumnoController extends Controller
                 'identidad'=>$identidad,
                 'acudiente'=>$identidad,
                 'administrativo'=>true,
+                'grado_aspira'=>$grado,
+                'tipo_estudi'=>$tip_est,
             ];
             //dd($datos);
             //exit();
@@ -164,6 +170,8 @@ class AlumnoController extends Controller
                 'identidad'=>$identidad,
                 'acudiente'=>$identidad,
                 'administrativo'=>false,
+                'grado_aspira'=>'',
+                'tipo_estudi'=>'',
             ];
             //dd($datos);
             //exit();
@@ -215,6 +223,62 @@ class AlumnoController extends Controller
             else
                 return $this->modificar_estudiante($request->all());
 
+    }
+
+
+     public function registro_matricula(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+            [
+               
+                'matri_num_alumn' => 'required',
+                'matri_folio' => 'required|integer',
+                'matri_grdo' => 'required',
+                'matri_tipo_estudiante' => 'required',
+            ]
+        );
+
+            if ($validator->fails())
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+
+            if($request->input('matri_num_alumn') != '0')
+              return $this->guardar_matricula($request->all());
+            else
+              return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+
+    }
+
+    public function guardar_matricula($input)
+    {
+        $model_A = new Matricula;
+        return $this->crear_matricula($model_A, $input);
+    }
+
+    public function crear_matricula($model, $input)
+    {
+
+         $model_E = Estudiante::where('documento',$input['matri_num_alumn'])->get();
+            
+            if(count($model_E)>0){ 
+                foreach ($model_E as $model_) 
+                    { 
+                        $id_e=$model_->id; 
+                    }
+            } 
+        $model['id_estudiante'] = $id_e;
+        $model['folio'] = $input['matri_folio'];
+        $model['fecha_matricula'] = date("Y-m-d");
+        $model['numero_matricula'] = $id_e;
+        $model['foto'] = '';
+        $model['motivo_retiro'] = '';    
+        $model['sede'] = $input['matri_sede'];
+        $model['jornada'] = $input['matri_jornada'];
+        $model['tipo'] = $input['matri_tipo_estudiante'];
+        $model['grado'] = $input['matri_grdo'];
+        $model['repitente'] = $input['matri_repitente'];
+
+        $model->save();
+        return $model;
     }
 
 
