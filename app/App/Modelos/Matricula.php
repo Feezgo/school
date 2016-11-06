@@ -19,4 +19,9 @@ class Matricula extends Model
 	{
 		return $this->hasMany('School\App\Modelos\PlanDePago', 'id_matricula');
 	}
+
+	public function grado() 
+	{
+		return $this->belongsTo('School\App\Modelos\grado', 'id');
+	}
 }
