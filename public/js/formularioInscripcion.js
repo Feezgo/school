@@ -456,17 +456,26 @@ $(function() {
                     validador_errores_form_matri(data.errors);
 
                     var menj = ' <strong>Error!</strong> Revisa los campos de color rojo en el formulario.';
+                    $('#men_error_matric').removeClass('alert-success');
+                    $('#men_error_matric').addClass('alert-danger');
                     $('#men_error_matric').html(menj);
                     $("#men_error_matric").show(0);
                         setTimeout(function() {
-                            $("#men_error_fomr1").fadeOut(1500);
+                            $("#men_error_matric").fadeOut(1500);
                         }, 3000);
                     
                 } else {
                     validador_errores_form_matri(data.errors);
                     var menj = 'Ha registrado la <strong>matricula</strong>.';
+                    $('#men_error_matric').removeClass('alert-danger');
+                    $('#men_error_matric').addClass('alert-success');
                     $('#men_error_matric').html(menj);
-                    $('#modal_crear_matricula').modal('hide');
+                    $("#men_error_matric").show(0);
+                        setTimeout(function() {
+                            $("#men_error_matric").fadeOut(1500);
+                            $('#modal_crear_matricula').modal('hide');
+                        }, 3000);
+                   
                 }
             },
             'json'
@@ -486,6 +495,7 @@ $(function() {
                     case 'matri_tipo_estudiante':
                     case 'matri_grdo':
                     case 'matri_repitente':
+                    case 'matri_ano':
                         selector = 'select';
                         break;
 

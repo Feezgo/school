@@ -41,7 +41,7 @@ class AlumnoController extends Controller
             $model_E = Estudiante::with('departamento','departamento1','departamento2','municipio','municipio1','municipio2','discapacidad','situacion','familiar','historiasAcademicas')->where('documento',$identificacion)->get();
             
 
-              if(count($model_E)>0){ 
+            if(count($model_E)>0){ 
                 foreach ($model_E as $model_) 
                 { 
                     $_SESSION['Estudiante']=$model_->documento; 
@@ -234,6 +234,7 @@ class AlumnoController extends Controller
                 'matri_num_alumn' => 'required',
                 'matri_folio' => 'required|integer',
                 'matri_grdo' => 'required',
+                'matri_ano' => 'required',
                 'matri_tipo_estudiante' => 'required',
             ]
         );
@@ -242,16 +243,36 @@ class AlumnoController extends Controller
             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
 
             if($request->input('matri_num_alumn') != '0')
-              return $this->guardar_matricula($request->all());
+             return $this->guardar_matricula($request->all());
             else
-              return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+             return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
 
     }
 
     public function guardar_matricula($input)
     {
-        $model_A = new Matricula;
-        return $this->crear_matricula($model_A, $input);
+        
+
+        $model_E = Estudiante::where('documento',$input['matri_num_alumn'])->get();
+            
+            if(count($model_E)>0){ 
+                foreach ($model_E as $model_) 
+                    { 
+                        $id_e=$model_->id; 
+                    }
+            } 
+        $model_M = Matricula::where('id_estudiante',$id_e)->where('ano',$input['matri_ano'])->get();
+
+            if(count($model_M)>0){ 
+                foreach( $model_M as $model_mm ) {
+                    $idEst= $model_mm->id;
+                }
+                $model_A = Matricula::find($idEst);
+                return $this->crear_matricula($model_A, $input);
+            }else{
+                $model_A = new Matricula;
+                return $this->crear_matricula($model_A, $input);
+            }
     }
 
     public function crear_matricula($model, $input)
@@ -265,6 +286,21 @@ class AlumnoController extends Controller
                         $id_e=$model_->id; 
                     }
             } 
+            $grad=0;
+
+         
+            if(strcmp ($input['matri_grdo'],"Pre-kinder")==0){$grad=1;}
+            if(strcmp ($input['matri_grdo'],"kinder")==0){$grad=2;}
+            if(strcmp ($input['matri_grdo'],"Transición")==0){$grad=3;}
+            if(strcmp ($input['matri_grdo'],"1")==0){$grad=4;}
+            if(strcmp ($input['matri_grdo'],"2")==0){$grad=5;}
+            if(strcmp ($input['matri_grdo'],"3")==0){$grad=6;}
+            if(strcmp ($input['matri_grdo'],"4")==0){$grad=7;}
+            if(strcmp ($input['matri_grdo'],"5")==0){$grad=8;}
+            if(strcmp ($input['matri_grdo'],"6")==0){$grad=9;}
+            if(strcmp ($input['matri_grdo'],"7")==0){$grad=10;}
+
+
         $model['id_estudiante'] = $id_e;
         $model['folio'] = $input['matri_folio'];
         $model['fecha_matricula'] = date("Y-m-d");
@@ -274,8 +310,9 @@ class AlumnoController extends Controller
         $model['sede'] = $input['matri_sede'];
         $model['jornada'] = $input['matri_jornada'];
         $model['tipo'] = $input['matri_tipo_estudiante'];
-        $model['grado'] = $input['matri_grdo'];
+        $model['grado'] = $grad;
         $model['repitente'] = $input['matri_repitente'];
+        $model['ano'] = $input['matri_ano'];
 
         $model->save();
         return $model;

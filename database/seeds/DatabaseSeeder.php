@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartamentoTableSeeder::class);
         $this->call(MunicipioTableSeeder::class);
         $this->call(DiscapacidadTableSeeder::class);
+        $this->call(GradoTableSeeder::class);
         
     }
 }

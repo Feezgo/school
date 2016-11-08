@@ -1141,12 +1141,13 @@
                       <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                       <input type="text" class="form-control" name="matri_num_alumn" readonly="readonly">
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-xs-6 col-md-6 form-group">
                       <label for"">Folio</label>
                       <input type="text" class="form-control" name="matri_folio">
                     </div>
+                </div>
+                <div class="row">
+                    
                     <div class="col-xs-6 col-md-6 form-group">
                       <label for"">Grado definitivo</label>
                           <select class="form-control" name="matri_grdo">
@@ -1163,22 +1164,30 @@
                               <option>7</option>
                            </select>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-6 col-md-6 form-group">
-                      <label for"">Jornada</label>
-                          <select class="form-control" name="matri_jornada">
-                              <option>Jornada calendario A 2017</option>
-                              <option>Jornada calendario B 2017</option>
-                              <option>Otra</option>
-                          </select>
-                    </div>
                     <div class="col-xs-6 col-md-6 form-group">
                       <label for"">Sede</label>
                           <select class="form-control" name="matri_sede">
                               <option value="1">Principal</option>
                               <option value="2">Otra</option>
+                          </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Año a estudiar</label>
+                          <select class="form-control" name="matri_ano">
+                              <option value="">Selecione</option>
+                              <option value="2017">2017</option>
+                              <option value="2018">2018</option>
+                          </select>
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                      <label for"">Jornada</label>
+                          <select class="form-control" name="matri_jornada">
+                              <option value="A">Jornada calendario A</option>
+                              <option value="B">Jornada calendario B</option>
+                              <option>Otra</option>
                           </select>
                     </div>
                 </div>
@@ -1204,7 +1213,7 @@
               
              </div>
              <div class="modal-footer" id="cerrar_actividad">
-                <div id="men_error_matric" class="alert alert-danger" style="display:none"></div>
+                <div id="men_error_matric" class="alert" style="display:none"></div>
              <button type="submit" class="btn btn-success">Matricular</button>
                 <button type="button"  data-funcion="cerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
              </div>
