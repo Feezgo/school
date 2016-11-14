@@ -79,7 +79,9 @@
                               ?>
 
                             @if(count($estudiante)>0)
-                                @foreach($estudiante as $dt_estudiante)
+                                
+
+                                
                                   <?php 
                                     $nuevo=$dt_estudiante->id;
                                     $tipo_documento=$dt_estudiante->tipo_documento; 

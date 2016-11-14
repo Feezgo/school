@@ -58,15 +58,36 @@
                         @else
                             
                            
+                            
+                            
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Pin <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/register') }}">Registrar</a></li>
                                     <li><a href="{{ url('/formularioPin') }}">Generar pin</a></li>
                                     <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Matricula <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/validar') }}">Aprovar Matricula</a></li>
+                                    <li><a href="{{ url('/matricula') }}">Generar Matricula</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Administrar <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('/register') }}">Registrar</a></li>
                                 </ul>
                             </li>
 

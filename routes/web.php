@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/validar', 'HomeController@validar');
+Route::get('/matricula', 'HomeController@matricula');
 
 
 //Rutas publicas
@@ -29,6 +30,8 @@ Route::post('/validacionEstudiante', 'AlumnoController@validacionEstudiante');
 Route::get('/formulario', 'AlumnoController@formularioInscripcion');
 
 //Rutas protegidas
+Route::get('/buscar_matricula', 'AlumnoController@buscar_matricula');
+Route::post('/descargar_doc', 'AlumnoController@descargar_doc');
 Route::get('/formularioPin', 'AlumnoController@formularioPin');
 Route::get('/listadoPin', 'AlumnoController@listadoPin');
 Route::post('/alumno/registroPin', 'AlumnoController@registroFormPin');

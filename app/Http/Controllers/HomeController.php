@@ -30,5 +30,10 @@ class HomeController extends Controller
     {
         return view('validar_matricula');
     }
+
+     public function matricula()
+    {
+        return view('buscadorMatricula');
+    }
         
 }

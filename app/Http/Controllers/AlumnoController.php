@@ -18,11 +18,63 @@ use School\App\Modelos\documentos;
 use School\App\Modelos\Matricula;
 use School\Mail\RegistroPin;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
+use Carbon;
 
 class AlumnoController extends Controller
 {
     //
+
+
+    public function descargar_doc(Request $request)
+    {
+
+  
+        switch ($request->input('operacion')) {
+            case 'matricula':
+                
+                $model_Estu = Estudiante::find($request->input('id_estudiante'));
+                $model_Matr = Matricula::find($request->input('id_matri'));
+          
+                $datos = [
+                        'matricula' => $model_Matr,
+                        'estudiante' => $model_Estu,
+                    ];
+                $html = view('matricula')->with($datos)->render();
+
+                $pdf = PDF::load($html);
+
+                return $pdf->show();
+            break;
+            case 'contrato':
+                $planes_de_pagos = PlanDePago::with('pago', 'matricula', 'matricula.estudiante')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
+                $html = view('contrato')->with(['planes_de_pagos' => $planes_de_pagos])->render();
+
+                $pdf = PDF::load($html);
+
+                return $pdf->show();
+            break;
+        }
+    }
+     public function buscar_matricula(Request $request)
+    {
+        
+        $model = new Estudiante;
+        $identificacion = $request['identificacion'];
+        $dat = $model::select('*')->where('documento', '=', $identificacion)->get();
+        
+        $id_e =  $dat[0]['attributes']['id'];
+        $model_A = Matricula::where('id_estudiante',$id_e)->get();
+
+
+        $datos = [
+                'matricula' => $model_A,
+            ];
+
+        return view('docMatricula',$datos);
+    }
+
+
    public function buscar_formulario(Request $request){
 
         $model = new Pin;
