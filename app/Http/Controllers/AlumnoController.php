@@ -33,15 +33,16 @@ class AlumnoController extends Controller
         switch ($request->input('operacion')) {
             case 'matricula':
                 
-                $model_Estu = Estudiante::find($request->input('id_estudiante'));
-                $model_Matr = Matricula::find($request->input('id_matri'));
+                $model_Estu = Estudiante::with('departamento1','municipio1','discapacidad','situacion','familiar','historiasAcademicas')->find($request->input('id_estudiante'));
+                $model_Matr = Matricula::with('grado')->find($request->input('id_matri'));
           
                 $datos = [
                         'matricula' => $model_Matr,
                         'estudiante' => $model_Estu,
                     ];
+                 //dd($datos);
+                 //exit();
                 $html = view('matricula')->with($datos)->render();
-
                 $pdf = PDF::load($html);
 
                 return $pdf->show();
