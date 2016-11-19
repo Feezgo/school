@@ -358,6 +358,10 @@ class AlumnoController extends Controller
             if(strcmp ($input['matri_grdo'],"5")==0){$grad=8;}
             if(strcmp ($input['matri_grdo'],"6")==0){$grad=9;}
             if(strcmp ($input['matri_grdo'],"7")==0){$grad=10;}
+            if(strcmp ($input['matri_grdo'],"8")==0){$grad=11;}
+            if(strcmp ($input['matri_grdo'],"9")==0){$grad=12;}
+            if(strcmp ($input['matri_grdo'],"10")==0){$grad=13;}
+            if(strcmp ($input['matri_grdo'],"11")==0){$grad=14;}
 
 
         $model['id_estudiante'] = $id_e;
