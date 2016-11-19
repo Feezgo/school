@@ -57,7 +57,7 @@
                                     <tbody>
                                         @foreach($matricula->planesDePagos as $plan_de_pago)
                                             <tr>
-                                                <td>{{ $plan_de_pago->pago['descripcion'] }}</td>
+                                                <td>{{ $plan_de_pago->pago['descipcion'] }}</td>
                                                 <td align="center">{{ $plan_de_pago['fecha_pago']->toDateString() }}</td>
                                                 <td align="center">{{ $plan_de_pago['fecha_limite']->toDateString() }}</td>
                                                 <td align="right">{{ Carbon::now()->gt($plan_de_pago['fecha_limite']) && $plan_de_pago['estado'] == '0' ? $plan_de_pago->pago['recargo'] + $plan_de_pago->pago['costo'] : $plan_de_pago->pago['costo'] }}</td>

@@ -89,13 +89,13 @@ class PagosController extends Controller
 			    	})
     				->where(function($query) use ($matricula)
     				{
-    					$query->where('cursos', 'LIKE', '%'.$matricula->grado.'%')
+    					$query->where('cursos', 'LIKE', '%'.$matricula->grado['grado'].'%')
 							->orWhere('cursos', 'LIKE', '%todos%');
     				})
 					->get();
 
 		$plan_de_pagos = [];
-		$fecha = Carbon::createFromFormat('Y-m-d', config('school.año-academico').'-02-01');
+		$fecha = Carbon::createFromFormat('Y-m-d', $matricula->ano.'-02-01');
 
 		foreach ($pagos as $pago) 
 		{

@@ -18,21 +18,21 @@ class PagosTableSeeder extends Seeder
 				'descipcion' => 'Matricula estudiantes nuevos',
 				'costo' => 350000,
                 'recargo' => 0,
-                'cursos' => 'prekinder,kinder,transición'
+                'cursos' => 'Pre-Kinder,Kinder,Transición'
 			],[
 	            'concepto' => 'matricula',
 				'aplica' => 'antiguo',
 				'descipcion' => 'Matricula estudiantes antiguos',
 				'costo' => 300000,
                 'recargo' => 0,
-                'cursos' => 'prekinder,kinder,transición'
+                'cursos' => 'Pre-Kinder,Kinder,Transición'
 			],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
                 'descipcion' => 'Pensión',
                 'costo' => 85000,
                 'recargo' => 8000,
-                'cursos' => 'prekinder,kinder,transición'
+                'cursos' => 'Pre-Kinder,Kinder,Transición'
             ]
         ]);
     }
