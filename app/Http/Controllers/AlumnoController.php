@@ -64,9 +64,15 @@ class AlumnoController extends Controller
         $identificacion = $request['identificacion'];
         $dat = $model::select('*')->where('documento', '=', $identificacion)->get();
         
-        $id_e =  $dat[0]['attributes']['id'];
-        $model_A = Matricula::where('id_estudiante',$id_e)->get();
 
+
+        if(count($dat)>0){
+            $id_e =  $dat[0]['attributes']['id'];
+            $model_A = Matricula::where('id_estudiante',$id_e)->get();
+        }
+        else{
+            $model_A=null;            
+        }
 
         $datos = [
                 'matricula' => $model_A,

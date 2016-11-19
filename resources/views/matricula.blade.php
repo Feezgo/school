@@ -12,8 +12,8 @@
 		@page {
 			margin-top: 10px;
 			margin-bottom: 0px;
-			margin-left: 10px;
-			margin-right: 10px;
+			margin-left: 60px;
+			margin-right: 20px;
 		}
 	</style>
 </head>
@@ -85,7 +85,7 @@
 				</td>
 				<td>
 				    <label><FONT SIZE=2>Fecha Matricula</label><br>
-				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value="{{$matricula['fecha_matricula']}}">
+				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value=""><!--{{$matricula['fecha_matricula']}}-->
 				</td>
 				<td rowspan="3" align="left"><img style="max-width:77px; max-height:115px; margin-top: 1px; border: 2px" src="{{ public_path('/imagen/foto.jpg') }}"><br></td>
 			</tr>
