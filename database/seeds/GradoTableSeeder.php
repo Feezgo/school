@@ -18,6 +18,26 @@ class GradoTableSeeder extends Seeder
 	            'grado' => 'Knder',
 			],[
                 'grado' => 'Transición',
+            ],[
+                'grado' => 'Primero',
+            ],[
+                'grado' => 'Segundo',
+            ],[
+                'grado' => 'Tercero',
+            ],[
+                'grado' => 'Cuarto',
+            ],[
+                'grado' => 'Quinto',
+            ],[
+                'grado' => 'Sexto',
+            ],[
+                'grado' => 'Septimo',
+            ],[
+                'grado' => 'Octavo',
+            ],[
+                'grado' => 'Noveno',
+            ],[
+                'grado' => 'Decimo',
             ]
         ]);
     }
