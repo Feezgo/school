@@ -77,11 +77,11 @@
 			<tr align="left">
 				<td>
 				 	<label><FONT SIZE=2>N° Folio</FONT></label><br>
-				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value="{{$matricula['folio']}}">
+				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value="{{$matricula['id']}}">
 				</td>
 				<td>
 					<label><FONT SIZE=2>N° Matricula</FONT></label><br>
-				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value="{{$matricula['id']}}">
+				    <input type="text" style="width: 150px; height: 12px; font-size:8;"  value="{{$matricula['id'].'-'.$matricula['ano']}}">
 				</td>
 				<td>
 				    <label><FONT SIZE=2>Fecha Matricula</label><br>
