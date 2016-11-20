@@ -20,4 +20,9 @@ class PlanDePago extends Model
 	{
 		return $this->belongsTo('School\App\Modelos\Pago', 'id_pago');
 	}
+
+	public function facturas()
+	{
+		return $this->belongsToMany('School\App\Modelos\Factura', 'facturas_detalles', 'id_plan_de_pago', 'id_factura');
+	}
 }

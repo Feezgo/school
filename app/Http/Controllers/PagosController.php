@@ -7,7 +7,9 @@ use School\App\Modelos\Pago;
 use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
 use School\App\Modelos\Estudiante;
+use School\App\Modelos\Factura;
 use PDF;
+use Auth;
 use Carbon;
 
 class PagosController extends Controller
@@ -26,9 +28,23 @@ class PagosController extends Controller
     					})
     					->first();
 
+        if($matricula)
+        {
+            $facturas = Factura::with(['planesDePagos' => function($query) use ($matricula)
+                            {
+                                $query->whereIn('planes_de_pagos.id', $matricula->planesDePagos()->pluck('id'));
+                            }])
+                            ->orderBy('id', 'desc')
+                            ->take(20)
+                            ->get();
+        } else {
+            $facturas = null;
+        }
+
     	$data = [
     		'status' => session('status'),
-    		'matricula' => $matricula
+    		'matricula' => $matricula,
+            'facturas' => $facturas
     	];
 
     	return view('pagos.buscador')
@@ -38,30 +54,24 @@ class PagosController extends Controller
     public function gestionarPagos(Request $request)
     {
     	switch ($request->input('operacion')) {
-    		case 'pagar':
-    			$fecha_pago = Carbon::now();
-                $ultimo_pago = PlanDePago::where('estado', '=', '1')->orderBy('id', 'desc')->first();
-                $factura = 0;
-                if ($ultimo_pago)
-                    $factura = $ultimo_pago->factura;
+    		case 'facturar':
+    			$fecha_pago = Carbon::createFromFormat('Y-m-d', $request->input('fecha_pago'));
+                $factura = new Factura;
+                $factura->fecha_pago = $request->input('fecha_pago');
+                $factura->consignacion = $request->input('consignacion');
+                $factura->consignacion_foto = '';
+                $factura->estado = 'efectuada';
+                $factura->id_usuario = Auth::user()->getId();
+                $factura->save();
 
-                $factura++;
+                $factura->planesDePagos()->sync($request->input('pago'));
 
-    			$planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->get();
+                $planes_de_pagos = PlanDePago::with('pago')->whereIn('id', $request->input('pago'))->get();
 
     			foreach ($planes_de_pagos as $pago) 
     			{
-    				$pago->estado = !$pago->estado;
-    				$pago->factura = $factura;
-
-    				if($pago->estado)
-                    {
-    					$pago->pagado = $fecha_pago->gt($pago->fecha_limite) ? $pago->pago['recargo'] + $pago->pago['costo'] : $pago->pago['costo'];
-                    } else {
-    					$pago->pagado = 0;
-                        $pago->anulado = 1;
-                    }
-
+                    $pago->pagado = $fecha_pago->gt($pago->fecha_limite) ? $pago->pago['recargo'] + $pago->pago['costo'] : $pago->pago['costo'];
+                    $pago->estado = 1;
     				$pago->save();
     			}
 

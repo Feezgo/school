@@ -60,22 +60,59 @@
                                                 <td>{{ $plan_de_pago->pago['descipcion'] }}</td>
                                                 <td align="center">{{ $plan_de_pago['fecha_pago']->toDateString() }}</td>
                                                 <td align="center">{{ $plan_de_pago['fecha_limite']->toDateString() }}</td>
-                                                <td align="right">{{ Carbon::now()->gt($plan_de_pago['fecha_limite']) && $plan_de_pago['estado'] == '0' ? $plan_de_pago->pago['recargo'] + $plan_de_pago->pago['costo'] : $plan_de_pago->pago['costo'] }}</td>
+                                                <td align="right">{!! Carbon::now()->gt($plan_de_pago['fecha_limite']) && $plan_de_pago['estado'] == '0' ? '<span class="label label-danger">$ '.number_format($plan_de_pago->pago['recargo'] + $plan_de_pago->pago['costo'], 0, '', '.').'</span>' : ($plan_de_pago['estado'] == '0' ?  '<span class="label label-default">$ '.number_format($plan_de_pago->pago['costo'], 0, '', '.').'</span>' : '<span class="label label-success">$ '.number_format($plan_de_pago->pagado, 0, '', '.').'</span>') !!}</td>
                                                 <td align="center">{!! $plan_de_pago['estado'] == '0' ? '<span class="label label-default">Pendiente</span>' : '<span class="label label-success">Realizado</span>' !!}</td>
-                                                <td><input type="checkbox" name="pago[]" value="{{ $plan_de_pago['id'] }}"></td>
+                                                <td><input type="checkbox" name="pago[]" value="{{ $plan_de_pago['id'] }}" {{ $plan_de_pago['estado'] == '1' ? 'checked disabled' : '' }}></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-md-4 form-group">
+                                <label for="">Fecha pago</label>
+                                <input type="text" name="fecha_pago" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="">Consignación</label>
+                                <input type="text" name="consignacion" class="form-control">
+                            </div>
                             <div class="col-md-12">
                                 <input type="hidden" name="documento" value="{{ $matricula->estudiante['documento'] }}">
                                 <input type="hidden" name="_method" value="POST">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button name="operacion" value="pagar" class="btn btn-success">Pagar</button>
-                                <button name="operacion" value="imprimir" class="btn btn-default">Imprimir</button>
+                                <button name="operacion" value="facturar" class="btn btn-success">Pagar</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
                             </div>
                         </form>
+                        @endif
+                        @if($facturas)
+                            <div class="col-md-12">
+                                <ul class="list-group">
+                                    @foreach($facturas as $factura)
+                                        <?php
+                                            $total = 0;
+                                        ?>
+                                        @foreach($factura->planesDePagos as $pago)
+                                            <?php
+                                                $total += $factura->fecha_pago->gt($pago->fecha_limite) ? $pago->pago['recargo'] + $pago->pago['costo'] : $pago->pago['costo'];
+                                            ?>
+                                        @endforeach
+                                        <li class="list-group-item">
+                                            <h4 class="list-group-item-heading">Factura N° {!! str_pad($factura->id, 6, '0', STR_PAD_LEFT).' <small>('.$factura->estado.')</small>' !!}</h4>
+                                            <p class="list-group-item-text">
+                                                Fecha de pago: {{ $factura->fecha_pago->toDateString() }} <br>
+                                                Facturo: {{ $factura->user['name'] }} <br>
+                                                Estado: {{ $factura->estado }} <br>
+                                                Total: $ {{ number_format($total, 0, '', '.') }}
+                                                <br><br>
+                                                <a href="{{ url('/pagos/imprimir/'.$factura['id'])  }}" class="btn btn-default btn-xs">Imprimir</a>                                                    
+                                            </p>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
                     </div>
                 </div>
