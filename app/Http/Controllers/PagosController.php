@@ -79,9 +79,9 @@ class PagosController extends Controller
     	}
     }
 
-    public function asignarPlanPagos(Request $request)
+    public function asignarPlanPagos(Request $request,$id)
     {
-    	$matricula = Matricula::find($request->input('id_matricula'));
+    	$matricula = Matricula::find($id);
     	$pagos = Pago::where(function($query) use ($matricula)
 			    	{
 			    		$query->where('aplica', $matricula->tipo)

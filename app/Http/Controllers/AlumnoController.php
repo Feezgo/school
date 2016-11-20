@@ -327,14 +327,14 @@ class AlumnoController extends Controller
                     $idEst= $model_mm->id;
                 }
                 $model_A = Matricula::find($idEst);
-                return $this->crear_matricula($model_A, $input);
+                return $this->crear_matricula($model_A, $input,1);
             }else{
                 $model_A = new Matricula;
-                return $this->crear_matricula($model_A, $input);
+                return $this->crear_matricula($model_A, $input,2);
             }
     }
 
-    public function crear_matricula($model, $input)
+    public function crear_matricula($model, $input , $var)
     {
 
          $model_E = Estudiante::where('documento',$input['matri_num_alumn'])->get();
@@ -377,7 +377,14 @@ class AlumnoController extends Controller
         $model['repitente'] = $input['matri_repitente'];
         $model['ano'] = $input['matri_ano'];
 
-        $model->save();
+        if($var==2){
+            $model->save();
+        }
+        else{
+            $model->save();
+            $model=1;
+        }
+
         return $model;
     }
 
