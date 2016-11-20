@@ -33,13 +33,15 @@
 		</tr>
 		<tr>
 			<td colspan="3">
-				Factura N° {{ str_pad($factura->id, 6, '0', STR_PAD_LEFT) }}
+				Factura N°: {{ str_pad($factura->id, 6, '0', STR_PAD_LEFT) }} <br>
+				Consignación: {{ $factura->consignacion }} <br>
+				Revisado por: {{ $factura->user['name'] }} <br><br>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
 				Estudiante: {{ $factura->planesDePagos[0]->matricula->estudiante['pmer_nombre'].' '.$factura->planesDePagos[0]->matricula->estudiante['pmer_apellido'] }} <br>
-				
+
 				Grado: {{ $factura->planesDePagos[0]->matricula->grado()->first()->grado }}
 			</td>
 		</tr>
