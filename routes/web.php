@@ -29,6 +29,7 @@ Route::post('/alumno/validacionPin', 'AlumnoController@validacionPin');
 Route::post('/validacionEstudiante', 'AlumnoController@validacionEstudiante');
 Route::get('/formulario', 'AlumnoController@formularioInscripcion');
 
+
 //Rutas protegidas
 Route::get('/buscar_matricula', 'AlumnoController@buscar_matricula');
 Route::post('/descargar_doc', 'AlumnoController@descargar_doc');
@@ -44,9 +45,11 @@ Route::get('/alumno/getMunicipio/{id}', 'AlumnoController@getMunicipio');
 Route::post('/traer_ficheros_estudiante','AlumnoController@traer_ficheros_estudiante');
 Route::post('/alumno/registro_matricula','AlumnoController@registro_matricula');
 
-Route::post('/pagos/asignar_plan_pagos', 'PagosController@asignarPlanPagos');
+Route::get('/alumno/asignar_plan_pagos/{id}', 'PagosController@asignarPlanPagos');
 Route::get('/pagos/buscar/{documento?}', 'PagosController@obtenerPagosPendientes');
 Route::post('/pagos/gestionarPagos', 'PagosController@gestionarPagos');
+Route::get('/pagos/consolidado', 'PagosController@consolidado');
+Route::post('/pagos/pagos/listadoConsolidado', 'PagosController@listadoConsolidado');
 
 
 

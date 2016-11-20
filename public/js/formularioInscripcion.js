@@ -471,10 +471,26 @@ $(function() {
                     $('#men_error_matric').addClass('alert-success');
                     $('#men_error_matric').html(menj);
                     $("#men_error_matric").show(0);
-                        setTimeout(function() {
-                            $("#men_error_matric").fadeOut(1500);
-                            $('#modal_crear_matricula').modal('hide');
-                        }, 3000);
+
+                        console.log(data);
+                        if(data!=1){
+                            $.get(
+                                URL + '/asignar_plan_pagos/' + data.id,
+                                $(this).serialize(),
+                                function(data) {
+                                            setTimeout(function() {
+                                                $("#men_error_matric").fadeOut(1500);
+                                                $('#modal_crear_matricula').modal('hide');
+                                            }, 3000);
+                                        },
+                                'json'
+                            );
+                        }else{
+                            setTimeout(function() {
+                                $("#men_error_matric").fadeOut(1500);
+                                $('#modal_crear_matricula').modal('hide');
+                            }, 3000);
+                        }
                    
                 }
             },
