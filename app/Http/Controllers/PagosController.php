@@ -30,10 +30,10 @@ class PagosController extends Controller
 
         if($matricula)
         {
-            $facturas = Factura::with(['planesDePagos' => function($query) use ($matricula)
+            $facturas = Factura::with('planesDePagos')->whereHas('planesDePagos', function($query) use ($matricula)
                             {
                                 $query->whereIn('planes_de_pagos.id', $matricula->planesDePagos()->pluck('id'));
-                            }])
+                            })
                             ->orderBy('id', 'desc')
                             ->take(20)
                             ->get();
@@ -78,15 +78,33 @@ class PagosController extends Controller
     			return redirect('pagos/buscar/'.$request->input('documento'))
     						->with(['status' => 'success']);
     		break;
-    		case 'imprimir':
-                $planes_de_pagos = PlanDePago::with('pago', 'matricula', 'matricula.estudiante')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
-                $html = view('pagos.factura')->with(['planes_de_pagos' => $planes_de_pagos])->render();
-
-    			$pdf = PDF::load($html);
-
-    			return $pdf->show();
-    		break;
     	}
+    }
+
+    public function anularPago(Request $request, $documento, $id)
+    {
+        $factura = Factura::with('planesDePagos')->find($id);
+        $factura->estado = 'anulada';
+        $factura->save();
+
+        foreach ($factura->planesDePagos as $pago) 
+        {
+            $pago->estado = 0;
+            $pago->save();
+        }
+
+        return redirect('pagos/buscar/'.$documento)
+                            ->with(['status' => 'success']);
+    }
+
+    public function imprimir(Request $request, $id)
+    {
+        $factura = Factura::with('planesDePagos', 'planesDePagos.pago', 'planesDePagos.matricula', 'planesDePagos.matricula.grado', 'planesDePagos.matricula.estudiante')->find($id);
+        $html = view('pagos.factura')->with(['factura' => $factura])->render();
+
+        $pdf = PDF::load($html);
+        $pdf->setPaper([0,0,595,421], 'portrait'); 
+        return $pdf->show(); 
     }
 
     public function asignarPlanPagos(Request $request,$id)

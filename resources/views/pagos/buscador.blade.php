@@ -100,14 +100,17 @@
                                             ?>
                                         @endforeach
                                         <li class="list-group-item">
-                                            <h4 class="list-group-item-heading">Factura N° {!! str_pad($factura->id, 6, '0', STR_PAD_LEFT).' <small>('.$factura->estado.')</small>' !!}</h4>
+                                            <h4 class="list-group-item-heading">Factura N° {!! str_pad($factura->id, 6, '0', STR_PAD_LEFT).' <small class="'.$factura->estado.'">('.$factura->estado.')</small>' !!}</h4>
                                             <p class="list-group-item-text">
                                                 Fecha de pago: {{ $factura->fecha_pago->toDateString() }} <br>
                                                 Facturo: {{ $factura->user['name'] }} <br>
-                                                Estado: {{ $factura->estado }} <br>
+                                                Consignacion: {{ $factura->consignacion }} <br>
                                                 Total: $ {{ number_format($total, 0, '', '.') }}
                                                 <br><br>
-                                                <a href="{{ url('/pagos/imprimir/'.$factura['id'])  }}" class="btn btn-default btn-xs">Imprimir</a>                                                    
+                                                <a href="{{ url('/pagos/imprimir/'.$factura['id'])  }}" class="btn btn-default btn-xs">Imprimir</a>
+                                                @if($factura->estado == 'efectuada')
+                                                    <a href="{{ url('/pagos/anular/'.$matricula->estudiante['documento'].'/factura/'.$factura['id']) }}" class="btn btn-danger btn-xs">Anular</a>                                              
+                                                @endif
                                             </p>
                                         </li>
                                     @endforeach

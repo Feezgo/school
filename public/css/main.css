@@ -8,3 +8,13 @@ color: #737374;
 font-weight: bold;
 
 }
+
+small.anulada
+{
+	color: #f00;
+}
+
+small.efectuada
+{
+	color: #0f0;
+}

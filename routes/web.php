@@ -44,10 +44,12 @@ Route::post('/alumno/delete_file', 'AlumnoController@delete_file');
 Route::get('/alumno/getMunicipio/{id}', 'AlumnoController@getMunicipio');
 Route::post('/traer_ficheros_estudiante','AlumnoController@traer_ficheros_estudiante');
 Route::post('/alumno/registro_matricula','AlumnoController@registro_matricula');
-
 Route::get('/alumno/asignar_plan_pagos/{id}', 'PagosController@asignarPlanPagos');
+
 Route::get('/pagos/buscar/{documento?}', 'PagosController@obtenerPagosPendientes');
 Route::post('/pagos/gestionarPagos', 'PagosController@gestionarPagos');
+Route::get('/pagos/anular/{documento}/factura/{id}', 'PagosController@anularPago');
+Route::get('/pagos/imprimir/{id}', 'PagosController@imprimir');
 Route::get('/pagos/consolidado', 'PagosController@consolidado');
 Route::post('/pagos/pagos/listadoConsolidado', 'PagosController@listadoConsolidado');
 
