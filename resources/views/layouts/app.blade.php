@@ -78,7 +78,7 @@
                                     Matricula <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/validar') }}">Aprovar Matricula</a></li>
+                                    <li><a href="{{ url('/validar') }}">Aprobar Matricula</a></li>
                                     <li><a href="{{ url('/matricula') }}">Generar Matricula</a></li>
                                 </ul>
                             </li>
@@ -90,6 +90,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/pagos/buscar/') }}">Registrar pagos</a></li>
+                                    <li><a href="{{ url('/pagos/consolidado/') }}">Consolidado</a></li>
                                 </ul>
                             </li>
 

@@ -135,4 +135,32 @@ class PagosController extends Controller
 		return response()->json(['estado' => 'true']);
     }
 
+    public function consolidado(){
+        return view('consolidado');
+    }
+
+    public function listadoConsolidado(Request $request){
+        $tabla="<table id='Tabla_Consolidado'>
+                    <thead>
+                        <tr>
+                            <th>Género / Edad</b></th>
+                            <th>5 a 6</th>
+
+                           
+                        </tr>
+                    </thead>
+                        <tbody>
+                        ";
+                        //consulta
+
+        $tabla=$tabla."<tr>
+                                <td><font color='#0B0B61'><b>TOTAL EDAD</td>
+                                <td></td>
+ 
+                                </tr>
+                                </tbody>
+                                </table>";
+        return  $tabla;
+    }
+
 }
