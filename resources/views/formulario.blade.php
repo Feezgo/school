@@ -1144,8 +1144,8 @@
                       <input type="text" class="form-control" name="matri_num_alumn" readonly="readonly">
                     </div>
                     <div class="col-xs-6 col-md-6 form-group">
-                      <label for"">Folio</label>
-                      <input type="text" class="form-control" name="matri_folio">
+                      <!--label for"">Folio</label>-->
+                      <input type="hiden" class="form-control" name="matri_folio" readonly="readonly" value="0">
                     </div>
                 </div>
                 <div class="row">
