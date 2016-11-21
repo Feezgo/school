@@ -17,7 +17,7 @@ class GradoTableSeeder extends Seeder
 			],[
 	            'grado' => 'Kinder',
 			],[
-                'grado' => 'Transición',
+                'grado' => 'Transicion',
             ],[
                 'grado' => 'Primero',
             ],[

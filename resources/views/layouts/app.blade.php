@@ -90,7 +90,15 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/pagos/buscar/') }}">Registrar pagos</a></li>
+                                    <?php
+                                    $id=Auth::user()->id;
+                                    if($id==2){
+                                    ?>
                                     <li><a href="{{ url('/pagos/consolidado/') }}">Consolidado</a></li>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </ul>
                             </li>
 

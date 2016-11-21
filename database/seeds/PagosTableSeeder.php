@@ -32,7 +32,7 @@ class PagosTableSeeder extends Seeder
                 'descipcion' => 'Matricula',
                 'costo' => 95500,
                 'recargo' => 8000,
-                'cursos' => 'Transición'
+                'cursos' => 'Transicion'
             ],[
                 'concepto' => 'matricula',
                 'aplica' => 'todos',
@@ -85,143 +85,143 @@ class PagosTableSeeder extends Seeder
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 101000,
                 'recargo' => 8000,
                 'cursos' => 'Pre-Kinder'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 100500,
                 'recargo' => 8000,
                 'cursos' => 'Kinder'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 95500,
                 'recargo' => 8000,
-                'cursos' => 'Transición'
+                'cursos' => 'Transicion'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 83500,
                 'recargo' => 8000,
                 'cursos' => 'Primero'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 85500,
                 'recargo' => 8000,
                 'cursos' => 'Segundo'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 87500,
                 'recargo' => 8000,
                 'cursos' => 'Tercero'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 90500,
                 'recargo' => 8000,
                 'cursos' => 'Cuarto'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 91500,
                 'recargo' => 8000,
                 'cursos' => 'Quinto'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 94000,
                 'recargo' => 8000,
                 'cursos' => 'Sexto'
             ],[
                 'concepto' => 'pension',
                 'aplica' => 'todos',
-                'descipcion' => 'Pensión',
+                'descipcion' => 'Pension',
                 'costo' => 109000,
                 'recargo' => 8000,
                 'cursos' => 'Septimo'
             ],[
-                'concepto' => 'Formulario estudiante nuevo',
+                'concepto' => 'otro',
                 'aplica' => 'nuevo',
                 'descipcion' => 'Formulario estudiante nuevo',
                 'costo' => 40000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'Formulario estudiante antiguo',
+                'concepto' => 'otro',
                 'aplica' => 'antiguo',
                 'descipcion' => 'Formulario estudiante antiguo',
                 'costo' => 300000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'sistematización',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
-                'descipcion' => 'Sistematización',
+                'descipcion' => 'Sistematizacion',
                 'costo' => 40000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'formulario',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Formulario',
                 'costo' => 30000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'carnet',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Carnet',
                 'costo' => 7500,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'agenda',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Agenda',
                 'costo' => 30000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'seguro',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Seguro',
                 'costo' => 25000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'guias',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Guias',
                 'costo' => 60000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'pasaporte',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Pasaporte',
                 'costo' => 7500,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ],[
-                'concepto' => 'lista de utiles',
+                'concepto' => 'otro',
                 'aplica' => 'todos',
                 'descipcion' => 'Lista de utiles',
                 'costo' => 52000,
                 'recargo' => 0,
-                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transición,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
+                'cursos' => 'Pre-Kinder,Kinder,Pre-Kinder,Kinder,Transicion,Primero,Segundo,Tercero,Cuarto,Quinto,Sexto,Septimo,Octavo,Noveno,Decimo'
             ]
         ]);
     }
