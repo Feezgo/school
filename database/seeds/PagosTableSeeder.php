@@ -106,13 +106,6 @@ class PagosTableSeeder extends Seeder
             ],[
                 'concepto' => 'otro',
                 'aplica' => 'todos',
-                'descipcion' => 'Formulario',
-                'costo' => 30000,
-                'recargo' => 0,
-                'cursos' => '|Pre-Kinder|Kinder|Transicion|Primero|Segundo|Tercero|Cuarto|Quinto|Sexto|Septimo|Octavo|Noveno|Decimo'
-            ],[
-                'concepto' => 'otro',
-                'aplica' => 'todos',
                 'descipcion' => 'Carnet',
                 'costo' => 7500,
                 'recargo' => 0,
