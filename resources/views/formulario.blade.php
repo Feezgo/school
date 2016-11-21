@@ -1145,7 +1145,7 @@
                     </div>
                     <div class="col-xs-6 col-md-6 form-group">
                       <!--label for"">Folio</label>-->
-                      <input type="hiden" class="form-control" name="matri_folio" readonly="readonly" value="0">
+                      <input type="hidden" class="form-control" name="matri_folio" readonly="readonly" value="0">
                     </div>
                 </div>
                 <div class="row">
