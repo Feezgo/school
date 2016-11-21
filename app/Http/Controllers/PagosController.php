@@ -107,7 +107,7 @@ class PagosController extends Controller
         return $pdf->show(); 
     }
 
-    public function asignarPlanPagos(Request $request,$id)
+    public function asignarPlanPagos(Request $request, $id)
     {
     	$matricula = Matricula::find($id);
     	$pagos = Pago::where(function($query) use ($matricula)
@@ -117,8 +117,8 @@ class PagosController extends Controller
 			    	})
     				->where(function($query) use ($matricula)
     				{
-    					$query->where('cursos', 'LIKE', '%'.$matricula->grado['grado'].'%')
-							->orWhere('cursos', 'LIKE', '%todos%');
+    					$query->where('cursos', 'LIKE', '%|'.$matricula->grado()->first()->grado.'%')
+							->orWhere('cursos', 'LIKE', '%|todos%');
     				})
 					->get();
 
@@ -128,7 +128,8 @@ class PagosController extends Controller
 		foreach ($pagos as $pago) 
 		{
 			switch ($pago->concepto) {
-				case 'matricula':
+                case 'matricula':
+				case 'otro':
 					$plan_de_pagos[] = [
 							'id_pago' => $pago->id,
 							'pagado' => 0,
