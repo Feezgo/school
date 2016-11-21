@@ -92,7 +92,7 @@
                                     <li><a href="{{ url('/pagos/buscar/') }}">Registrar pagos</a></li>
                                     <?php
                                     $id=Auth::user()->id;
-                                    if($id==2){
+                                    if($id==4){
                                     ?>
                                     <li><a href="{{ url('/pagos/consolidado/') }}">Consolidado</a></li>
                                     <?php
