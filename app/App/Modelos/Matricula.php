@@ -22,6 +22,6 @@ class Matricula extends Model
 
 	public function grado() 
 	{
-		return $this->belongsTo('School\App\Modelos\grado', 'grado');
+		return $this->belongsTo('School\App\Modelos\Grado', 'grado');
 	}
 }
