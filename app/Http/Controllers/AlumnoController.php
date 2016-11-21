@@ -45,7 +45,7 @@ class AlumnoController extends Controller
                 $html = view('matricula')->with($datos)->render();
                 $pdf = PDF::load($html);
 
-                return $pdf->show();
+                return $pdf->download();
             break;
             case 'contrato':
                 $planes_de_pagos = PlanDePago::with('pago', 'matricula', 'matricula.estudiante')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
@@ -53,7 +53,7 @@ class AlumnoController extends Controller
 
                 $pdf = PDF::load($html);
 
-                return $pdf->show();
+                return $pdf->download();
             break;
         }
     }
