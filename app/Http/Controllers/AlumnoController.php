@@ -48,9 +48,16 @@ class AlumnoController extends Controller
                 return $pdf->download();
             break;
             case 'contrato':
-                $planes_de_pagos = PlanDePago::with('pago', 'matricula', 'matricula.estudiante')->whereIn('id', $request->input('pago'))->orderBy('factura', 'asc')->get();
-                $html = view('contrato')->with(['planes_de_pagos' => $planes_de_pagos])->render();
-
+                $model_Estu = Estudiante::with('departamento1','municipio1','discapacidad','situacion','familiar','historiasAcademicas')->find($request->input('id_estudiante'));
+                $model_Matr = Matricula::with('grado')->find($request->input('id_matri'));
+          
+                $datos = [
+                        'matricula' => $model_Matr,
+                        'estudiante' => $model_Estu,
+                    ];
+                 //dd($datos);
+                 //exit();
+                $html = view('contrato')->with($datos)->render();
                 $pdf = PDF::load($html);
 
                 return $pdf->download();
