@@ -8,6 +8,7 @@ use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Factura;
+use School\User;
 use PDF;
 use Auth;
 use Carbon;
@@ -165,7 +166,12 @@ class PagosController extends Controller
     }
 
     public function consolidado(){
-        return view('consolidado');
+        $datos = User::all();
+        $data = [
+            'usuarios' => $datos,
+
+        ];
+        return view('consolidado',$data);
     }
 
     public function listadoConsolidado(Request $request){
@@ -173,7 +179,8 @@ class PagosController extends Controller
         $ini = $request["fecha_inicio"].' 00:00:00';
         $fin = $request["fecha_fin"].' 23:59:00';
 
-        $facturas = Factura::with('planesDePagos','planesDePagos.matricula.estudiante')->whereBetween('created_at', [$ini, $fin])->get();
+        $facturas = Factura::with('planesDePagos','user','planesDePagos.matricula.estudiante','planesDePagos.pago')->whereBetween('created_at', [$ini, $fin])->where('id_usuario',$request["Usuario"])->get();
+ 
         return response()->json($facturas);
     }
 
