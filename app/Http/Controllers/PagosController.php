@@ -169,27 +169,12 @@ class PagosController extends Controller
     }
 
     public function listadoConsolidado(Request $request){
-        $tabla="<table id='Tabla_Consolidado'>
-                    <thead>
-                        <tr>
-                            <th>Género / Edad</b></th>
-                            <th>5 a 6</th>
 
-                           
-                        </tr>
-                    </thead>
-                        <tbody>
-                        ";
-                        //consulta
+        $ini = $request["fecha_inicio"].' 00:00:00';
+        $fin = $request["fecha_fin"].' 23:59:00';
 
-        $tabla=$tabla."<tr>
-                                <td><font color='#0B0B61'><b>TOTAL EDAD</td>
-                                <td></td>
- 
-                                </tr>
-                                </tbody>
-                                </table>";
-        return  $tabla;
+        $facturas = Factura::with('planesDePagos','planesDePagos.matricula.estudiante')->whereBetween('created_at', [$ini, $fin])->get();
+        return response()->json($facturas);
     }
 
 }
