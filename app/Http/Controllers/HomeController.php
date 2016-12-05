@@ -35,5 +35,10 @@ class HomeController extends Controller
     {
         return view('buscadorMatricula');
     }
+
+    public function registrar()
+    {
+        return view('auth.register');
+    }
         
 }

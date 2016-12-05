@@ -318,7 +318,7 @@ class AlumnoController extends Controller
     public function guardar_matricula($input)
     {
         
-
+        
         $model_E = Estudiante::where('documento',$input['matri_num_alumn'])->get();
             
             if(count($model_E)>0){ 

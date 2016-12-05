@@ -107,7 +107,15 @@
                                     Administrar <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/register') }}">Registrar</a></li>
+                                    <?php
+                                    $id=Auth::user()->id;
+                                    if($id==4){
+                                    ?>
+                                    <li><a href="{{ url('/registrar') }}">Register</a></li>
+                                    <?php
+                                    }
+                                    ?>
+                                    
                                 </ul>
                             </li>
 
