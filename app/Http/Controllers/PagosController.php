@@ -103,7 +103,6 @@ class PagosController extends Controller
         $factura = Factura::with('planesDePagos', 'planesDePagos.pago', 'planesDePagos.matricula', 'planesDePagos.matricula.grado', 'planesDePagos.matricula.estudiante')->find($id);
         $html = view('pagos.factura')->with(['factura' => $factura])->render();
         $pdf = PDF::load($html);
-        $pdf->setPaper([0,0,595,421], 'portrait'); 
 
         return $pdf->download(); 
     }

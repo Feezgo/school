@@ -41,7 +41,6 @@
 		<tr>
 			<td colspan="3">
 				Estudiante: {{ $factura->planesDePagos[0]->matricula->estudiante['pmer_nombre'].' '.$factura->planesDePagos[0]->matricula->estudiante['pmer_apellido'] }} <br>
-
 				Grado: {{ $factura->planesDePagos[0]->matricula->grado()->first()->grado }}
 			</td>
 		</tr>
