@@ -18,14 +18,14 @@ class PagosTableSeeder extends Seeder
                 'descipcion' => 'Matricula',
                 'costo' => 101000,
                 'recargo' => 8000,
-                'cursos' => '|Pre-Jardin'
+                'cursos' => '|Pre-Kinder'
             ],[
                 'concepto' => 'matricula',
                 'aplica' => 'todos',
                 'descipcion' => 'Matricula',
                 'costo' => 100500,
                 'recargo' => 8000,
-                'cursos' => '|Jardin'
+                'cursos' => '|Kinder'
             ],[
                 'concepto' => 'matricula',
                 'aplica' => 'todos',
