@@ -50,6 +50,7 @@ Route::get('/validar', 'HomeController@validar');
 Route::get('/matricula', 'HomeController@matricula');
 Route::get('/pagos/buscar/{documento?}', 'PagosController@obtenerPagosPendientes');
 Route::get('/pagos/consolidado', 'PagosController@consolidado');
+Route::get('/pagos/otros', 'PagosController@otros');
 Route::post('/pagos/pagos/listadoConsolidado', 'PagosController@listadoConsolidado');
 Route::get('/registrar', 'HomeController@registrar');
 
@@ -59,5 +60,6 @@ Route::get('/alumno/asignar_plan_pagos/{id}', 'PagosController@asignarPlanPagos'
 Route::post('/pagos/gestionarPagos', 'PagosController@gestionarPagos');
 Route::get('/pagos/anular/{documento}/factura/{id}', 'PagosController@anularPago');
 Route::get('/pagos/imprimir/{id}', 'PagosController@imprimir');
+Route::get('/pagos/pagos/obtenerValorConcept/{id}', 'PagosController@obtenerValorConcept');
 
 });

@@ -59,9 +59,7 @@
                             
                            
                             
-                            
-
-
+                        
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Pin <span class="caret"></span>
@@ -71,7 +69,6 @@
                                     <li><a href="{{ url('/listadoPin') }}">Listado pin</a></li>
                                 </ul>
                             </li>
-
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -90,6 +87,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('/pagos/buscar/') }}">Registrar pagos</a></li>
+                                    <li><a href="{{ url('/pagos/otros/') }}">Registrar otros pagos</a></li>
                                     <?php
                                     $id=Auth::user()->id;
                                     if($id==4){
@@ -148,6 +146,8 @@
     </div>
     <!-- Scripts -->
     @section('scripts')
+
+
           <script src="/js/app.js"></script>
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
           <!--<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js"></script>-->
@@ -165,6 +165,13 @@
           <script src=" https://cdn.datatables.net/responsive/2.0.1/js/dataTables.responsive.min.js"></script>
           <script src=" https://cdn.datatables.net/responsive/2.0.1/js/responsive.bootstrap.min.js"></script> 
           <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.0.1/css/responsive.bootstrap.min.css">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+
     @show
 </body>
 </html>

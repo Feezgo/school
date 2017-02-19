@@ -1,6 +1,6 @@
 $(function() {
 	var URL2 = $('#form_consolidado').data('url');
-
+     vector_datos_otrosPagos= new Array();
 	$("#datepicker").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -57,6 +57,12 @@ $(function() {
             'copy', 'csv', 'excel', 'pdf']
      });
 
+      var tt = $('#OtrosConceptos').DataTable( {responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf']
+     });
+
     /*  t.on( 'search.dt', function () {
         $('#valorT').html( 'Currently applied global search: '+t.search() );
     } );*/
@@ -81,4 +87,105 @@ $(function() {
         }
         return (parts.length == 3 ? '-' : '') + result;
     }
+
+    
+    $('#consolidado_otrosPagos_form').on('submit', function(e){
+        var valro_conc=0;
+        var f = new Date();
+        var fechaRegistro=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+        var fecha_inicio=$('input[name="fecha_inicio"]').val();
+        var fecha_fin=$('input[name="fecha_fin"]').val();
+        var estudiante=$('#estudiante').selectpicker('val');
+        var nombre_est =$('input[name="nombre_est"]').val();
+        var Concepto=$('input[name="Concepto"]').val();
+        var array =$('#Concepto').find("option:selected").text();
+        console.log(array);
+        var respuesta=array.split(",");
+        var nombre_concep =respuesta[0];
+        var valro_conc =respuesta[1];
+       
+       
+    
+
+        vector_datos_otrosPagos.push({
+            "fechaRegistro":fechaRegistro,
+            "fecha_inicio": fecha_inicio,
+            "fecha_fin":fecha_fin,
+            "estudiante": estudiante,
+            "Concepto":Concepto,
+            "nombre_est":nombre_est,
+            "nombre_concep":nombre_concep,
+            "valro_conc":valro_conc
+        });
+       // console.log(vector_datos_otrosPagos);
+
+         tt.clear().draw();
+         var num=1;
+         var sumTotal=0;
+         if(vector_datos_otrosPagos.length > 0)
+            {
+                 $.each(vector_datos_otrosPagos, function(i, e){
+                     sumTotal=parseInt(sumTotal)+parseInt(e['valro_conc']);
+                     tt.row.add( [
+                          '<th scope="row" class="text-center">'+num+'</th>',
+                          '<td>'+e['nombre_est']+'</td>',
+                          '<td>'+e['fechaRegistro']+'</td>',
+                          '<td>'+e['nombre_concep']+'</td>',
+                          '<td>'+e['valro_conc']+'</td>',
+                          '<td>'+e['fecha_inicio']+' - '+e['fecha_fin']+'</td>',
+                          '<td><td class="text-center"><button type="button" data-rel="'+i+'" data-funcion="crear" class="btn btn-danger btn-xs">Eliminar</button></td>',
+                      ] ).draw( false );
+                      num++;
+                  });
+             }
+
+            $('#valorT').html(sumTotal);
+        e.preventDefault();
+    });
+
+
+    $('#OtrosConceptos').delegate('button[data-funcion="crear"]','click',function (e) {   
+      
+      var f = new Date();
+      var fechaRegistro=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+      var id = $(this).data('rel'); 
+      vector_datos_otrosPagos.splice(id, 1);
+          
+         tt.clear().draw();
+         var num=1;
+         var sumTotal=0;
+         if(vector_datos_otrosPagos.length > 0)
+            {
+                 $.each(vector_datos_otrosPagos, function(i, e){
+                     sumTotal=parseInt(sumTotal)+parseInt(e['valro_conc']);
+                     tt.row.add( [
+                          '<th scope="row" class="text-center">'+num+'</th>',
+                          '<td>'+e['nombre_est']+'</td>',
+                          '<td>'+e['fechaRegistro']+'</td>',
+                          '<td>'+e['nombre_concep']+'</td>',
+                          '<td>'+e['valro_conc']+'</td>',
+                          '<td>'+e['fecha_inicio']+' - '+e['fecha_fin']+'</td>',
+                          '<td><td class="text-center"><button type="button" data-rel="'+i+'" data-funcion="crear" class="btn btn-danger btn-xs">Eliminar</button></td>',
+                      ] ).draw( false );
+                      num++;
+                  });
+             }
+
+            $('#valorT').html(sumTotal);
+
+
+     }); 
+
+    
+
+
+    $('select[name="Concepto"]').on('change', function(e){
+        $('input[name="nombre_concep"]').val($('#Concepto option:selected').text());
+    });
+
+     $('select[name="estudiante"]').on('change', function(e){
+        $('input[name="nombre_est"]').val($('#estudiante option:selected').text());
+    });
+
+
 });

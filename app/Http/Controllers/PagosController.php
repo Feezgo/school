@@ -8,6 +8,8 @@ use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Factura;
+use School\App\Modelos\estudiantes2017;
+use School\App\Modelos\Conceptos;
 use School\User;
 use PDF;
 use Auth;
@@ -173,6 +175,17 @@ class PagosController extends Controller
         return view('consolidado',$data);
     }
 
+    public function otros(){
+        $datos = estudiantes2017::with('grado')->get();
+        $concepto = Conceptos::all();
+        $data = [
+            'usuarios' => $datos,
+            'concepto' => $concepto,
+
+        ];
+        return view('otrosPagos',$data);
+    }
+
     public function listadoConsolidado(Request $request){
 
         $ini = $request["fecha_inicio"].' 00:00:00';
@@ -181,6 +194,12 @@ class PagosController extends Controller
         $facturas = Factura::with('planesDePagos','user','planesDePagos.matricula.estudiante','planesDePagos.pago')->whereBetween('created_at', [$ini, $fin])->where('id_usuario',$request["Usuario"])->get();
  
         return response()->json($facturas);
+    }
+
+    public function obtenerValorConcept(Request $request, $id)
+    {
+        $conceptos = Conceptos::find($id);
+        return response()->json($conceptos);
     }
 
 }
