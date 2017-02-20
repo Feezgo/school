@@ -115,7 +115,7 @@ $(function() {
        
         var num_dias=1;
         var TotalComp=0;
-        var array2 = ['288','289','290','291','292','293'];
+        var array2 = ['140','141','142','143','144','145'];
         console.log(Concepto+" "+array2.indexOf(Concepto));
         if(array2.indexOf(Concepto)>=0){
             num_dias =restaFechas(fecha_inicio,fecha_fin);
