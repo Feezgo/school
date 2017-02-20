@@ -8,8 +8,10 @@ use School\App\Modelos\PlanDePago;
 use School\App\Modelos\Matricula;
 use School\App\Modelos\Estudiante;
 use School\App\Modelos\Factura;
+use School\App\Modelos\Factura2017;
 use School\App\Modelos\estudiantes2017;
 use School\App\Modelos\Conceptos;
+use School\App\Modelos\FacturaConcepto;
 use School\User;
 use PDF;
 use Auth;
@@ -200,6 +202,42 @@ class PagosController extends Controller
     {
         $conceptos = Conceptos::find($id);
         return response()->json($conceptos);
+    }
+
+     public function listadoConsolidadopdf(Request $request)
+    {
+        $data0 = json_decode($request->input('vectorDatos'));
+        
+         $factura = new Factura2017;
+         $factura['id_usuario']= Auth::user()->id ;
+         $factura['id_estudiante']=$data0[0]->estudiante;
+         $factura['fechaRegistro']=date('Y-m-d');
+         $factura->save();
+         $id_fact=$factura->id;
+
+         foreach($data0 as $pago)  {
+
+            $facturaConcep = new FacturaConcepto;
+            $facturaConcep['id_factura']=$id_fact;
+            $facturaConcep['fecha_inicio']=$pago->fecha_inicio;
+            $facturaConcep['fecha_fin']=$pago->fecha_fin;
+            $facturaConcep['Concepto']=$pago->Concepto;
+            $facturaConcep['grado_est']=$pago->grado_est;
+            $facturaConcep['nota']=$pago->nota;
+            $facturaConcep['mes']=$pago->mes;
+            $facturaConcep->save();
+
+         }
+                
+        
+        $data = [
+            'data0' => $data0,
+            'id_fact' => $id_fact,
+
+        ];
+        
+        $pdf = PDF::load(view('otrospagosPdf',$data));
+        return $pdf->download();
     }
 
 }

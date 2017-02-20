@@ -39,7 +39,7 @@ Route::post('/alumno/registro_academico', 'AlumnoController@registro_academico')
 Route::post('/alumno/registro_file', 'AlumnoController@registro_file');
 Route::post('/alumno/delete_file', 'AlumnoController@delete_file');
 Route::get('/alumno/getMunicipio/{id}', 'AlumnoController@getMunicipio');
-
+Route::get('/pagos/listadoConsolidadopdf', 'PagosController@listadoConsolidadopdf');
 
 Route::group(['middleware' => 'auth'], function () {
     
@@ -52,6 +52,7 @@ Route::get('/pagos/buscar/{documento?}', 'PagosController@obtenerPagosPendientes
 Route::get('/pagos/consolidado', 'PagosController@consolidado');
 Route::get('/pagos/otros', 'PagosController@otros');
 Route::post('/pagos/pagos/listadoConsolidado', 'PagosController@listadoConsolidado');
+
 Route::get('/registrar', 'HomeController@registrar');
 
 

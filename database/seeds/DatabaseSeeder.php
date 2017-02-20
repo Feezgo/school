@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MunicipioTableSeeder::class);
         $this->call(DiscapacidadTableSeeder::class);
         $this->call(GradoTableSeeder::class);
+        $this->call(Conceptos2017::class);
+        $this->call(Estudiantes2017::class);
         
     }
 }
